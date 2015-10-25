@@ -32,8 +32,8 @@ var all = {
     session: 'eduquizz-secret'
   },
 
-  // List of user roles
-  userRoles: ['guest', 'user', 'admin'],
+  // List of user roles in order of power
+  userRoles: ['guest', 'user', 'manager', 'admin'],
 
   // MongoDB connection options
   mongo: {

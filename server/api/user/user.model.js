@@ -4,7 +4,8 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var crypto = require('crypto');
 var authTypes = ['github', 'twitter', 'facebook', 'google'];
-var acls = ['user', 'manager', 'admin'];
+var config = require('../../config/environment');
+var acls = config.userRoles;
 
 var UserSchema = new Schema({
   name: String,

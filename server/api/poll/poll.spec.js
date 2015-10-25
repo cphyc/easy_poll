@@ -4,6 +4,7 @@ var should = require('should');
 var app = require('../../app');
 var request = require('supertest');
 var Poll = require('./poll.model');
+var User = require('../user/user.model');
 
 var pollArray = {
   name : 'About distance',
@@ -19,11 +20,53 @@ var pollArray = {
 };
 var poll = new Poll(pollArray);
 
+var userToken, managerToken;
+// Authenticate as admin
+before(function(done) {
+  var testUser = {
+    name: 'test',
+    email: 'test@test.com',
+    role: 'user',
+    password: 'test'
+  };
+  new User(testUser).save(function() {
+    request(app)
+      .post('/auth/local')
+      .set('Content-Type', 'application/json')
+      .send({ "email": testUser.email, "password": testUser.password})
+      .end(function(err, res) {
+        userToken = res.body.token;
+        done();
+      });
+  });
+
+});
+
+before(function(done) {
+  var adminUser = {
+    name: 'manager',
+    email: 'manager@manager.com',
+    role: 'manager',
+    password: 'manager'
+  };
+  new User(adminUser).save(function() {
+    request(app)
+      .post('/auth/local')
+      .set('Content-Type', 'application/json')
+      .send({ "email": adminUser.email, "password": adminUser.password})
+      .end(function(err, res) {
+        managerToken = res.body.token;
+        done();
+      });
+  });
+});
+
 describe('GET /api/polls', function() {
 
-  it('should respond with JSON array', function(done) {
+  it('should respond with JSON array for users', function(done) {
     request(app)
       .get('/api/polls')
+      .set('Authorization', 'Bearer ' + userToken)
       .expect(200)
       .expect('Content-Type', /json/)
       .end(function(err, res) {
@@ -32,14 +75,36 @@ describe('GET /api/polls', function() {
         done();
       });
   });
+
+  it('should fail for visitors', function(done) {
+    request(app)
+      .post('/api/polls/')
+      .send(pollArray)
+      .expect(401)
+      .end(function() {
+        done();
+      });
+  });
 });
 
 describe('POST /api/polls', function() {
-  it('should save', function(done) {
+  it('should fail for users', function(done) {
+    request(app)
+      .post('/api/polls/')
+      .set('Authorization', 'Bearer ' + userToken)
+      .send(pollArray)
+      .expect(401)
+      .end(function() {
+        done();
+      });
+  });
+
+  it('should save for managers', function(done) {
     request(app)
       .post('/api/polls')
-      .set('Content-Type', 'application/json')
+      .set('Authorization', 'Bearer ' + managerToken)
       .send(pollArray)
+      .set('Content-Type', 'application/json')
       .expect(201)
       .end(function(err, res) {
         if (err) return done(err);
@@ -51,6 +116,7 @@ describe('POST /api/polls', function() {
     request(app)
       .post('/api/polls')
       .set('Content-Type', 'application/json')
+      .set('Authorization', 'Bearer ' + managerToken)
       .send({test: 1})
       .expect(500)
       .end(function(err, res) {
@@ -75,24 +141,34 @@ describe('DELETE /api/polls', function() {
     });
   });
 
-  it('should delete', function(done) {
+  it('should delete for managers', function(done) {
     request(app)
       .delete('/api/polls/' + objId)
+      .set('Authorization', 'Bearer ' + managerToken)
       .expect(204)
       .end(function(err, res) {
         if (err) return done(err);
 
-        Poll.findById(objId).then(function(found) {
-          if (found) return done(err);
-          done();
-        });
+        Poll.findById(objId).then(done);
     });
+  });
+
+  it('should fail for users', function(done) {
+    request(app)
+      .delete('/api/polls/' + objId)
+      .set('Authorization', 'Bearer ' + userToken)
+      .expect(401)
+      .end(function() {
+        // Check it hasn't been deleted
+        Poll.findById(objId).then(done);
+      });
   });
 
   it('should fail on unfound reference', function(done) {
     poll.save(function(err, obj) {
       request(app)
         .delete('/api/polls/' + 'abcdef')
+        .set('Authorization', 'Bearer ' + managerToken)
         .expect(500)
         .end(function(err, res) {
           if (err) return done(err);
