@@ -21,6 +21,19 @@ Poll.find({}).remove(function() {
       answer : 1
     }]
   });
+
+  Poll.create({
+    name : 'About time',
+    questions: [{
+      question: 'Who\'s older?',
+      answers: ['You', 'Me', 'Her'],
+      answer: 2
+    }, {
+      question: 'What takes the longest?',
+      answers: ['1, 2, 3, 4', 'Back and forth to the moon', 'Buy a sandwich', 'Learn the bible by hearth'],
+      answer : 1
+    }]
+  });
 });
 
 User.find({}).remove(function() {

@@ -5,6 +5,9 @@ angular.module('eduquizzApp')
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
+    }, {
+      'title': 'Polls',
+      'link': '/polls'
     }];
 
     $scope.isCollapsed = true;
