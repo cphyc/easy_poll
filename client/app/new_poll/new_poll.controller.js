@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('eduquizzApp')
-  .controller('NewPollCtrl', function ($scope) {
+  .controller('NewPollCtrl', function ($scope, checkPollInputService) {
     $scope.poll = {
       name : 'About distance',
       questions: [{
@@ -15,9 +15,14 @@ angular.module('eduquizzApp')
       }]
     };
 
+    var nullValue = { question : '', answer: null, answers: []};
+    $scope.new_question = {value: angular.copy(nullValue)};
+    $scope.validate_new_question = checkPollInputService.validatorGenerator('Expecting new question!', angular.copy(nullValue));
+    $scope.push_question = checkPollInputService.pusherGenerator($scope.new_question, angular.copy(nullValue));
+
   })
   .controller('NewQuestionCtrl', function($scope, checkPollInputService) {
     $scope.new_answer = {value: ''};
-    $scope.validate_new_answer = checkPollInputService.validatorGenerator('Expecting new question!');
-    $scope.push_answer = checkPollInputService.pusherGenerator($scope.new_answer);
+    $scope.validate_new_answer = checkPollInputService.validatorGenerator('Expecting new answer!', '');
+    $scope.push_answer = checkPollInputService.pusherGenerator($scope.new_answer, '');
   });

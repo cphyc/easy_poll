@@ -3,7 +3,7 @@ div(ng-include='"components/navbar/navbar.html"')
 .container
   div(ng-controller='NewPollCtrl')
     h1(editable-text='poll.name') {{ poll.name || 'Poll name'}}
-    ul(ng-repeat='q in poll.questions')
+    ul(ng-repeat='q in poll.questions track by $index')
       li(ng-controller='NewQuestionCtrl')
         span(editable-text='q.question') {{ q.question || 'Question'}}
         ul(ng-repeat='answer in q.answers track by $index')
@@ -15,6 +15,11 @@ div(ng-include='"components/navbar/navbar.html"')
             span(editable-text='new_answer.value'
               onbeforesave='validate_new_answer($data)'
               onaftersave='push_answer(q.answers)') {{ new_answer.value || 'New answer'}}
+    ul(ng-repeat-end)
+      li
+        span(editable-text='new_question.value.question'
+          onbeforesave='validate_new_question($data)'
+          onaftersave='push_question(poll.questions)') {{ new_question.value.question || 'New question'}}
           
 .footer
   | Foo bar
