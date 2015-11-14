@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('eduquizzApp')
-  .controller('PollsCtrl', function ($scope, $http, $modal, $rootScope) {
+  .controller('PollsCtrl', function ($scope, $http, $modal, $rootScope, $location) {
     $http.get('/api/polls').then(function(reply) {
       $scope.polls = reply.data;
     });
@@ -11,13 +11,6 @@ angular.module('eduquizzApp')
     });
 
     $scope.newPoll = function() {
-      var scope = $rootScope.$new();
-      scope.modal = {
-        title: 'New poll'
-      };
-      var modal = $modal.open({
-        scope: scope,
-        templateUrl: 'app/polls/views/new-poll.html'
-      })
+      $location.url('/settings');
     };
   });
