@@ -4,7 +4,7 @@ div(ng-include='"components/navbar/navbar.html"')
   h1 Polls list
   md-button.md-fab.md-mini(md-font-icon='icon-home' aria-label='FAB' ng-click='newPoll()')
     i.fa.fa-plus
-  poll(ng-repeat='poll in polcdls')
+  poll(ng-repeat='poll in polls')
     md-card
       md-card-content
         md-toolbar(ng-click='reveal = !reveal')

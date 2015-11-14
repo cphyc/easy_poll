@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('eduquizzApp')
-  .directive('poll', function() { return {
-    restrict: 'E',
+  .directive('editable', function() { return {
+    restrict: 'A',
     controller: function($scope) {
       $scope.reveal = false;
     }

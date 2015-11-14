@@ -1,2 +1,20 @@
-.col-md-12
-    | This is the new_poll view.
+div(ng-include='"components/navbar/navbar.html"')
+
+.container
+  div(ng-controller='NewPollCtrl')
+    h1(editable-text='poll.name') {{ poll.name || 'Poll name'}}
+    ul(ng-repeat='q in poll.questions')
+      li(ng-controller='NewQuestionCtrl')
+        span(editable-text='q.question') {{ q.question || 'Question'}}
+        ul(ng-repeat='answer in q.answers track by $index')
+          li
+            input(type="radio" ng-model='q.answer' ng-value='$index')
+            span(editable-text='answer')  {{ answer || 'Answer '+$index}}
+        ul(ng-repeat-end)
+          li 
+            span(editable-text='new_answer.value'
+              onbeforesave='validate_new_answer($data)'
+              onaftersave='push_answer(q.answers)') {{ new_answer.value || 'New answer'}}
+          
+.footer
+  | Foo bar
