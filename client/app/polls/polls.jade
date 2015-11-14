@@ -1,0 +1,23 @@
+div(ng-include='"components/navbar/navbar.html"')
+
+.container
+  h1 Polls list
+  md-button.md-fab.md-mini(md-font-icon='icon-home' aria-label='FAB' ng-click='newPoll()')
+    i.fa.fa-plus
+  poll(ng-repeat='poll in polcdls')
+    md-card
+      md-card-content
+        md-toolbar(ng-click='reveal = !reveal')
+          .md-toolbar-tools
+            h2 {{ poll.name }}
+              |  
+              i.fa.fa-caret-down(ng-hide='reveal')
+              i.fa.fa-caret-up(ng-show='reveal')
+        md-content(ng-show='reveal')
+          ul(ng-repeat='question in poll.questions')
+            li {{ question.question }}
+              ul(ng-repeat='answer in question.answers')
+                li(ng-class='{goodAnswer: $index===question.answer}') {{ answer }}
+
+.footer
+  | Foo bar
