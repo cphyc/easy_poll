@@ -1,24 +1,43 @@
 'use strict';
 
 angular.module('eduquizzApp')
-  .controller('NewPollCtrl', function ($scope, pollInputService) {
-    $scope.poll = {
-      name : 'About distance',
+  .controller('NewPollCtrl', function ($scope, pollInputService, Poll, $location) {
+    $scope.poll = new Poll({
+      name : '',
       questions: [{
-        question: 'What\'s the shortest distance?',
-        answers: ['Moon-earth', 'Earth-sun', 'Sun-Moon', 'You and me'],
-        answer: 3
-      }, {
-        question: 'Order these from the smallest to the largest. 1) Atom, 2) Human being, 3) the earth, 4) the Universe',
-        answers: ['1, 2, 3, 4', '1, 2, 4, 3', '1, 3, 2, 4', '1, 3, 4, 2'],
-        answer : 1
+        question: '',
+        answers: [],
+        answer: 0
       }]
-    };
+    });
 
     var nullValue = { question : '', answer: null, answers: []};
     $scope.new_question = {value: angular.copy(nullValue)};
     $scope.validate_new_question = pollInputService.validatorGenerator('Expecting new question!', angular.copy(nullValue));
     $scope.push_question = pollInputService.pusherGenerator($scope.new_question, angular.copy(nullValue));
+
+    $scope.save = function() {
+      $scope.buttontext = 'Submitting…';
+      $scope.poll.$save(function() {
+        $location.path('/polls');
+      })
+    }
+
+  })
+  .controller('EditPollCtrl', function ($scope, pollInputService, Poll, $stateParams, $location) {
+    $scope.poll = Poll.get({id: $stateParams.id});
+
+    var nullValue = { question : '', answer: null, answers: []};
+    $scope.new_question = {value: angular.copy(nullValue)};
+    $scope.validate_new_question = pollInputService.validatorGenerator('Expecting new question!', angular.copy(nullValue));
+    $scope.push_question = $scope.poll.$update;
+
+    $scope.save = function() {
+      $scope.buttonText = 'Submitting…';
+      $scope.poll.$update(function() {
+        $location.path('/polls');
+      });
+    }
 
   })
   .controller('NewQuestionCtrl', function($scope, pollInputService) {

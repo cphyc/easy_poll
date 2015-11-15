@@ -11,6 +11,9 @@ angular.module('eduquizzApp')
     });
 
     $scope.newPoll = function() {
-      $location.url('/new_poll');
+      $location.url('/polls/new');
     };
+    $scope.editPoll = function(id) {
+      $location.url('/polls/edit/'+id);
+    }
   });
