@@ -5,15 +5,19 @@ angular.module('eduquizzApp')
     $scope.menu = [{
       'title': 'Home',
       'link': '/'
-    }, {
-      'title': 'Polls',
-      'link': '/polls'
     }];
 
     $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;
     $scope.isAdmin = Auth.isAdmin;
     $scope.getCurrentUser = Auth.getCurrentUser;
+
+    if ($scope.isAdmin()) {
+      $scope.menu.push({
+        'title': 'Polls',
+        'link': '/polls'
+      });
+    }
 
     $scope.logout = function() {
       Auth.logout();

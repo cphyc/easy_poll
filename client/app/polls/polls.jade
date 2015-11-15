@@ -2,7 +2,7 @@ div(ng-include='"components/navbar/navbar.html"')
 
 .container
   h1 Polls list
-  md-button.md-fab.md-mini(md-font-icon='icon-home' aria-label='FAB' ng-click='newPoll()')
+  md-button.md-fab.md-fab-bottom-right(md-font-icon='icon-home' aria-label='FAB' ng-click='newPoll()')
     i.fa.fa-plus
   poll(ng-repeat='poll in polls')
     md-card
@@ -15,6 +15,7 @@ div(ng-include='"components/navbar/navbar.html"')
               i.fa.fa-caret-up(ng-show='reveal')
               |  
               i.fa.fa-edit(ng-click='editPoll(poll._id)')
+              i.fa.fa-remove(ng-click='deletePoll(poll._id, $event)')
         md-content(ng-show='reveal')
           ul(ng-repeat='question in poll.questions')
             li {{ question.question }}

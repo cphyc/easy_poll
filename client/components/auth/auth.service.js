@@ -137,6 +137,15 @@ angular.module('eduquizzApp')
       },
 
       /**
+       * Check if a user is a manager
+       *
+       * @return {Boolean}
+       */
+      isManager: function() {
+        return currentUser.role === 'manager';
+      },
+
+      /**
        * Get auth token
        */
       getToken: function() {
