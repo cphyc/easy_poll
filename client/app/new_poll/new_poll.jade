@@ -20,6 +20,6 @@ div(ng-include='"components/navbar/navbar.html"')
         span(editable-text='new_question.value.question'
           onbeforesave='validate_new_question($data)'
           onaftersave='push_question(poll.questions)') {{ new_question.value.question || 'New question'}}
-          
+    button.btn.btn-primary(ng-controller='SubmitPollCtrl' ng-click='submitPoll(poll)') {{ buttonText }}
 .footer
   | Foo bar
