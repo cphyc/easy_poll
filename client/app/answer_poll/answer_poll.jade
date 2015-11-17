@@ -5,7 +5,9 @@ div(ng-include='"components/navbar/navbar.html"')
   ul(ng-repeat='question in poll.questions')
     h3 {{ question.question }}
     ul(ng-repeat='answer in question.answers')
-      li {{ answer }}
+      li 
+        input(type="radio" ng-model='answers[$parent.$index]' ng-value='$index')
+        | {{ answer }}
   
   button.btn.btn-primary(ng-click='saveAnswers()') Save answers
 .footer

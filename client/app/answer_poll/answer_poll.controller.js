@@ -9,19 +9,19 @@ angular.module('eduquizzApp')
       $location.path('/answer_poll/' + id)
     }
   })
-  .controller('AnswerPollCtrl', function($scope, $stateParams, Poll, Answer) {
+  .controller('AnswerPollCtrl', function($scope, $stateParams, Poll, Answer, Auth) {
     $scope.poll = Poll.get({id: $stateParams.id}, function() {
-
       // Create an answer object
-      $scope.answers = new Answer({
-        pollId: $scope.poll._id,
-        questions: new Array($scope.poll.questions.length)
-      });
+      $scope.answers = new Array($scope.poll.questions.length - 1);
     });
 
     $scope.saveAnswers = function() {
       if ($scope.answers) {
-        $scope.answers.$save();
+        new Answer({
+          user: Auth.getCurrentUser()._id,
+          poll: $scope.poll._id,
+          answers: $scope.answers
+        }).$save();
       }
     };
   });

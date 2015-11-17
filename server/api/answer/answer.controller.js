@@ -37,14 +37,12 @@ exports.create = function(req, res) {
   var userId = req.body.user,
       pollId = req.body.poll;
 
-  // Check the poll exists
-  var pollPromise = Poll.findById(pollId);
-  var userPromise = User.findById(userId);
+  var pollProm = Poll.findById(pollId),
+      userProm = User.findById(userId);
 
-  Q.all([pollPromise, userPromise])
+  Q.all([pollProm, userProm])
   .then(function(results) {
-    var poll = results[0];
-    var user = results[1];
+    var poll = results[0], user = results[1];
     // check both poll and user exists
     if (!poll || !user) { return res.status(404).send('Not Found'); }
 
