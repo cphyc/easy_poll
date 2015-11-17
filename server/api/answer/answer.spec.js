@@ -8,6 +8,8 @@ var User = require('../user/user.model');
 var Poll = require('../poll/poll.model');
 var Answer = require('./answer.model');
 
+var globals = {};
+
 var pollArray = {
   name : 'About distance',
   questions: [{
@@ -21,27 +23,34 @@ var pollArray = {
   }]
 };
 
-var pollObj;
+// Delete all users and poll
 before(function(done) {
-  new Poll(pollArray).save(function(err, poll) {
-    pollObj = poll;
-    done();
+  User.find().remove(function() {
+    Poll.find().remove(function() {
+      done();
+    });
   });
 });
 
-var userToken, userToken2, adminToken;
-var user, user2;
-// Authenticate as admin
 before(function(done) {
-  var testUser = {
-    name: 'test',
-    email: 'test@test.com',
-    role: 'user',
-    password: 'test'
-  };
-  new User(testUser).save(function(err, usr) {
-    user = usr;
+  new Poll(pollArray).save(function(err, poll) {
+    globals.poll = poll;
+    done();
+  });
+})
 
+var userToken, userToken2, adminToken;
+// Authenticate as admin
+var testUser = {
+  name: 'test',
+  email: 'foo@bar.com',
+  role: 'user',
+  password: 'test'
+};
+
+before(function(done) {
+  new User(testUser).save(function(err, usr) {
+    globals.user = usr;
     request(app)
       .post('/auth/local')
       .set('Content-Type', 'application/json')
@@ -53,20 +62,19 @@ before(function(done) {
   });
 });
 
+var testUser2 = {
+  name: 'test2',
+  email: 'foo2@bar.com',
+  role: 'user',
+  password: 'test2'
+};
 before(function(done) {
-  var testUser = {
-    name: 'test2',
-    email: 'test2@test.com',
-    role: 'user2',
-    password: 'test2'
-  };
-  new User(testUser).save(function(err, usr) {
-    user2 = usr;
-
+  new User(testUser2).save(function(err, usr) {
+    globals.user2 = usr;
     request(app)
       .post('/auth/local')
       .set('Content-Type', 'application/json')
-      .send({ "email": testUser.email, "password": testUser.password})
+      .send({ "email": testUser2.email, "password": testUser2.password})
       .end(function(err, res) {
         userToken2 = res.body.token;
         done();
@@ -93,15 +101,25 @@ before(function(done) {
   });
 });
 
+before(function(done) {
+  new Answer({
+    'poll': globals.poll._id,
+    'answers': [3, 1],
+    'user': globals.user
+  }).save(function(err, obj) {
+    globals.answer = obj;
+    done();
+  });
+});
+
 describe('GET /api/answers', function() {
 
   it('should fail for visitors', function(done) {
     request(app)
       .get('/api/answers')
-      .expect('Content-Type', /json/)
       .expect(401)
-      .end(function() {
-        done();
+      .end(function(err, ans) {
+        done(err);
       });
   });
 
@@ -109,10 +127,9 @@ describe('GET /api/answers', function() {
     request(app)
       .get('/api/answers')
       .set('Authorization', 'Bearer ' + userToken)
-      .expect('Content-Type', /json/)
-      .expect(401)
-      .end(function() {
-        done();
+      .expect(403)
+      .end(function(err) {
+        done(err);
       });
   });
 
@@ -123,9 +140,8 @@ describe('GET /api/answers', function() {
       .expect(200)
       .expect('Content-Type', /json/)
       .end(function(err, res) {
-        if (err) return done(err);
         res.body.should.be.instanceof(Array);
-        done();
+        done(err);
       });
   });
 });
@@ -133,27 +149,17 @@ describe('GET /api/answers', function() {
 describe('GET /api/answers/:id', function() {
   var answer, route;
   before(function(done) {
-    new Answer({
-      poll: pollObj._id,
-      answers: [3, 1],
-      user: user
-    }).save(function(err, obj) {
-      if (err) {
-        console.log(err, obj);
-      }
-      answer = obj;
-      route = '/api/answers/' + obj._id;
-      done();
-    });
+    route = '/api/answers/' + globals.answer._id;
+    answer = globals.answer;
+    done();
   });
 
   it('should fail for visitors', function(done) {
     request(app)
       .get(route)
       .expect(401)
-      .expect('Content-Type', /json/)
-      .end(function() {
-        done();
+      .end(function(err) {
+        done(err);
       });
   });
 
@@ -162,9 +168,8 @@ describe('GET /api/answers/:id', function() {
       .get(route)
       .set('Authorization', 'Bearer ' + userToken2)
       .expect(401)
-      .expect('Content-Type', /json/)
-      .end(function() {
-        done();
+      .end(function(err) {
+        done(err);
       });
   });
 
@@ -174,8 +179,8 @@ describe('GET /api/answers/:id', function() {
       .set('Authorization', 'Bearer ' + userToken)
       .expect(200)
       .expect('Content-Type', /json/)
-      .end(function() {
-        done();
+      .end(function(err) {
+        done(err);
       });
   });
 
@@ -188,7 +193,86 @@ describe('GET /api/answers/:id', function() {
       .end(function(err, res) {
         if (err) return done(err);
         res.body.should.be.instanceof(Object);
-        done();
+        done(err);
       });
+  });
+});
+
+describe('POST /api/answers', function() {
+
+  it('should fail for visitors', function(done) {
+    request(app)
+      .post('/api/answers')
+      .set('Content-Type', 'application/json')
+      .send({})
+      .expect(401)
+      .end(function(err) {
+        done(err)
+      });
+  });
+
+  it('should accept good requests', function(done) {
+    request(app)
+      .post('/api/answers')
+      .set('Content-Type', 'application/json')
+      .set('Authorization', 'Bearer ' + userToken)
+      .send({
+        'user': globals.user._id,
+        'poll': globals.poll._id,
+        'answers': [3, 1]
+      })
+      .expect(201)
+      .end(function(err, foo) {
+        done(err)
+      });
+  });
+
+  describe('(malformed answers)', function() {
+    function pleasePost(done, userId, pollId, answers, errCode) {
+       request(app)
+        .post('/api/answers')
+        .set('Authorization', 'Bearer ' + userToken)
+        .set('Content-Type', 'application/json')
+        .send({
+          user: userId,
+          poll: pollId,
+          answers: answers
+        })
+        .expect(errCode)
+        .end(function(err) {
+          done(err);
+        });
+    }
+
+    var good = {};
+
+    before(function() {
+      good = {
+        poll: globals.poll._id,
+        user: globals.user._id,
+        answers: [1, 2]
+      }
+    });
+
+    it('should fail when missing user is given', function(done) {
+      var badUserId = good.poll;
+      pleasePost(done, badUserId, good.poll, good.answers, 404)
+    });
+    it('should fail when missing poll is given', function(done) {
+      var badPollId = good.user;
+      pleasePost(done, good.user, badPollId, good.answers, 404)
+    });
+    it('should fail when malformed answers are given', function(done) {
+      pleasePost(done, good.user, good.poll, 'hello, I say I\'m an answer but I\'m not', 500);
+    })
+    it('should fail when out-of-range answers are given ', function(done) {
+      pleasePost(done, good.user, good.poll, [100, 0], 500);
+    });
+    it('should fail when too many answers are given ', function(done) {
+      pleasePost(done, good.user, good.poll, [100, 0, 1, 1], 500);
+    });
+    it('should fail when too few answers are given ', function(done) {
+      pleasePost(done, good.user, good.poll, [100], 500);
+    });
   });
 });

@@ -1,7 +1,10 @@
 'use strict';
 
 var _ = require('lodash');
+var Q = require('q');
 var Answer = require('./answer.model');
+var Poll = require('../poll/poll.model');
+var User = require('../user/user.model');
 
 // Get list of answers
 exports.index = function(req, res) {
@@ -31,9 +34,33 @@ exports.show = function(req, res) {
 
 // Creates a new answer in the DB.
 exports.create = function(req, res) {
-  Answer.create(req.body, function(err, answer) {
-    if(err) { return handleError(res, err); }
-    return res.status(201).json(answer);
+  var userId = req.body.user,
+      pollId = req.body.poll;
+
+  // Check the poll exists
+  var pollPromise = Poll.findById(pollId);
+  var userPromise = User.findById(userId);
+
+  Q.all([pollPromise, userPromise])
+  .then(function(results) {
+    var poll = results[0];
+    var user = results[1];
+    // check both poll and user exists
+    if (!poll || !user) { return res.status(404).send('Not Found'); }
+
+    // check user rights
+    if (!(user._id.toString() === req.body.user.toString() || req.user.role === 'admin')) {
+      return res.status(401).send('Unauthorized');
+    }
+
+    // Create the answer
+    return Answer.create(req.body, function(err, answer) {
+      if(err) { return handleError(res, err); }
+      return res.status(201).json(answer);
+    });
+
+  }, function(err) {
+    return handleError(res, err);
   });
 };
 
