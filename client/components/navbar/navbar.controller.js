@@ -19,6 +19,13 @@ angular.module('eduquizzApp')
       });
     }
 
+    if ($scope.isLoggedIn()) {
+      $scope.menu.push({
+        'title': 'Answer poll',
+        'link': '/answer_poll'
+      });
+    }
+
     $scope.logout = function() {
       Auth.logout();
       $location.path('/login');

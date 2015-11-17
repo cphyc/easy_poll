@@ -1,2 +1,12 @@
-.col-md-12
-    | This is the answer_poll view.
+div(ng-include='"components/navbar/navbar.html"')
+
+.container
+  h2 {{ poll.name }}
+  ul(ng-repeat='question in poll.questions')
+    h3 {{ question.question }}
+    ul(ng-repeat='answer in question.answers')
+      li {{ answer }}
+  
+  button.btn.btn-primary(ng-click='saveAnswers()') Save answers
+.footer
+  | Foo bar
