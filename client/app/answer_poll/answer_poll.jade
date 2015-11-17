@@ -1,14 +1,19 @@
 div(ng-include='"components/navbar/navbar.html"')
 
 .container
-  h2 {{ poll.name }}
-  ul(ng-repeat='question in poll.questions')
-    h3 {{ question.question }}
-    ul(ng-repeat='answer in question.answers')
-      li 
-        input(type="radio" ng-model='answers[$parent.$index]' ng-value='$index')
-        | {{ answer }}
-  
-  button.btn.btn-primary(ng-click='saveAnswers()') Save answers
+  .row
+    h2 {{ poll.name }}
+    div(ng-hide='submitted')
+      h3 {{ currentQuestion.question }}
+      form(name='answerForm' novalidate)
+        p
+          div(ng-repeat='answer in currentQuestion.answers') 
+            label
+              input(type="radio" ng-model='answers[questionNumber]' ng-value='$index')
+              |  {{ answer }}
+      .btn-group
+        button.btn.btn-primary(ng-click='nextQuestion()' ng-disabled='questionNumber === lastQuestion || answers[questionNumber] === undefined') Next question
+        button.btn.btn-primary(ng-click='saveAnswers()' ng-disabled='questionNumber < lastQuestion || answers[questionNumber] === undefined || submitted') {{ saveButton }}
+    p.lead(ng-show='submitted') Your answers have been saved!
 .footer
   | Foo bar
