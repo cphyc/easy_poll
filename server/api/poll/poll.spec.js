@@ -20,7 +20,7 @@ var pollArray = {
 };
 var poll = new Poll(pollArray);
 
-var userToken, managerToken;
+var userToken, adminToken;
 // Authenticate as admin
 before(function(done) {
   var testUser = {
@@ -44,10 +44,10 @@ before(function(done) {
 
 before(function(done) {
   var adminUser = {
-    name: 'manager',
-    email: 'manager@manager.com',
-    role: 'manager',
-    password: 'manager'
+    name: 'admin',
+    email: 'admin@admin.com',
+    role: 'admin',
+    password: 'admin'
   };
   new User(adminUser).save(function() {
     request(app)
@@ -55,7 +55,7 @@ before(function(done) {
       .set('Content-Type', 'application/json')
       .send({ "email": adminUser.email, "password": adminUser.password})
       .end(function(err, res) {
-        managerToken = res.body.token;
+        adminToken = res.body.token;
         done();
       });
   });
@@ -87,6 +87,77 @@ describe('GET /api/polls', function() {
   });
 });
 
+describe('GET /api/polls/:id', function() {
+  var objId;
+  beforeEach(function(done) {
+    poll.save(function(err, obj) {
+      objId = obj._id;
+      done();
+    });
+  });
+
+  describe('for visitors', function() {
+    it('should fail', function(done) {
+      request(app)
+        .post('/api/polls/' + objId)
+        .send(pollArray)
+        .expect(401)
+        .end(function() {
+          done();
+        });
+    });
+  });
+
+  describe('for users', function() {
+    it('should respond with a JSON object without the answers', function(done) {
+      request(app)
+        .get('/api/polls/' + objId)
+        .set('Authorization', 'Bearer ' + userToken)
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .end(function(err, res) {
+          if (err) return done(err);
+          res.body.should.be.instanceof(Object);
+          res.body.questions.forEach(function(question) {
+            (question.answer === undefined).should.be.true;
+            question.answers.should.be.instanceof(Array);
+          });
+          done();
+        });
+    });
+  });
+
+  describe('for admins', function() {
+    it('should respond with a JSON object with the answers', function(done) {
+      request(app)
+        .get('/api/polls/' + objId)
+        .set('Authorization', 'Bearer ' + adminToken)
+        .expect(200)
+        .expect('Content-Type', /json/)
+        .end(function(err, res) {
+          if (err) return done(err);
+          res.body.should.be.instanceof(Object);
+          res.body.questions.forEach(function(question) {
+            question.answer.should.be.instanceof(Number);
+            question.answers.should.be.instanceof(Array);
+          });
+          done();
+        });
+    });
+  });
+
+
+  it('should fail for visitors', function(done) {
+    request(app)
+      .post('/api/polls/' + objId)
+      .send(pollArray)
+      .expect(401)
+      .end(function() {
+        done();
+      });
+  });
+});
+
 describe('POST /api/polls', function() {
   it('should fail for users', function(done) {
     request(app)
@@ -99,10 +170,10 @@ describe('POST /api/polls', function() {
       });
   });
 
-  it('should save for managers', function(done) {
+  it('should save for admins', function(done) {
     request(app)
       .post('/api/polls')
-      .set('Authorization', 'Bearer ' + managerToken)
+      .set('Authorization', 'Bearer ' + adminToken)
       .send(pollArray)
       .set('Content-Type', 'application/json')
       .expect(201)
@@ -116,7 +187,7 @@ describe('POST /api/polls', function() {
     request(app)
       .post('/api/polls')
       .set('Content-Type', 'application/json')
-      .set('Authorization', 'Bearer ' + managerToken)
+      .set('Authorization', 'Bearer ' + adminToken)
       .send({test: 1})
       .expect(500)
       .end(function(err, res) {
@@ -141,10 +212,10 @@ describe('DELETE /api/polls', function() {
     });
   });
 
-  it('should delete for managers', function(done) {
+  it('should delete for admins', function(done) {
     request(app)
       .delete('/api/polls/' + objId)
-      .set('Authorization', 'Bearer ' + managerToken)
+      .set('Authorization', 'Bearer ' + adminToken)
       .expect(204)
       .end(function(err, res) {
         if (err) return done(err);
@@ -168,7 +239,7 @@ describe('DELETE /api/polls', function() {
     poll.save(function(err, obj) {
       request(app)
         .delete('/api/polls/' + 'abcdef')
-        .set('Authorization', 'Bearer ' + managerToken)
+        .set('Authorization', 'Bearer ' + adminToken)
         .expect(500)
         .end(function(err, res) {
           if (err) return done(err);
