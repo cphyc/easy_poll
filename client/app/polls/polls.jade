@@ -16,6 +16,7 @@ div(ng-include='"components/navbar/navbar.html"')
               |  
               i.fa.fa-edit(ng-click='editPoll(poll._id)')
               i.fa.fa-remove(ng-click='deletePoll(poll._id, $event)')
+              i.fa.fa-eye(ng-click='viewAnswers(poll._id)')
         md-content(ng-show='reveal')
           ul(ng-repeat='question in poll.questions')
             li {{ question.question }}

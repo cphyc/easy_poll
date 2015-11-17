@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('eduquizzApp')
-  .controller('PollsCtrl', function ($scope, $location, Poll, $mdDialog) {
+  .controller('PollsCtrl', function ($scope, $state, Poll, $mdDialog) {
     $scope.polls = Poll.query();
 
     $scope.$on('$destroy', function () {
@@ -9,10 +9,10 @@ angular.module('eduquizzApp')
     });
 
     $scope.newPoll = function() {
-      $location.url('/polls/new');
+      $state.go('new_poll', {});
     };
     $scope.editPoll = function(id) {
-      $location.url('/polls/edit/'+id);
+      $state.go('edit_poll', {id: id});
     };
 
     var last = {
@@ -36,5 +36,9 @@ angular.module('eduquizzApp')
           $scope.polls = Poll.query();
         });
       });
+    };
+
+    $scope.viewAnswers = function(id) {
+      $state.go('view_answers', {pollId: id});
     };
   });

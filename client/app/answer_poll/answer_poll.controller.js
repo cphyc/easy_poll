@@ -1,12 +1,12 @@
 'use strict';
 
 angular.module('eduquizzApp')
-  .controller('AnswerPollListCtrl', function ($scope, Poll, $location) {
+  .controller('AnswerPollListCtrl', function ($scope, Poll, $state) {
     $scope.polls = Poll.query();
     $scope.message = 'Hello';
 
     $scope.answerPoll = function(id) {
-      $location.path('/answer_poll/' + id)
+      $state.go('polls_answer_one', {id: id});
     }
   })
   .controller('AnswerPollCtrl', function($scope, $stateParams, Poll, Answer, Auth) {
