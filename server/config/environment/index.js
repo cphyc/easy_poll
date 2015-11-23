@@ -33,7 +33,7 @@ var all = {
   },
 
   // List of user roles in order of power
-  userRoles: ['guest', 'user', 'manager', 'admin'],
+  userRoles: ['guest', 'user', 'admin'],
 
   // MongoDB connection options
   mongo: {

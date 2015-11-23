@@ -32,15 +32,6 @@ exports.show = function(req, res) {
   });
 };
 
-exports.findByPoll = function(req, res) {
-  Answer.find({poll: req.params.id}, function(err, answer) {
-    if (err) { return handleError(res, err); }
-    if (!answer) { return res.status(404).send('Not Found'); }
-
-    return res.json(answer);
-  })
-};
-
 // Creates a new answer in the DB.
 exports.create = function(req, res) {
   var userId = req.body.user,

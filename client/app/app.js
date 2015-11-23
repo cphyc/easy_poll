@@ -8,14 +8,16 @@ angular.module('eduquizzApp', [
   'ui.router',
   'ui.bootstrap',
   'ngMaterial',
-  'xeditable'
+  'xeditable',
+  'restangular'
 ])
-  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+  .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, RestangularProvider) {
     $urlRouterProvider
       .otherwise('/');
 
     $locationProvider.html5Mode(true);
     $httpProvider.interceptors.push('authInterceptor');
+    RestangularProvider.setBaseUrl('/api');
   })
 
   .factory('authInterceptor', function ($rootScope, $q, $cookieStore, $location) {

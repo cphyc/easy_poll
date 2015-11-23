@@ -13,6 +13,25 @@ var AnswerSchema = new Schema({
   user: {type: Schema.Types.ObjectId, ref: 'User'},
 });
 
+AnswerSchema.methods.correction = function(poll) {
+  var self = this;
+  var ans = self.answers.map(function(answer, index) {
+    return {
+      question: poll.questions[index],
+      givenAnswer: answer,
+      expectedAnswer: poll.questions[index].answer,
+      goodAnswer: answer === poll.questions[index].answer
+    };
+  });
+  return ans;
+};
+
+AnswerSchema.statics.findByPoll = function(pollId) {
+  var id = new Schema.Types.ObjectId(pollId);
+  return this
+    .find({ "poll": pollId });
+};
+
 AnswerSchema
   .plugin(idValidator)
   .pre('validate', function(next) {

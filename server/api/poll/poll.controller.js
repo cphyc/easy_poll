@@ -2,6 +2,10 @@
 
 var _ = require('lodash');
 var Poll = require('./poll.model');
+var Answer = require('../answer/answer.model');
+var Q = require('q');
+
+var ObjectId = require('mongoose').Schema.ObjectId;
 
 // Get list of polls
 exports.index = function(req, res) {
@@ -27,6 +31,45 @@ exports.getPoll = function(req, res) {
       return res.json(poll);
     });
 };
+
+// Get the answers
+exports.getAnswers = function(req, res) {
+  Answer.find({poll: req.params.id}, function(err, answer) {
+    if (err) { return handleError(res, err); }
+    if (!answer) { return res.status(404).send('Not Found'); }
+
+    return res.json(answer);
+  });
+};
+
+// Get the results of a poll
+exports.getResults = function(req, res) {
+  // get the poll and the answers
+  Answer.findByPoll(req.params.id)
+    .populate('poll')
+    .populate('user', 'name email')
+    .then(function(answers) {
+      if (!answers) { return res.status(404).send('Not Found'); }
+
+      var correction = answers.map(function(answer) {
+        var correction = answer.correction(answer.poll);
+
+        return {
+          user: answer.user,
+          correction: correction,
+          poll: answer.poll
+        };
+      }) || [];
+
+      console.log("Correction", correction);
+
+      return res.json(correction);
+    }, function(errs) {
+      console.log(errs);
+      return handleError(res, errs);
+    });
+};
+
 
 // Creates a new poll in the DB.
 exports.create = function(req, res) {
