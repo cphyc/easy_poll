@@ -2,18 +2,25 @@ div(ng-include='"components/navbar/navbar.html"')
 
 .container
   .row
-    h2 {{ poll.name }}
-    div(ng-hide='submitted')
-      h3 {{ currentQuestion.question }}
-      form(name='answerForm' novalidate)
-        p
-          div(ng-repeat='answer in currentQuestion.answers') 
-            label
-              input(type="radio" ng-model='answers[questionNumber]' ng-value='$index')
-              |  {{ answer }}
-      .btn-group
-        button.btn.btn-primary(ng-click='nextQuestion()' ng-disabled='questionNumber === lastQuestion || answers[questionNumber] === undefined') Next question
-        button.btn.btn-primary(ng-click='saveAnswers()' ng-disabled='questionNumber < lastQuestion || answers[questionNumber] === undefined || submitted') {{ saveButton }}
-    p.lead(ng-show='submitted') Your answers have been saved!
+    md-data-table-toolbar
+      h2.md-title {{ poll.name }} — given answers
+    md-data-table-container(ng-if='answers')
+      table(md-data-table)
+        thead(md-table-head)
+          tr
+            th Name 
+            th(trim ng-repeat='q in poll.questions') {{ q.question | truncate: 25}}
+        
+            th Score
+        tbody
+          tr(ng-repeat='ans in answers')
+            td {{ ans.user.name }}
+            td(ng-repeat='c in ans.correction') 
+              i.fa.fa-check.correct(ng-if='c.goodAnswer')
+              i.fa.fa-times.wrong(ng-if='!c.goodAnswer')
+              |  {{ poll.questions[$index].answers[c.givenAnswer] }}
+            td {{ ans.goodAnswers }} / {{ ans.poll.questions.length }}
+    p(ng-if='!answers') No answers yet.
+    md-data-table-pagination
 .footer
   | Foo bar

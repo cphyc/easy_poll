@@ -4,24 +4,26 @@ div(ng-include='"components/navbar/navbar.html"')
   h1 Polls list
   md-button.md-fab.md-fab-bottom-right(md-font-icon='icon-home' aria-label='FAB' ng-click='newPoll()')
     i.fa.fa-plus
-  poll(ng-repeat='poll in polls')
-    md-card
-      md-card-content
-        md-toolbar(ng-click='reveal = !reveal')
-          .md-toolbar-tools
-            h2 {{ poll.name }}
-              |  
-              i.fa.fa-caret-down(ng-hide='reveal')
-              i.fa.fa-caret-up(ng-show='reveal')
-              |  
-              i.fa.fa-edit(ng-click='editPoll(poll._id)')
-              i.fa.fa-remove(ng-click='deletePoll(poll._id, $event)')
-              i.fa.fa-eye(ng-click='viewAnswers(poll._id)')
-        md-content(ng-show='reveal')
-          ul(ng-repeat='question in poll.questions')
-            li {{ question.question }}
-              ul(ng-repeat='answer in question.answers')
-                li(ng-class='{goodAnswer: $index===question.answer}') {{ answer }}
-
+  poll
+    ul.list-group
+      li.list-group-item(ng-repeat='poll in polls')
+        strong {{ poll.name }}
+        a.button-icon
+          span.glyphicon.glyphicon-menu-down(ng-if='!reveal')
+          span.glyphicon.glyphicon-menu-up(ng-if='reveal')
+        br
+        span.text-muted(ng-click='reveal = !reveal') {{ reveal ? 'Hide' : 'View'}} {{ poll.questions.length }} questions
+        .pull-right
+          a.button-icon(ng-click='viewAnswers(poll._id)')
+            span.glyphicon.glyphicon-eye-open
+          a.button-icon(ng-click='editPoll(poll._id)')
+            span.glyphicon.glyphicon-edit
+          a.button-icon.trash(ng-click='deletePoll(poll._id)')
+            span.glyphicon.glyphicon-trash
+            
+        ul(ng-show='reveal')
+          li(ng-repeat='question in poll.questions') {{ question.question }}
+            ol
+              li(ng-repeat='answer in question.answers' ng-class='{correct: $index===question.answer}') {{ answer }}
 .footer
   | Foo bar
