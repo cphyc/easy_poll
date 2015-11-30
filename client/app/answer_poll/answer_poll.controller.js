@@ -9,11 +9,9 @@ angular.module('eduquizzApp')
       $state.go('polls_answer_one', {id: id});
     }
   })
-  .controller('AnswerPollCtrl', function($scope, $stateParams, Auth) {
-    var Polls = Restangular.all('polls');
-
+  .controller('AnswerPollCtrl', function($scope, $stateParams, Restangular, Auth) {
     $scope.questionNumber = 0;
-    $scope.poll = Poll.get('polls', $stateParams.id)).get().then(function(poll) {
+    $scope.poll = Restangular.one('polls', $stateParams.id).get().then(function(poll) {
       // Create an answer object
       $scope.poll = poll;
       $scope.answers         = new Array(poll.questions.length - 1);
@@ -35,8 +33,7 @@ angular.module('eduquizzApp')
           poll: $scope.poll._id,
           answers: $scope.answers
         };
-
-        Restangular.post(newAnswer).then(function() {
+        Restangular.all('answers').post(newAnswer).then(function() {
           $scope.saveButton = 'Answers saved!';
           $scope.submitted = true;
         })
