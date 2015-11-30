@@ -1,8 +1,11 @@
 'use strict';
 
 angular.module('eduquizzApp')
-  .controller('PollsCtrl', function ($scope, $state, Poll, $mdDialog) {
-    $scope.polls = Poll.query();
+  .controller('PollsCtrl', function ($scope, $state, $mdDialog, Restangular) {
+    Restangular.all('polls').getList()
+      .then(function(polls) {
+        $scope.polls = polls;
+      });
 
     $scope.$on('$destroy', function () {
       socket.unsyncUpdates('polls');
@@ -31,9 +34,11 @@ angular.module('eduquizzApp')
           .cancel('No, don\'t!');
 
       $mdDialog.show(confirm).then(function() {
-        Poll.delete({id: id}, function() {
-          // Update polls list
-          $scope.polls = Poll.query();
+        Restangular.one('polls', id).remove().then(function() {
+          Restangular.all('polls').getList()
+            .then(function(polls) {
+              $scope.polls = polls;
+            });
         });
       });
     };

@@ -6,7 +6,7 @@ div(ng-include='"components/navbar/navbar.html"')
     i.fa.fa-plus
   poll
     ul.list-group
-      li.list-group-item(ng-repeat='poll in polls')
+      li.list-group-item(ng-repeat='poll in polls track by $index')
         strong {{ poll.name }}
         a.button-icon
           span.glyphicon.glyphicon-menu-down(ng-if='!reveal')
@@ -22,8 +22,8 @@ div(ng-include='"components/navbar/navbar.html"')
             span.glyphicon.glyphicon-trash
             
         ul(ng-show='reveal')
-          li(ng-repeat='question in poll.questions') {{ question.question }}
+          li(ng-repeat='question in poll.questions track by $index') {{ question.question }}
             ol
-              li(ng-repeat='answer in question.answers' ng-class='{correct: $index===question.answer}') {{ answer }}
+              li(ng-repeat='answer in question.answers track by $index' ng-class='{correct: $index===question.answer}') {{ answer }}
 .footer
   | Foo bar

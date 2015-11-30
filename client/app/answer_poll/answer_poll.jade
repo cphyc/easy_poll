@@ -7,7 +7,7 @@ div(ng-include='"components/navbar/navbar.html"')
       h3 {{ currentQuestion.question }}
       form(name='answerForm' novalidate)
         p
-          div(ng-repeat='answer in currentQuestion.answers') 
+          div(ng-repeat='answer in currentQuestion.answers track by $index')
             label
               input(type="radio" ng-model='answers[questionNumber]' ng-value='$index')
               |  {{ answer }}

@@ -1,21 +1,24 @@
 'use strict';
 
 angular.module('eduquizzApp')
-  .controller('AnswerPollListCtrl', function ($scope, Poll, $state) {
-    $scope.polls = Poll.query();
+  .controller('AnswerPollListCtrl', function ($scope, Restangular, $state) {
+    $scope.polls = Restangular.all('polls').getList().$object;
     $scope.message = 'Hello';
 
     $scope.answerPoll = function(id) {
       $state.go('polls_answer_one', {id: id});
     }
   })
-  .controller('AnswerPollCtrl', function($scope, $stateParams, Poll, Answer, Auth) {
+  .controller('AnswerPollCtrl', function($scope, $stateParams, Auth) {
+    var Polls = Restangular.all('polls');
+
     $scope.questionNumber = 0;
-    $scope.poll = Poll.get({id: $stateParams.id}, function() {
+    $scope.poll = Poll.get('polls', $stateParams.id)).get().then(function(poll) {
       // Create an answer object
-      $scope.answers         = new Array($scope.poll.questions.length - 1);
-      $scope.currentQuestion = $scope.poll.questions[$scope.questionNumber];
-      $scope.lastQuestion    = $scope.poll.questions.length - 1;
+      $scope.poll = poll;
+      $scope.answers         = new Array(poll.questions.length - 1);
+      $scope.currentQuestion = poll.questions[$scope.questionNumber];
+      $scope.lastQuestion    = poll.questions.length - 1;
     });
 
     $scope.nextQuestion = function() {
@@ -27,12 +30,13 @@ angular.module('eduquizzApp')
     $scope.saveAnswers = function() {
       if ($scope.answers) {
         $scope.saveButton = 'Saving answers…';
-        var foo = new Answer({
+        var newAnswer = {
           user: Auth.getCurrentUser()._id,
           poll: $scope.poll._id,
           answers: $scope.answers
-        })
-        .$save(function() {
+        };
+
+        Restangular.post(newAnswer).then(function() {
           $scope.saveButton = 'Answers saved!';
           $scope.submitted = true;
         })

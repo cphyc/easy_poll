@@ -9,7 +9,7 @@ angular.module('eduquizzApp')
         controller: 'AnswerPollListCtrl'
       })
       .state('polls_answer_one', {
-        url: '/polls/answer/:id',
+        url: '/polls/:id/answer',
         templateUrl: 'app/answer_poll/answer_poll.html',
         controller: 'AnswerPollCtrl'
       });

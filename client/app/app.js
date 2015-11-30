@@ -7,6 +7,7 @@ angular.module('eduquizzApp', [
   'btford.socket-io',
   'ui.router',
   'ui.bootstrap',
+  'md.data.table',
   'ngMaterial',
   'xeditable',
   'restangular'

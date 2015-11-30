@@ -11,8 +11,7 @@ angular.module('eduquizzApp')
           }
         };
       },
-      // function generating a function pushes a new item into an array
-      // and restore it to ''
+      // Pushes the value of itemobj into target, replacing it by nullValue
       pusherGenerator: function(itemobj, nullValue) {
         return function(target) {
           target.push(itemobj.value);
