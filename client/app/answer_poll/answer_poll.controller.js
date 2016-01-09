@@ -9,44 +9,33 @@ angular.module('eduquizzApp')
       $state.go('polls_answer_one', {id: id});
     }
   })
-  .controller('AnswerPollCtrl', function($scope, $stateParams, $q, Restangular, Auth) {
-    $scope.questionNumber = 0;
-    $scope.poll = Restangular.one('polls', $stateParams.id).get().then(function(poll) {
+  .controller('AnswerPollCtrl', function($scope, $stateParams, UpdateAnswers, Restangular, Auth) {
+    Restangular.one('polls', $stateParams.id).get().then(function(poll) {
       // Create an answer object
       $scope.poll = poll;
-      $scope.answers         = new Array(poll.questions.length - 1);
-      $scope.currentQuestion = poll.questions[$scope.questionNumber];
-      $scope.lastQuestion    = poll.questions.length - 1;
-    });
-    var answerPosted = false;
-    function updateAnswers() {
-      var deferred = $q.defer();
 
-      var answer = {
-        user: Auth.getCurrentUser()._id,
-        poll: $scope.poll._id,
-        answers: $scope.answers
-      };
-      if (!answerPosted) {
-        Restangular.all('answers').post(answer).then(function(ret) {
-          answerPosted = true;
-          answer._id = ret._id;
-          deferred.resolve(ret);
-        }, function(err) {
-          deferred.reject(err);
-        });
-      } else {
-        Restangular.one('answers', answer._id).put(answer).then(function(ret) {
-          deferred.resolve(ret);
-        }, function(err) {
-          deferred.reject(err);
-        });
-      }
+      // Get the already given answers from server
+      Restangular.all('answers').one('user', Auth.getCurrentUser()._id).get().then(function(ret) {
+        if (ret.answer) {
+          $scope.questionNumber  = ret.answer.answers.length;
+          $scope.answers         = ret.answer.answers;
+          $scope.currentQuestion = poll.questions[$scope.questionNumber];
+          $scope.lastQuestion    = poll.questions.length - 1;
+        } else {
+          $scope.questionNumber  = 0
+          $scope.answers         = new Array(poll.questions.length - 1);
+          $scope.currentQuestion = poll.questions[$scope.questionNumber];
+          $scope.lastQuestion    = poll.questions.length - 1;
+        }
+      }).catch(function(err) {
+        // FIXME: tell an error occured
+      });
+    }).catch(function(err) {
+      // FIXME: tell an error occured
+    });;
 
-      return deferred.promise;
-    }
     $scope.nextQuestion = function() {
-      updateAnswers().then(function() {
+      UpdateAnswers(Auth.getCurrentUser(), $scope.poll, $scope.answers).then(function() {
         $scope.questionNumber += 1;
         $scope.currentQuestion = $scope.poll.questions[$scope.questionNumber];
       }, function() {
@@ -58,16 +47,10 @@ angular.module('eduquizzApp')
     $scope.saveAnswers = function() {
       if ($scope.answers) {
         $scope.saveButton = 'Saving answers…';
-        var newAnswer = {
-          user: Auth.getCurrentUser()._id,
-          poll: $scope.poll._id,
-          answers: $scope.answers
-        };
-        Restangular.all('answers').post(newAnswer).then(function() {
+        UpdateAnswers(Auth.getCurrentUser(), $scope.poll, $scope.answers).then(function() {
           $scope.saveButton = 'Answers saved!';
           $scope.submitted = true;
-        })
-        .catch(function(a) {
+        }).catch(function(a) {
           $scope.saveButton = 'Error while saving. Try again.';
         });
       }

@@ -30,10 +30,24 @@ function isAdminOrOwns(req, answer) {
 exports.show = function(req, res) {
   Answer.findById(req.params.id, function (err, answer) {
     if(err) { return handleError(res, err); }
-    if(!answer) { return res.status(404).send('Not Found'); }
+    if(!answer) { return res.json([]); }
 
     if (isAdminOrOwns(req, answer)) {
       return res.json(answer);
+    } else {
+      return res.status(401).send('Unauthorized');
+    }
+  });
+};
+
+// Get a single answer searching by user ids
+exports.showByUser = function(req, res) {
+  Answer.findOne({user: {_id: req.params.userId}}, function (err, answer) {
+    if(err) { return handleError(res, err); }
+    if(!answer) { return res.json({answer: null}); }
+
+    if (isAdminOrOwns(req, answer)) {
+      return res.json({answer: answer});
     } else {
       return res.status(401).send('Unauthorized');
     }
