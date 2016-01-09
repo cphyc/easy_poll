@@ -39,7 +39,7 @@ AnswerSchema
     var pollPromise = Poll.findById(self.poll);
     pollPromise.then(function(poll) {
       // check the correct number of answers
-      if (self.answers.length !== poll.questions.length) {
+      if (self.answers.length > poll.questions.length) {
         next(new Error('Bad number of answers given.'));
       }
       // Check each answer is within range
