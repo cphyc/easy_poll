@@ -71,7 +71,7 @@ exports.show = function(req, res) {
 
 // Get a single answer searching by user ids
 exports.showByUser = function(req, res) {
-  Answer.findOne({user: req.params.userId, poll: req.params.pollId}, function (err, answer) {
+  Answer.findOne({user: req.user._id.toString(), poll: req.params.pollId}, function (err, answer) {
     if(err) { return handleError(res, err); }
     if(!answer) { return res.json({answer: null}); }
 
@@ -83,38 +83,41 @@ exports.showByUser = function(req, res) {
   });
 };
 
-// Creates a new answer in the DB.
-exports.create = function(req, res) {
-  var userId = req.body.user,
-      pollId = req.params.pollId;
+// Save a new answer in the DB.
+exports.saveAnswer = function(req, res) {
+  var userId = req.user._id.toString(),
+      pollId = req.params.pollId,
+      question = parseInt(req.params.question),
+      answer = parseInt(req.params.answer);
 
   var pollProm = Poll.findById(pollId),
       userProm = User.findById(userId),
-      answerProm = Answer.findOne({user: userId});
+      answerProm = Answer.findOne({user: userId, poll: pollId});
 
-  Q.all([pollProm, userProm, answerProm])
+  return Q.all([pollProm, userProm, answerProm])
   .then(function(results) {
-    var poll = results[0], user = results[1], answer = results[2];
+    var poll = results[0], user = results[1], answersObj = results[2];
     // check both poll and user exists
     if (!poll || !user) {
-      console.log(poll, user);
       return res.status(404).send('Not Found');
     }
 
-    // Answer already exists for user
-    if (answer.length > 0) {
-      // FIXME: good status
-      return res.stauts(409).send('Answer already exists');
+    if (!isAdminOrOwns(req, answersObj)) {
+      return res.status(401).send('Unauthorized');
     }
 
-    console.log('Here');
-    // Create the answer
-    return Answer.create(req.body, function(err, answer) {
-      if(err) { return handleError(res, err); }
-      return res.status(201).json(answer);
-    });
+    if (answersObj.answers[question] === undefined) {
 
-  }, function(err) {
+      answersObj.addAnswer(question, answer)
+      .then(function(newAnswer) {
+        return res.status(201).json(newAnswer)
+      }, function(err) {
+        return handleError(res, err);
+      });
+    } else {
+      throw new Error('Answer already given');
+    }
+  }).catch(function(err) {
     return handleError(res, err);
   });
 };
@@ -154,5 +157,6 @@ exports.destroy = function(req, res) {
 };
 
 function handleError(res, err) {
+  console.log('E:', err);
   return res.status(500).send(err);
 }
