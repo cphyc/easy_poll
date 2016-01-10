@@ -7,9 +7,12 @@ var mongoose = require('mongoose'),
 var Poll = require('../poll/poll.model'),
     User = require('../user/user.model');
 
+var Q = require('q');
+
 var AnswerSchema = new Schema({
   poll: {type: Schema.Types.ObjectId, ref: 'Poll'},
   answers: [Number],
+  lastAnswered: {type: Number, default: -1},
   user: {type: Schema.Types.ObjectId, ref: 'User'},
 });
 
