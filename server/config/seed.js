@@ -74,7 +74,8 @@ Q.all([
     return Answer.create({
       poll: poll._id,
       answers: answers,
-      user: userObjs[0]._id
+      user: userObjs[0]._id,
+      lastAnswered: answers.length - 1
     });
   });
   var incorrects = pollObjs.map(function(poll) {
