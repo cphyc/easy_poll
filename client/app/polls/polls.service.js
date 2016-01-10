@@ -1,10 +1,16 @@
 'use strict';
 
 angular.module('eduquizzApp')
-  .factory('Poll', function ($resource) {
-    return $resource('/api/polls/:id', {id: '@_id'}, {
-      update: {
-        method: 'PUT'
+  .factory('Poll', function (Restangular) {
+    return {
+      getList: function() {
+        return Restangular.all('polls').getList();
+      },
+      create: function(poll) {
+        return Restangular.all('polls').post(poll);
+      },
+      get: function(pollId) {
+        return Restangular.one('polls', pollId).get();
       }
-    });
+    };
   });
