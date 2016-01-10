@@ -14,6 +14,14 @@ exports.index = function(req, res) {
   });
 };
 
+// Get list of answers of one poll
+exports.indexForOnePoll = function(req, res) {
+  Answer.find({poll: req.params.pollId}, function (err, answers) {
+    if(err) { return handleError(res, err); }
+    return res.status(200).json(answers);
+  });
+};
+
 function isAdminOrOwns(req, answer) {
   // assess that this user created the answer or is admins
   var userId = req.user._id.toString();
@@ -28,7 +36,7 @@ function isAdminOrOwns(req, answer) {
 
 // Get a single answer
 exports.show = function(req, res) {
-  Answer.findById(req.params.id, function (err, answer) {
+  Answer.findOne({poll: req.params.pollId, _id: req.params.id}, function (err, answer) {
     if(err) { return handleError(res, err); }
     if(!answer) { return res.json([]); }
 
@@ -42,7 +50,7 @@ exports.show = function(req, res) {
 
 // Get a single answer searching by user ids
 exports.showByUser = function(req, res) {
-  Answer.findOne({user: {_id: req.params.userId}}, function (err, answer) {
+  Answer.findOne({user: req.params.userId, poll: req.params.pollId}, function (err, answer) {
     if(err) { return handleError(res, err); }
     if(!answer) { return res.json({answer: null}); }
 
@@ -57,11 +65,11 @@ exports.showByUser = function(req, res) {
 // Creates a new answer in the DB.
 exports.create = function(req, res) {
   var userId = req.body.user,
-      pollId = req.body.poll;
+      pollId = req.params.pollId;
 
   var pollProm = Poll.findById(pollId),
       userProm = User.findById(userId),
-      answerProm = Answer.find({user: {_id: userId}});
+      answerProm = Answer.findOne({user: userId});
 
   Q.all([pollProm, userProm, answerProm])
   .then(function(results) {
@@ -94,7 +102,7 @@ exports.create = function(req, res) {
 exports.update = function(req, res) {
   if(req.body._id) { delete req.body._id; }
 
-  Answer.findById(req.params.id, function (err, answer) {
+  Answer.findOne({_id: req.params.id, poll: req.params.pollId}, function (err, answer) {
     // checks for inconsistencies
     if (err) { return handleError(res, err); }
     if(!answer) { return res.status(404).send('Not Found'); }
@@ -114,7 +122,7 @@ exports.update = function(req, res) {
 
 // Deletes a answer from the DB.
 exports.destroy = function(req, res) {
-  Answer.findById(req.params.id, function (err, answer) {
+  Answer.findOne({_id: req.params.id, poll: req.params.pollId}, function (err, answer) {
     if(err) { return handleError(res, err); }
     if(!answer) { return res.status(404).send('Not Found'); }
     answer.remove(function(err) {
