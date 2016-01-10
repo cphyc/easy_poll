@@ -9,8 +9,8 @@ angular.module('eduquizzApp', [
   'ui.bootstrap',
   'md.data.table',
   'ngMaterial',
-  'xeditable',
-  'restangular'
+  'restangular',
+  'InlineTextEditor'
 ])
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, RestangularProvider) {
     $urlRouterProvider
