@@ -9,24 +9,19 @@ angular.module('eduquizzApp')
       $state.go('polls_answer_one', {id: id});
     }
   })
-  .controller('AnswerPollCtrl', function($scope, $stateParams, UpdateAnswers, Restangular, Auth) {
-    Restangular.one('polls', $stateParams.id).get().then(function(poll) {
+  .controller('AnswerPollCtrl', function($scope, $stateParams, Answer, Poll, Auth) {
+    Poll.get($stateParams.id).then(function(poll) {
       // Create an answer object
       $scope.poll = poll;
 
       // Get the already given answers from server
-      Restangular.all('answers').one('user', Auth.getCurrentUser()._id).get().then(function(ret) {
-        if (ret.answer) {
-          $scope.questionNumber  = ret.answer.answers.length;
-          $scope.answers         = ret.answer.answers;
-          $scope.currentQuestion = poll.questions[$scope.questionNumber];
-          $scope.lastQuestion    = poll.questions.length - 1;
-        } else {
-          $scope.questionNumber  = 0
-          $scope.answers         = new Array(poll.questions.length - 1);
-          $scope.currentQuestion = poll.questions[$scope.questionNumber];
-          $scope.lastQuestion    = poll.questions.length - 1;
-        }
+      Answer($stateParams.id).get().then(function(answer) {
+        $scope.questionNumber  = answer.lastAnswered + 1;
+        $scope.answers         = answer.answers;
+        $scope.currentQuestion = poll.questions[$scope.questionNumber];
+        $scope.lastQuestion    = poll.questions.length - 1;
+
+        $scope.$broadcast('answer:update');
       }).catch(function(err) {
         // FIXME: tell an error occured
       });
@@ -35,11 +30,16 @@ angular.module('eduquizzApp')
     });;
 
     $scope.nextQuestion = function() {
-      UpdateAnswers(Auth.getCurrentUser(), $scope.poll, $scope.answers).then(function() {
+      Answer($stateParams.id)
+      .postAnswer($scope.questionNumber, $scope.answers[$scope.questionNumber])
+      .then(function() {
         $scope.questionNumber += 1;
-        $scope.currentQuestion = $scope.poll.questions[$scope.questionNumber];
-      }, function() {
-        // FIXME: notice the user something bad happened, do not go to next question
+
+        $scope.$broadcast('answer:update');
+      })
+      .catch(function(err) {
+        // FIXME: notice error
+        console.log(err)
       });
     }
 
@@ -47,12 +47,24 @@ angular.module('eduquizzApp')
     $scope.saveAnswers = function() {
       if ($scope.answers) {
         $scope.saveButton = 'Saving answers…';
-        UpdateAnswers(Auth.getCurrentUser(), $scope.poll, $scope.answers).then(function() {
+        Answer($stateParams.id)
+        .postAnswer($scope.questionNumber, $scope.answers[$scope.questionNumber])
+        .then(function() {
+          $scope.questionNumber += 1;
           $scope.saveButton = 'Answers saved!';
           $scope.submitted = true;
+          $scope.$broadcast('answer:update');
         }).catch(function(a) {
           $scope.saveButton = 'Error while saving. Try again.';
         });
       }
     };
+
+    $scope.$on('answer:update', function() {
+      if ($scope.questionNumber > $scope.poll.questions.length - 1) {
+        $scope.submitted = true;
+      } else {
+        $scope.currentQuestion = $scope.poll.questions[$scope.questionNumber];
+      }
+    })
   });
