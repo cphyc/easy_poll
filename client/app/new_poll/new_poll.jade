@@ -1,25 +1,35 @@
 div(ng-include='"components/navbar/navbar.html"')
 
 .container
-  div
-    h1(editable-text='poll.name') {{ poll.name || 'Poll name'}}
-    ul(ng-repeat='q in poll.questions track by $index')
-      li(ng-controller='NewQuestionCtrl')
-        span(editable-text='q.question') {{ q.question || 'Question'}}
-        ul(ng-repeat='answer in q.answers track by $index')
-          li
+  div(ng-model='poll')
+    h1(inline-text-editor contenteditable="true" ng-model='poll.name')
+    md-card(ng-repeat='q in poll.questions track by $index')
+      md-card-title
+        md-card-title-text
+          span.md-headline Question n°{{$index}}
+      md-card-actions
+        md-button.md-button-icon(ng-click='addAnswer(q)')
+          span.glyphicon.glyphicon-plus
+          | Add answer
+        md-button.md-button-icon(ng-click='move($index, -1)')
+          span.glyphicon.glyphicon-chevron-up
+          | Move up
+        md-button.md-button-icon(ng-click='move($index, 1)')
+          span.glyphicon.glyphicon-chevron-down
+          | Move down
+      md-card-content
+        p(inline-text-editor contenteditable="true" ng-model='q.question')
+        div(ng-repeat='answer in q.answers track by $index' layout='row' layout-wrap)
+          div(flex)
             input(type="radio" ng-model='q.answer' ng-value='$index')
-            span(editable-text='answer')  {{ answer || 'Answer '+$index}}
-        ul(ng-repeat-end)
-          li 
-            span(editable-text='new_answer.value'
-              onbeforesave='validate_new_answer($data)'
-              onaftersave='push_answer(q.answers)') {{ new_answer.value || 'New answer'}}
-    ul(ng-repeat-end)
-      li
-        span(editable-text='new_question.value.question'
-          onbeforesave='validate_new_question($data)'
-          onaftersave='push_question(poll.questions)') {{ new_question.value.question || 'New question'}}
+            span.inline(inline-text-editor contenteditable="true" ng-model='q.answers[$index]')
+            .pull-right
+              a.button-icon(ng-click='moveAnswer(q, $index, -1)' aria-label='move answer up')
+                span.glyphicon.glyphicon-chevron-up
+              a.button-icon(ng-click='moveAnswer(q, $index, 1)' aria-label='move answer down')
+                span.glyphicon.glyphicon-chevron-down
+              a.button-icon.trash(ng-click='deleteAnswer(q, $index)' aria-label='delete answer')
+                span.glyphicon.glyphicon-trash
     button.btn.btn-primary(ng-controller='SubmitPollCtrl' ng-click='save()') {{ buttonText }}
 .footer
   | Foo bar
