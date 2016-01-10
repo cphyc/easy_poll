@@ -14,6 +14,6 @@ div(ng-include='"components/navbar/navbar.html"')
       .btn-group
         button.btn.btn-primary(ng-click='nextQuestion()' ng-disabled='questionNumber === lastQuestion || answers[questionNumber] === undefined') Next question
         button.btn.btn-primary(ng-click='saveAnswers()' ng-disabled='questionNumber < lastQuestion || answers[questionNumber] === undefined || submitted') {{ saveButton }}
-    p.lead(ng-show='submitted') Your answers have been saved!
+    p.lead(ng-show='submitted') You answered the poll.
 .footer
   | Foo bar
