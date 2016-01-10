@@ -22,6 +22,27 @@ exports.indexForOnePoll = function(req, res) {
   });
 };
 
+// Return a fresh answer object or an existing one if any
+exports.newAnswer = function(req, res) {
+  Answer.findAnswer(req.params.pollId.toString(), req.user._id.toString())
+    .then(function(answer) {
+      // If not existing, create the new answer document and return it immediately
+      if (!answer) {
+        Answer.create({
+          poll: req.params.pollId,
+          answers: [],
+          user: req.user._id.toString()
+        }, function(err, newAnswer) {
+          if (err) { return handleError(res, err); }
+          console.log('A', req.params.pollId, req.user._id, answer);
+          return res.json(newAnswer);
+        });
+      } else { console.log('B', answer); return res.json(answer); }
+  }).catch(function(err) {
+    return handleError(res, err);
+  });
+};
+
 function isAdminOrOwns(req, answer) {
   // assess that this user created the answer or is admins
   var userId = req.user._id.toString();

@@ -32,6 +32,24 @@ AnswerSchema.statics.findByPoll = function(pollId) {
     .find({ "poll": pollId });
 };
 
+AnswerSchema.statics.findAnswer = function(pollId, userId, fields, callback) {
+  return this.findOne({'poll': pollId, 'user': userId}, fields, callback);
+}
+
+AnswerSchema.methods.addAnswer = function(question, answer) {
+  var self = this;
+  if (self.lastAnswered > question) {
+    return self.update();
+  } else {
+    var newAnswers = self.answers;
+    while (newAnswers.length <= question) {
+      newAnswers.push(null);
+    }
+    newAnswers[question] = answer;
+    return self.update({answers: newAnswers, lastAnswered: question});
+  }
+}
+
 AnswerSchema
   .plugin(idValidator)
   .pre('validate', function(next) {
