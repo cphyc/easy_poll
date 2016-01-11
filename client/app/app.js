@@ -10,8 +10,13 @@ angular.module('eduquizzApp', [
   'md.data.table',
   'ngMaterial',
   'restangular',
-  'InlineTextEditor'
+  'InlineTextEditor',
+  'gettext'
 ])
+  .run(function (gettextCatalog) {
+    gettextCatalog.setCurrentLanguage('fr');
+    gettextCatalog.debug = true;
+})
   .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, RestangularProvider) {
     $urlRouterProvider
       .otherwise('/');
