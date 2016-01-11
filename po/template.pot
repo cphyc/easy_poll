@@ -1,0 +1,121 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: \n"
+
+#: .tmp/app/new_poll/new_poll.html:1
+msgid "Add answer"
+msgstr ""
+
+#: .tmp/app/new_poll/new_poll.html:1
+msgid "Add question"
+msgstr ""
+
+#: .tmp/components/navbar/navbar.html:1
+msgid "Admin"
+msgstr ""
+
+#: .tmp/app/answer_poll/answer_poll_list.html:1
+msgid "Answer the poll <em>\"{{ poll.name }}\"</em>"
+msgstr ""
+
+#: .tmp/app/new_poll/new_poll.html:1
+msgid "Delete answer"
+msgstr ""
+
+#: .tmp/app/new_poll/new_poll.html:1
+msgid "Foo bar"
+msgstr ""
+
+#: .tmp/components/navbar/navbar.html:1
+msgid "Hello {{ getCurrentUser().name }}"
+msgstr ""
+
+#: .tmp/app/polls/polls.html:1
+msgid "Hide {{ poll.questions.length}} questions"
+msgstr ""
+
+#: .tmp/components/navbar/navbar.html:1
+msgid "Login"
+msgstr ""
+
+#: .tmp/components/navbar/navbar.html:1
+msgid "Logout"
+msgstr ""
+
+#: .tmp/app/new_poll/new_poll.html:1
+msgid "Move answer down"
+msgstr ""
+
+#: .tmp/app/new_poll/new_poll.html:1
+msgid "Move answer up"
+msgstr ""
+
+#: .tmp/app/new_poll/new_poll.html:1
+msgid "Move down"
+msgstr ""
+
+#: .tmp/app/new_poll/new_poll.html:1
+msgid "Move up"
+msgstr ""
+
+#: .tmp/app/view_answers/view_answers.html:1
+msgid "Name"
+msgstr ""
+
+#: .tmp/app/answer_poll/answer_poll.html:1
+msgid "Next question"
+msgstr ""
+
+#: .tmp/app/view_answers/view_answers.html:1
+msgid "No answers yet."
+msgstr ""
+
+#: .tmp/app/polls/polls.html:1
+msgid "Polls list"
+msgstr ""
+
+#: .tmp/app/new_poll/new_poll.html:1
+msgid "Question n°{{$index}}"
+msgstr ""
+
+#: .tmp/app/answer_poll/answer_poll.html:1
+msgid "Save"
+msgstr ""
+
+#: .tmp/app/view_answers/view_answers.html:1
+msgid "Score"
+msgstr ""
+
+#: .tmp/components/navbar/navbar.html:1
+msgid "Sign up"
+msgstr ""
+
+#: .tmp/app/new_poll/new_poll.html:1
+msgid "Submit poll"
+msgstr ""
+
+#: .tmp/app/new_poll/new_poll.html:1
+msgid "To edit the poll, click on the field to edit and type your text. To format the text, select it and pick the desired format in the floating box."
+msgstr ""
+
+#: .tmp/components/navbar/navbar.html:1
+msgid "Toggle navigation"
+msgstr ""
+
+#: .tmp/app/polls/polls.html:1
+msgid "View {{ poll.questions.length }} questions"
+msgstr ""
+
+#: .tmp/app/answer_poll/answer_poll.html:1
+msgid "You answered the poll."
+msgstr ""
+
+#: .tmp/components/navbar/navbar.html:1
+msgid "eduquizz"
+msgstr ""
+
+#: .tmp/app/view_answers/view_answers.html:1
+msgid "{{ poll.name }} — given answers"
+msgstr ""
