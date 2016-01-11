@@ -2,15 +2,15 @@ div(ng-include='"components/navbar/navbar.html"')
 
 .container
   .row
-    h2 {{ poll.name }}
+    h2(ng-bind-html='poll.name')
     div(ng-hide='submitted')
-      h3 {{ currentQuestion.question }}
+      p(ng-bind-html='currentQuestion.question')
       form(name='answerForm' novalidate)
         p
           div(ng-repeat='answer in currentQuestion.answers track by $index')
             label
               input(type="radio" ng-model='answers[questionNumber]' ng-value='$index')
-              |  {{ answer }}
+              span(ng-bind-html='answer')
       .btn-group
         button.btn.btn-primary(ng-click='nextQuestion()' ng-disabled='questionNumber === lastQuestion || answers[questionNumber] === undefined' translate) Next question
         button.btn.btn-primary(ng-click='saveAnswers()' ng-disabled='questionNumber < lastQuestion || answers[questionNumber] === undefined || submitted' translate) Save
