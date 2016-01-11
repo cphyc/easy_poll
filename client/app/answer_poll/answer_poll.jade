@@ -12,8 +12,8 @@ div(ng-include='"components/navbar/navbar.html"')
               input(type="radio" ng-model='answers[questionNumber]' ng-value='$index')
               |  {{ answer }}
       .btn-group
-        button.btn.btn-primary(ng-click='nextQuestion()' ng-disabled='questionNumber === lastQuestion || answers[questionNumber] === undefined') Next question
-        button.btn.btn-primary(ng-click='saveAnswers()' ng-disabled='questionNumber < lastQuestion || answers[questionNumber] === undefined || submitted') {{ saveButton }}
-    p.lead(ng-show='submitted') You answered the poll.
+        button.btn.btn-primary(ng-click='nextQuestion()' ng-disabled='questionNumber === lastQuestion || answers[questionNumber] === undefined' translate) Next question
+        button.btn.btn-primary(ng-click='saveAnswers()' ng-disabled='questionNumber < lastQuestion || answers[questionNumber] === undefined || submitted' translate) Save
+    p.lead(ng-show='submitted' translate) You answered the poll.
 .footer
   | Foo bar

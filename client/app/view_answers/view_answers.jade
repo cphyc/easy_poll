@@ -3,15 +3,15 @@ div(ng-include='"components/navbar/navbar.html"')
 .container
   .row
     md-data-table-toolbar
-      h2.md-title {{ poll.name }} — given answers
+      h2.md-title(translate) {{ poll.name }} — given answers
     md-data-table-container(ng-if='answers')
       table(md-data-table)
         thead(md-table-head)
           tr
-            th Name 
+            th(translate) Name 
             th(trim ng-repeat='q in poll.questions') {{ q.question | truncate: 25}}
         
-            th Score
+            th(translate) Score
         tbody
           tr(ng-repeat='ans in answers')
             td {{ ans.user.name }}
@@ -20,7 +20,7 @@ div(ng-include='"components/navbar/navbar.html"')
               i.fa.fa-times.wrong(ng-if='!c.goodAnswer')
               |  {{ poll.questions[$index].answers[c.givenAnswer] }}
             td {{ ans.goodAnswers }} / {{ ans.poll.questions.length }}
-    p(ng-if='!answers') No answers yet.
+    p(ng-if='!answers' translate) No answers yet.
     md-data-table-pagination
 .footer
   | Foo bar

@@ -1,7 +1,7 @@
 div(ng-include='"components/navbar/navbar.html"')
 
 .container
-  h1 Polls list
+  h1(translate) Polls list
   md-button.md-fab.md-fab-bottom-right(md-font-icon='icon-home' aria-label='FAB' ng-click='newPoll()')
     i.fa.fa-plus
   poll
@@ -12,7 +12,9 @@ div(ng-include='"components/navbar/navbar.html"')
           span.glyphicon.glyphicon-menu-down(ng-if='!reveal')
           span.glyphicon.glyphicon-menu-up(ng-if='reveal')
         br
-        span.text-muted(ng-click='reveal = !reveal') {{ reveal ? 'Hide' : 'View'}} {{ poll.questions.length }} questions
+        span.text-muted(ng-click='reveal = !reveal')
+          span(ng-if="reveal" translate) Hide {{ poll.questions.length}} questions
+          span(ng-if="!reveal" translate) View {{ poll.questions.length }} questions
         .pull-right
           a.button-icon(ng-click='viewAnswers(poll._id)')
             span.glyphicon.glyphicon-eye-open

@@ -3,7 +3,7 @@ div(ng-include='"components/navbar/navbar.html"')
 .container
   ul(ng-repeat='poll in polls')
     li
-      a(href='' ng-click='answerPoll(poll._id)') Answer the poll 
+      a(href='' ng-click='answerPoll(poll._id)' translate) Answer the poll 
         em "{{ poll.name }}"
 .footer
   | Foo bar
