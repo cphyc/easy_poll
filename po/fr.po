@@ -25,8 +25,8 @@ msgid "Admin"
 msgstr "Administration"
 
 #: .tmp/app/answer_poll/answer_poll_list.html:1
-msgid "Answer the poll <em>\"{{ poll.name }}\"</em>"
-msgstr "Répondre au questionnaire <em>«{{poll.name}}»</em>"
+msgid "Answer the poll"
+msgstr "Répondre au questionnaire"
 
 #: .tmp/app/new_poll/new_poll.html:1
 msgid "Delete answer"
@@ -131,6 +131,12 @@ msgstr "eduquizz"
 #: .tmp/app/view_answers/view_answers.html:1
 msgid "{{ poll.name }} — given answers"
 msgstr "{{ poll.name }} — réponses enregistrées"
+
+#~ msgid "&quot;' + poll.name + '&quot;"
+#~ msgstr "'«' + poll.name + '»'"
+
+#~ msgid "Answer the poll <em>\"{{ poll.name }}\"</em>"
+#~ msgstr "Répondre au questionnaire <em>«{{poll.name}}»</em>"
 
 #~ msgid "To edit the poll, click on the field to edit and type your text."
 #~ msgstr ""

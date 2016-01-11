@@ -17,7 +17,7 @@ msgid "Admin"
 msgstr ""
 
 #: .tmp/app/answer_poll/answer_poll_list.html:1
-msgid "Answer the poll <em>\"{{ poll.name }}\"</em>"
+msgid "Answer the poll"
 msgstr ""
 
 #: .tmp/app/new_poll/new_poll.html:1
