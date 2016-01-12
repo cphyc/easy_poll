@@ -31,17 +31,17 @@ div(ng-include='"components/navbar/navbar.html"')
               span(translate) Delete question
       md-card-content
         p(inline-text-editor contenteditable="true" ng-model='q.question' placeholder='{{"Ask your question here" | translate}}')
-        div(ng-repeat='answer in q.answers track by $index' layout='row' layout-wrap)
-          div(flex)
-            input(type="radio" ng-model='q.answer' ng-value='$index')
-            span.inline(inline-text-editor contenteditable="true" ng-model='q.answers[$index]' placeholder='{{"Add new answer here" | translate}}')
-            .pull-right
-              a.button-icon(ng-click='moveAnswer(q, $index, -1)' aria-label='{{"Move answer up"|translate}}')
-                span.glyphicon.glyphicon-chevron-up
-              a.button-icon(ng-click='moveAnswer(q, $index, 1)' aria-label='{{"Move answer down"|translate}}')
-                span.glyphicon.glyphicon-chevron-down
-              a.button-icon.trash(ng-click='deleteAnswer(q, $index)' aria-label='{{"Delete answer"|translate}}')
-                span.glyphicon.glyphicon-trash
+        md-radio-group(ng-model='q.answer')
+          div(ng-repeat='answer in q.answers track by $index')
+            a.button-icon.trash(ng-click='deleteAnswer(q, $index)' aria-label='{{"Delete answer"|translate}}')
+              span.glyphicon.glyphicon-trash
+            a.button-icon(ng-click='moveAnswer(q, $index, -1)' aria-label='{{"Move answer up"|translate}}')
+              span.glyphicon.glyphicon-chevron-up
+            a.button-icon(ng-click='moveAnswer(q, $index, 1)' aria-label='{{"Move answer down"|translate}}')
+              span.glyphicon.glyphicon-chevron-down
+            md-radio-button.inline(ng-value='$index')
+            span.inline(style='min-width=100px' inline-text-editor contenteditable="true" 
+              ng-model='answer' placeholder='{{"Add new answer here" | translate}}')
     button.btn.btn-primary(ng-click='submitPoll()' translate) Submit poll
 .footer(translate)
   | Foo bar

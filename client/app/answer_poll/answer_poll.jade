@@ -12,8 +12,22 @@ div(ng-include='"components/navbar/navbar.html"')
               input(type="radio" ng-model='answers[questionNumber]' ng-value='$index')
               span(ng-bind-html='answer')
       .btn-group
-        button.btn.btn-primary(ng-click='nextQuestion()' ng-disabled='questionNumber === lastQuestion || answers[questionNumber] === undefined' translate) Next question
-        button.btn.btn-primary(ng-click='saveAnswers()' ng-disabled='questionNumber < lastQuestion || answers[questionNumber] === undefined || submitted' translate) Save
+        button.btn.btn-primary(
+          ng-click='nextQuestion()' ng-disabled='questionNumber === lastQuestion || answers[questionNumber] === undefined' translate) Next question
+        button.btn.btn-primary(
+          ng-click='saveAnswers()' ng-disabled='questionNumber < lastQuestion || answers[questionNumber] === undefined || submitted' translate) Save
     p.lead(ng-show='submitted' translate) You answered the poll.
+    
+    md-card
+      md-card-title
+        md-card-title-text
+          span.md-headline(translate) Question n°{{questionNumber}}
+      md-card-content
+        p(ng-bind-html='currentQuestion.question')
+        md-radio-group(ng-model='answers[questionNumber]')
+          md-radio-button(ng-repeat='answer in currentQuestion.answers track by $index'
+            ng-value='$index')
+            span(ng-bind-html='answer')
+    button.btn.btn-primary(ng-click='submitPoll()' translate) Submit poll
 .footer
   | Foo bar
