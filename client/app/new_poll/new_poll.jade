@@ -6,7 +6,9 @@ div(ng-include='"components/navbar/navbar.html"')
     h1(inline-text-editor contenteditable="true" ng-model='poll.name')
     md-button.md-button-icon(ng-click='addQuestion()')
       span.glyphicon.glyphicon-plus(translate) Add question
-      
+    md-button.md-button-icon(ng-click='uploadFile()')
+      span.glyphicon.glyphicon-plus(translate) Upload file
+
     md-card(ng-repeat='q in poll.questions track by $index')
       md-card-title
         md-card-title-text
@@ -22,11 +24,11 @@ div(ng-include='"components/navbar/navbar.html"')
             md-button.md-button-icon(ng-click='move($index, 1)')
               span.glyphicon.glyphicon-chevron-down(translate) Move down
       md-card-content
-        p(inline-text-editor contenteditable="true" ng-model='q.question')
+        p(inline-text-editor contenteditable="true" ng-model='q.question' placeholder='{{"Ask your question here" | translate}}')
         div(ng-repeat='answer in q.answers track by $index' layout='row' layout-wrap)
           div(flex)
             input(type="radio" ng-model='q.answer' ng-value='$index')
-            span.inline(inline-text-editor contenteditable="true" ng-model='q.answers[$index]')
+            span.inline(inline-text-editor contenteditable="true" ng-model='q.answers[$index]' placeholder='{{"Add new answer here" | translate}}')
             .pull-right
               a.button-icon(ng-click='moveAnswer(q, $index, -1)' aria-label='{{"Move answer up"|translate}}')
                 span.glyphicon.glyphicon-chevron-up
@@ -34,6 +36,6 @@ div(ng-include='"components/navbar/navbar.html"')
                 span.glyphicon.glyphicon-chevron-down
               a.button-icon.trash(ng-click='deleteAnswer(q, $index)' aria-label='{{"Delete answer"|translate}}')
                 span.glyphicon.glyphicon-trash
-    button.btn.btn-primary(ng-controller='SubmitPollCtrl' ng-click='save()' translate) Submit poll
+    button.btn.btn-primary(ng-click='submitPoll()' translate) Submit poll
 .footer(translate)
   | Foo bar
