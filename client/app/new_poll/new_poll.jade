@@ -14,15 +14,21 @@ div(ng-include='"components/navbar/navbar.html"')
         md-card-title-text
           span.md-headline(translate) Question n°{{$index}}
       md-card-actions
-        div(layout='row')
+        div(layout='row' layout-wrap)
           div(flex)
-            md-button.md-button-icon(ng-click='addAnswer(q)')
-              span.glyphicon.glyphicon-plus(translate) Add answer
+            md-button(ng-click='addAnswer(q)')
+              md-icon.glyphicon.glyphicon-plus
+              span(translate) Add answer
           div.align-right(flex)
-            md-button.md-button-icon(ng-click='move($index, -1)')
-              span.glyphicon.glyphicon-chevron-up(translate) Move up
-            md-button.md-button-icon(ng-click='move($index, 1)')
-              span.glyphicon.glyphicon-chevron-down(translate) Move down
+            md-button(ng-click='moveQuestion($index, -1)')
+              md-icon.glyphicon.glyphicon-chevron-up
+              span(translate) Move up
+            md-button(ng-click='moveQuestion($index, 1)')
+              md-icon.glyphicon.glyphicon-chevron-down
+              span(translate) Move down
+            md-button(ng-click='deleteQuestion($index)')
+              md-icon.md-warn.glyphicon.glyphicon-trash
+              span(translate) Delete question
       md-card-content
         p(inline-text-editor contenteditable="true" ng-model='q.question' placeholder='{{"Ask your question here" | translate}}')
         div(ng-repeat='answer in q.answers track by $index' layout='row' layout-wrap)

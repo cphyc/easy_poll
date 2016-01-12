@@ -36,8 +36,14 @@ angular.module('eduquizzApp')
       $scope.poll.questions.push({});
     }
 
+    $scope.deleteQuestion = function(index) {
+      if ($scope.poll.questions.length > index) {
+        $scope.poll.questions.splice(index, 1);
+      }
+    }
+
     $scope.moveQuestion = function(index, offset) {
-      if ((index > 0 && offset === -1) || (index < question.answers.length-1 && offset === 1)) {
+      if ((index > 0 && offset === -1) || (index < $scope.poll.questions.length-1 && offset === 1)) {
         var question = $scope.poll.questions[index];
         var otherQuestion = $scope.poll.questions[index+offset];
         $scope.poll.questions[index+offset] = question;
@@ -76,7 +82,7 @@ angular.module('eduquizzApp')
       }
     }
 
-    $scope.save = function() {
+    $scope.submitPoll = function() {
       $scope.buttonText = 'Submitting…';
       Restangular.one('polls', $scope.poll._id).patch($scope.poll).then(function() {
         $location.path('/polls');
