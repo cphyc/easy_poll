@@ -116,6 +116,13 @@ module.exports = function (grunt) {
         ],
         tasks: ['babel']
       },
+      nggettext: {
+        files: [
+          'po/*',
+          '{app,components}/**/*.jade'
+        ],
+        tasks:['nggettext_extract', 'nggettext_compile']
+      },
       gruntfile: {
         files: ['Gruntfile.js']
       },
@@ -434,7 +441,7 @@ module.exports = function (grunt) {
       server: [
         'babel',
         'jade',
-        'sass',
+        'sass'
       ],
       test: [
         'babel',
