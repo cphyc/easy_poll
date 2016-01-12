@@ -9,6 +9,10 @@ msgid "Add answer"
 msgstr ""
 
 #: .tmp/app/new_poll/new_poll.html:1
+msgid "Add new answer here"
+msgstr ""
+
+#: .tmp/app/new_poll/new_poll.html:1
 msgid "Add question"
 msgstr ""
 
@@ -21,7 +25,15 @@ msgid "Answer the poll"
 msgstr ""
 
 #: .tmp/app/new_poll/new_poll.html:1
+msgid "Ask your question here"
+msgstr ""
+
+#: .tmp/app/new_poll/new_poll.html:1
 msgid "Delete answer"
+msgstr ""
+
+#: .tmp/app/new_poll/new_poll.html:1
+msgid "Delete question"
 msgstr ""
 
 #: .tmp/app/new_poll/new_poll.html:1
@@ -102,6 +114,10 @@ msgstr ""
 
 #: .tmp/components/navbar/navbar.html:1
 msgid "Toggle navigation"
+msgstr ""
+
+#: .tmp/app/new_poll/new_poll.html:1
+msgid "Upload file"
 msgstr ""
 
 #: .tmp/app/polls/polls.html:1

@@ -17,6 +17,10 @@ msgid "Add answer"
 msgstr "Ajouter réponse"
 
 #: .tmp/app/new_poll/new_poll.html:1
+msgid "Add new answer here"
+msgstr "Écrire une réponse ici"
+
+#: .tmp/app/new_poll/new_poll.html:1
 msgid "Add question"
 msgstr "Ajouter question"
 
@@ -29,12 +33,20 @@ msgid "Answer the poll"
 msgstr "Répondre au questionnaire"
 
 #: .tmp/app/new_poll/new_poll.html:1
+msgid "Ask your question here"
+msgstr "Écrire votre question ici"
+
+#: .tmp/app/new_poll/new_poll.html:1
 msgid "Delete answer"
 msgstr "Supprimer la réponse"
 
 #: .tmp/app/new_poll/new_poll.html:1
+msgid "Delete question"
+msgstr "Supprimer la question"
+
+#: .tmp/app/new_poll/new_poll.html:1
 msgid "Foo bar"
-msgstr ""
+msgstr "Foo bar"
 
 #: .tmp/components/navbar/navbar.html:1
 msgid "Hello {{ getCurrentUser().name }}"
@@ -115,6 +127,10 @@ msgstr ""
 #: .tmp/components/navbar/navbar.html:1
 msgid "Toggle navigation"
 msgstr "Basculer la navigation"
+
+#: .tmp/app/new_poll/new_poll.html:1
+msgid "Upload file"
+msgstr "Télécharger un fichier"
 
 #: .tmp/app/polls/polls.html:1
 msgid "View {{ poll.questions.length }} questions"
