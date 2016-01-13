@@ -11,14 +11,18 @@ var app = express();
 var router = express.Router();
 
 var storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, config.uploadDirectory);
+  },
   filename: function(req, file, cb) {
-    cb(null, file.filename + '-' + Date.now());
+    cb(null, Date.now() + '-' + file.originalname);
   }
 });
 
-var upload = multer({dest: config.uploadDirectory, storage: storage});
+var upload = multer({storage: storage});
 
-router.post('/', auth.hasRole('user'), upload.single('data'), function(req, res) {
+router.post('/', auth.hasRole('user'), upload.single('picture'), function(req, res) {
+  console.log(req.file, config.uploadDirectory);
   res.json(req.file.filename);
 });
 
