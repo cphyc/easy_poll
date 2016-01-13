@@ -28,6 +28,10 @@ msgstr "Ajouter question"
 msgid "Admin"
 msgstr "Administration"
 
+#: client/components/navbar/navbar.controller.js:7
+msgid "Answer poll"
+msgstr "Répondre au questionnaire"
+
 #: .tmp/app/answer_poll/answer_poll_list.html:1
 msgid "Answer the poll"
 msgstr "Répondre au questionnaire"
@@ -35,6 +39,14 @@ msgstr "Répondre au questionnaire"
 #: .tmp/app/new_poll/new_poll.html:1
 msgid "Ask your question here"
 msgstr "Écrire votre question ici"
+
+#: client/app/polls/polls.controller.js:33
+msgid "Cancel!"
+msgstr "Annuler"
+
+#: client/app/polls/polls.controller.js:32
+msgid "Confirm"
+msgstr "Confirmer"
 
 #: .tmp/app/new_poll/new_poll.html:1
 msgid "Delete answer"
@@ -55,6 +67,10 @@ msgstr "Bonjour {{ getCurrentUser().name }}"
 #: .tmp/app/polls/polls.html:1
 msgid "Hide {{ poll.questions.length}} questions"
 msgstr "Cacher les {{ poll.questions.length }} questions"
+
+#: client/components/navbar/navbar.controller.js:5
+msgid "Home"
+msgstr "Accueil"
 
 #: .tmp/components/navbar/navbar.html:1
 msgid "Login"
@@ -92,6 +108,14 @@ msgstr "Question suivante"
 msgid "No answers yet."
 msgstr "Aucune réponse enregistrée."
 
+#: .tmp/app/upload/upload.html:1
+msgid "Pick file"
+msgstr "Choisir un fichier"
+
+#: client/components/navbar/navbar.controller.js:6
+msgid "Polls"
+msgstr "Questionnaires"
+
 #: .tmp/app/polls/polls.html:1
 msgid "Polls list"
 msgstr "Liste des questionnaires"
@@ -99,6 +123,10 @@ msgstr "Liste des questionnaires"
 #: .tmp/app/new_poll/new_poll.html:1
 msgid "Question n°{{$index}}"
 msgstr "Question n°{{$index}}"
+
+#: .tmp/app/answer_poll/answer_poll.html:1
+msgid "Question n°{{questionNumber}}"
+msgstr "Question n°{{questionNumber}}"
 
 #: .tmp/app/answer_poll/answer_poll.html:1
 msgid "Save"
@@ -112,7 +140,7 @@ msgstr "Résultat"
 msgid "Sign up"
 msgstr "Inscription"
 
-#: .tmp/app/new_poll/new_poll.html:1
+#: .tmp/app/answer_poll/answer_poll.html:1 .tmp/app/new_poll/new_poll.html:1
 msgid "Submit poll"
 msgstr "Sauvegarder le questionnaire"
 
@@ -128,17 +156,42 @@ msgstr ""
 msgid "Toggle navigation"
 msgstr "Basculer la navigation"
 
-#: .tmp/app/new_poll/new_poll.html:1
+#: .tmp/app/upload/upload.html:1
+msgctxt "button"
+msgid "Upload file"
+msgstr "Télécharger"
+
+#: .tmp/app/upload/upload.html:1
 msgid "Upload file"
 msgstr "Télécharger un fichier"
+
+#: .tmp/app/new_poll/new_poll.html:1
+msgid "Upload picture"
+msgstr "Télécharger une image"
+
+#: .tmp/app/upload/upload.html:1
+msgid "Uploaded!"
+msgstr "Fichier téléchargé !"
+
+#: .tmp/app/upload/upload.html:1
+msgid "Uploading…"
+msgstr "Téléchargement …"
 
 #: .tmp/app/polls/polls.html:1
 msgid "View {{ poll.questions.length }} questions"
 msgstr "Voir les {{ poll.questions.length }} questions"
 
+#: client/app/polls/polls.controller.js:30
+msgid "Would you like to delete this poll?"
+msgstr "Voulez-vous supprimer le sondage ?"
+
 #: .tmp/app/answer_poll/answer_poll.html:1
 msgid "You answered the poll."
 msgstr "Vous avez répondu au questionnaire."
+
+#: client/app/polls/polls.controller.js:31
+msgid "delete poll"
+msgstr "supprimer le sondage"
 
 #: .tmp/components/navbar/navbar.html:1
 msgid "eduquizz"
@@ -147,6 +200,9 @@ msgstr "eduquizz"
 #: .tmp/app/view_answers/view_answers.html:1
 msgid "{{ poll.name }} — given answers"
 msgstr "{{ poll.name }} — réponses enregistrées"
+
+#~ msgid "File uploaded"
+#~ msgstr "Fichier téléchargé !"
 
 #~ msgid "&quot;' + poll.name + '&quot;"
 #~ msgstr "'«' + poll.name + '»'"

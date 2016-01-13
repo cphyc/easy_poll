@@ -61,8 +61,6 @@ exports.getResults = function(req, res) {
         };
       }) || [];
 
-      console.log("Correction", correction);
-
       return res.json(correction);
     }, function(errs) {
       console.log(errs);
@@ -81,7 +79,6 @@ exports.create = function(req, res) {
 
 // Updates an existing poll in the DB.
 exports.update = function(req, res) {
-  console.log('Updating', req.body._id);
   Poll.findById(req.body._id, function (err, poll) {
     if (err) { return handleError(res, err); }
     if(!poll) { return res.status(404).send('Not Found'); }

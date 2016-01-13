@@ -5,9 +5,11 @@ div(ng-include='"components/navbar/navbar.html"')
     p(translate) To edit the poll, click on the field to edit and type your text. To format the text, select it and pick the desired format in the floating box.
     h1(inline-text-editor contenteditable="true" ng-model='poll.name')
     md-button.md-button-icon(ng-click='addQuestion()')
-      span.glyphicon.glyphicon-plus(translate) Add question
-    md-button.md-button-icon(ng-click='uploadFile()')
-      span.glyphicon.glyphicon-plus(translate) Upload file
+      md-icon.glyphicon.glyphicon-plus
+      span(translate) Add question
+    md-button.md-button-icon(ng-controller='UploadCtrl' ng-click='uploadDialog()')
+      md-icon.glyphicon.glyphicon-picture
+      span(translate) Upload picture
 
     md-card(ng-repeat='q in poll.questions track by $index')
       md-card-title

@@ -2,32 +2,24 @@ div(ng-include='"components/navbar/navbar.html"')
 
 .container
   .row
-    h2(ng-bind-html='poll.name')
-    div(ng-hide='submitted')
-      p(ng-bind-html='currentQuestion.question')
-      form(name='answerForm' novalidate)
-        p
-          div(ng-repeat='answer in currentQuestion.answers track by $index')
-            label
-              input(type="radio" ng-model='answers[questionNumber]' ng-value='$index')
-              span(ng-bind-html='answer')
-      .btn-group
-        button.btn.btn-primary(
-          ng-click='nextQuestion()' ng-disabled='questionNumber === lastQuestion || answers[questionNumber] === undefined' translate) Next question
-        button.btn.btn-primary(
-          ng-click='saveAnswers()' ng-disabled='questionNumber < lastQuestion || answers[questionNumber] === undefined || submitted' translate) Save
-    p.lead(ng-show='submitted' translate) You answered the poll.
-    
     md-card
       md-card-title
         md-card-title-text
-          span.md-headline(translate) Question n°{{questionNumber}}
+          h2(ng-bind-html='poll.name')
+          h3.md-headline(ng-if='!submitted' translate) Question n°{{questionNumber}}
       md-card-content
-        p(ng-bind-html='currentQuestion.question')
-        md-radio-group(ng-model='answers[questionNumber]')
-          md-radio-button(ng-repeat='answer in currentQuestion.answers track by $index'
-            ng-value='$index')
-            span(ng-bind-html='answer')
-    button.btn.btn-primary(ng-click='submitPoll()' translate) Submit poll
+        div(ng-if='!submitted')
+          p(ng-bind-html='currentQuestion.question')
+          md-radio-group(ng-model='answers[questionNumber]')
+            md-radio-button(ng-repeat='answer in currentQuestion.answers track by $index'
+              ng-value='$index')
+              span(ng-bind-html='answer')
+        p.lead(ng-if='submitted' translate) You answered the poll.
+      md-card-actions
+        .btn-group(ng-hide='submitted')
+          md-button(
+            ng-click='nextQuestion()' ng-disabled='questionNumber === lastQuestion || answers[questionNumber] === undefined' translate) Next question
+          md-button(
+            ng-click='saveAnswers()' ng-disabled='questionNumber < lastQuestion || answers[questionNumber] === undefined || submitted' translate) Save
 .footer
   | Foo bar

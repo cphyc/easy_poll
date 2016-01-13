@@ -1,9 +1,12 @@
 'use strict';
 
 angular.module('eduquizzApp')
-  .controller('NavbarCtrl', function ($scope, $location, Auth, $state) {
+  .controller('NavbarCtrl', function ($scope, $location, Auth, $state, gettextCatalog) {
+    var homeTitleNavbarTrad = gettextCatalog.getString('Home');
+    var pollTitleNavbarTrad = gettextCatalog.getString('Polls');
+    var answerPollTitleNavbarTrad = gettextCatalog.getString('Answer poll');
     $scope.menu = [{
-      'title': 'Home',
+      'title': homeTitleNavbarTrad,
       'link': '/'
     }];
 
@@ -14,14 +17,14 @@ angular.module('eduquizzApp')
 
     if ($scope.isAdmin()) {
       $scope.menu.push({
-        'title': 'Polls',
+        'title': pollTitleNavbarTrad,
         'link': $state.href('polls', {}, {absolute: true})
       });
     }
 
     if ($scope.isLoggedIn()) {
       $scope.menu.push({
-        'title': 'Answer poll',
+        'title': answerPollTitleNavbarTrad,
         'link': $state.href('polls_answer', {}, {absolute: true})
       });
     }

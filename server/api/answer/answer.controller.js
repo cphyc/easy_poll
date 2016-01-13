@@ -34,10 +34,9 @@ exports.newAnswer = function(req, res) {
           user: req.user._id.toString()
         }, function(err, newAnswer) {
           if (err) { return handleError(res, err); }
-          console.log('A', req.params.pollId, req.user._id, answer);
           return res.json(newAnswer);
         });
-      } else { console.log('B', answer); return res.json(answer); }
+      } else { return res.json(answer); }
   }).catch(function(err) {
     return handleError(res, err);
   });

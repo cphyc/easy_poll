@@ -20,12 +20,24 @@ msgstr ""
 msgid "Admin"
 msgstr ""
 
+#: client/components/navbar/navbar.controller.js:7
+msgid "Answer poll"
+msgstr ""
+
 #: .tmp/app/answer_poll/answer_poll_list.html:1
 msgid "Answer the poll"
 msgstr ""
 
 #: .tmp/app/new_poll/new_poll.html:1
 msgid "Ask your question here"
+msgstr ""
+
+#: client/app/polls/polls.controller.js:33
+msgid "Cancel!"
+msgstr ""
+
+#: client/app/polls/polls.controller.js:32
+msgid "Confirm"
 msgstr ""
 
 #: .tmp/app/new_poll/new_poll.html:1
@@ -46,6 +58,10 @@ msgstr ""
 
 #: .tmp/app/polls/polls.html:1
 msgid "Hide {{ poll.questions.length}} questions"
+msgstr ""
+
+#: client/components/navbar/navbar.controller.js:5
+msgid "Home"
 msgstr ""
 
 #: .tmp/components/navbar/navbar.html:1
@@ -84,12 +100,24 @@ msgstr ""
 msgid "No answers yet."
 msgstr ""
 
+#: .tmp/app/upload/upload.html:1
+msgid "Pick file"
+msgstr ""
+
+#: client/components/navbar/navbar.controller.js:6
+msgid "Polls"
+msgstr ""
+
 #: .tmp/app/polls/polls.html:1
 msgid "Polls list"
 msgstr ""
 
 #: .tmp/app/new_poll/new_poll.html:1
 msgid "Question n°{{$index}}"
+msgstr ""
+
+#: .tmp/app/answer_poll/answer_poll.html:1
+msgid "Question n°{{questionNumber}}"
 msgstr ""
 
 #: .tmp/app/answer_poll/answer_poll.html:1
@@ -104,6 +132,7 @@ msgstr ""
 msgid "Sign up"
 msgstr ""
 
+#: .tmp/app/answer_poll/answer_poll.html:1
 #: .tmp/app/new_poll/new_poll.html:1
 msgid "Submit poll"
 msgstr ""
@@ -116,16 +145,41 @@ msgstr ""
 msgid "Toggle navigation"
 msgstr ""
 
-#: .tmp/app/new_poll/new_poll.html:1
+#: .tmp/app/upload/upload.html:1
+msgctxt "button"
 msgid "Upload file"
+msgstr ""
+
+#: .tmp/app/upload/upload.html:1
+msgid "Upload file"
+msgstr ""
+
+#: .tmp/app/new_poll/new_poll.html:1
+msgid "Upload picture"
+msgstr ""
+
+#: .tmp/app/upload/upload.html:1
+msgid "Uploaded!"
+msgstr ""
+
+#: .tmp/app/upload/upload.html:1
+msgid "Uploading…"
 msgstr ""
 
 #: .tmp/app/polls/polls.html:1
 msgid "View {{ poll.questions.length }} questions"
 msgstr ""
 
+#: client/app/polls/polls.controller.js:30
+msgid "Would you like to delete this poll?"
+msgstr ""
+
 #: .tmp/app/answer_poll/answer_poll.html:1
 msgid "You answered the poll."
+msgstr ""
+
+#: client/app/polls/polls.controller.js:31
+msgid "delete poll"
 msgstr ""
 
 #: .tmp/components/navbar/navbar.html:1

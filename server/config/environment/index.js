@@ -7,6 +7,7 @@ function requiredProcessEnv(name) {
   if(!process.env[name]) {
     throw new Error('You must set the ' + name + ' environment variable');
   }
+  console.log('In ' + name + ' mode.');
   return process.env[name];
 }
 
@@ -48,7 +49,9 @@ var all = {
     clientID:     process.env.GOOGLE_ID || 'id',
     clientSecret: process.env.GOOGLE_SECRET || 'secret',
     callbackURL:  (process.env.DOMAIN || '') + '/auth/google/callback'
-  }
+  },
+
+  uploadDirectory: 'uploads'
 };
 
 // Export the config object based on the NODE_ENV
