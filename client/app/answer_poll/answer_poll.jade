@@ -20,7 +20,8 @@ div(ng-include='"components/navbar/navbar.html"')
           md-button(
             ng-click='nextQuestion()' ng-disabled='questionNumber === lastQuestion || answers[questionNumber] === undefined')
             span(translate) Next question
-          md-button(
-            ng-click='saveAnswers()' ng-disabled='questionNumber < lastQuestion || answers[questionNumber] === undefined || submitted') span(translate) Save
+          md-button(ng-click='saveAnswers()'
+          ng-disabled='questionNumber < lastQuestion || answers[questionNumber] === undefined || submitted')
+            span(translate) Save
 .footer
   | Foo bar
