@@ -120,10 +120,6 @@ msgstr ""
 msgid "Question n°{{questionNumber}}"
 msgstr ""
 
-#: .tmp/app/answer_poll/answer_poll.html:1
-msgid "Save"
-msgstr ""
-
 #: .tmp/app/view_answers/view_answers.html:1
 msgid "Score"
 msgstr ""
@@ -132,7 +128,6 @@ msgstr ""
 msgid "Sign up"
 msgstr ""
 
-#: .tmp/app/answer_poll/answer_poll.html:1
 #: .tmp/app/new_poll/new_poll.html:1
 msgid "Submit poll"
 msgstr ""
@@ -146,11 +141,11 @@ msgid "Toggle navigation"
 msgstr ""
 
 #: .tmp/app/upload/upload.html:1
-msgctxt "button"
 msgid "Upload file"
 msgstr ""
 
 #: .tmp/app/upload/upload.html:1
+msgctxt "button"
 msgid "Upload file"
 msgstr ""
 

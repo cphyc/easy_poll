@@ -18,8 +18,9 @@ div(ng-include='"components/navbar/navbar.html"')
       md-card-actions
         .btn-group(ng-hide='submitted')
           md-button(
-            ng-click='nextQuestion()' ng-disabled='questionNumber === lastQuestion || answers[questionNumber] === undefined' translate) Next question
+            ng-click='nextQuestion()' ng-disabled='questionNumber === lastQuestion || answers[questionNumber] === undefined')
+            span(translate) Next question
           md-button(
-            ng-click='saveAnswers()' ng-disabled='questionNumber < lastQuestion || answers[questionNumber] === undefined || submitted' translate) Save
+            ng-click='saveAnswers()' ng-disabled='questionNumber < lastQuestion || answers[questionNumber] === undefined || submitted') span(translate) Save
 .footer
   | Foo bar

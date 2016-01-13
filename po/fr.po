@@ -128,10 +128,6 @@ msgstr "Question n°{{$index}}"
 msgid "Question n°{{questionNumber}}"
 msgstr "Question n°{{questionNumber}}"
 
-#: .tmp/app/answer_poll/answer_poll.html:1
-msgid "Save"
-msgstr "Sauvegarder"
-
 #: .tmp/app/view_answers/view_answers.html:1
 msgid "Score"
 msgstr "Résultat"
@@ -140,7 +136,7 @@ msgstr "Résultat"
 msgid "Sign up"
 msgstr "Inscription"
 
-#: .tmp/app/answer_poll/answer_poll.html:1 .tmp/app/new_poll/new_poll.html:1
+#: .tmp/app/new_poll/new_poll.html:1
 msgid "Submit poll"
 msgstr "Sauvegarder le questionnaire"
 
@@ -157,13 +153,13 @@ msgid "Toggle navigation"
 msgstr "Basculer la navigation"
 
 #: .tmp/app/upload/upload.html:1
+msgid "Upload file"
+msgstr "Télécharger un fichier"
+
+#: .tmp/app/upload/upload.html:1
 msgctxt "button"
 msgid "Upload file"
 msgstr "Télécharger"
-
-#: .tmp/app/upload/upload.html:1
-msgid "Upload file"
-msgstr "Télécharger un fichier"
 
 #: .tmp/app/new_poll/new_poll.html:1
 msgid "Upload picture"
@@ -200,6 +196,9 @@ msgstr "eduquizz"
 #: .tmp/app/view_answers/view_answers.html:1
 msgid "{{ poll.name }} — given answers"
 msgstr "{{ poll.name }} — réponses enregistrées"
+
+#~ msgid "Save"
+#~ msgstr "Sauvegarder"
 
 #~ msgid "File uploaded"
 #~ msgstr "Fichier téléchargé !"
