@@ -1,0 +1,26 @@
+
+form
+  md-toolbar
+    .md-toolbar-tools
+      h2(translate) Upload file
+      span(flex)
+      md-button.md-icon-button(ng-click='$close()')
+        i.fa.fa-times
+  md-dialog-content
+    .md-dialog-content
+      div(layout='row')
+        div(flex)  
+        .img(flex ng-if='picFile')
+          img(ngf-thumbnail="picFile" ngf-size="{width: 200, height: 200, quality: 0.9}")
+          .img-ovrlay(ng-if='uploading' translate) Uploading…
+          .img-ovrlay(ng-if='uploaded' translate) Uploaded!
+          .img-btn(ng-if='!uploading && !uploaded' ng-click='picFile=null') 
+            span.glyphicon.glyphicon-remove-sign
+        div(flex)
+      md-input-container.md-block
+        md-button(ngf-select ng-model="picFile" accept="image/*" ng-hide='picFile')
+          md-icon.glyphicon.glyphicon-picture
+          span(translate) Pick file
+        md-button(ng-click='uploadFile(picFile)' ng-show='picFile' ng-disabled='uploading')
+          md-icon.glyphicon.glyphicon-upload
+          span(translate-context='button' translate) Upload file

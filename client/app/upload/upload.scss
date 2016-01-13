@@ -1,0 +1,33 @@
+.img {
+  position:relative;
+  width:200px;
+
+  img {
+    width:100%;
+    vertical-align:top;
+  }
+  .img-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgb(255, 255, 255);
+    opacity: 0;
+    padding: 10px;
+    border-radius: 0 0 0 5px;
+  }
+  .img-ovrlay {
+    position:absolute;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+    opacity: 0.7;
+    bottom: 0;
+    width: 100%;
+  }
+  .img-btn:hover {
+    opacity: 0.7;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+  }
+}
