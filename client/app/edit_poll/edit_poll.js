@@ -5,12 +5,12 @@ angular.module('eduquizzApp')
     $stateProvider
       .state('new_poll', {
         url: '/polls/new',
-        templateUrl: 'app/new_poll/new_poll.html',
-        controller: 'NewPollCtrl'
+        templateUrl: 'app/edit_poll/edit_poll.html',
+        controller: 'EditPollCtrl'
       })
       .state('edit_poll', {
         url: '/polls/edit/:id',
-        templateUrl: 'app/new_poll/new_poll.html',
+        templateUrl: 'app/edit_poll/edit_poll.html',
         controller: 'EditPollCtrl'
       });
   });

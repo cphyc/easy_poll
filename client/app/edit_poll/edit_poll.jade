@@ -3,13 +3,10 @@ div(ng-include='"components/navbar/navbar.html"')
 .container
   div(ng-model='poll')
     p(translate) To edit the poll, click on the field to edit and type your text. To format the text, select it and pick the desired format in the floating box.
-    h1(inline-text-editor contenteditable="true" ng-model='poll.name')
+    h1(inline-text-editor contenteditable="true" ng-model='poll.name' placeholder='{{"Title of your poll" | translate}}')
     md-button.md-button-icon(ng-click='addQuestion()')
       md-icon.glyphicon.glyphicon-plus
       span(translate) Add question
-    md-button.md-button-icon(ng-controller='UploadCtrl' ng-click='uploadDialog()')
-      md-icon.glyphicon.glyphicon-picture
-      span(translate) Upload picture
 
     md-card(ng-repeat='q in poll.questions track by $index')
       md-card-title
@@ -21,6 +18,9 @@ div(ng-include='"components/navbar/navbar.html"')
             md-button(ng-click='addAnswer(q)')
               md-icon.glyphicon.glyphicon-plus
               span(translate) Add answer
+            md-button.md-button-icon(ng-click='uploadFile()')
+              md-icon.glyphicon.glyphicon-picture
+              span(translate) Upload picture
           div.align-right(flex)
             md-button(ng-click='moveQuestion($index, -1)')
               md-icon.glyphicon.glyphicon-chevron-up
@@ -31,6 +31,8 @@ div(ng-include='"components/navbar/navbar.html"')
             md-button(ng-click='deleteQuestion($index)')
               md-icon.md-warn.glyphicon.glyphicon-trash
               span(translate) Delete question
+        hr
+      quill-editor
       md-card-content
         p(inline-text-editor contenteditable="true" ng-model='q.question' placeholder='{{"Ask your question here" | translate}}')
         md-radio-group(ng-model='q.answer')
@@ -43,7 +45,7 @@ div(ng-include='"components/navbar/navbar.html"')
               span.glyphicon.glyphicon-chevron-down
             md-radio-button.inline(ng-value='$index')
             span.inline(style='min-width=100px' inline-text-editor contenteditable="true" 
-              ng-model='answer' placeholder='{{"Add new answer here" | translate}}')
+              ng-model='q.answers[$index]' placeholder='{{"Add new answer here" | translate}}')
     button.btn.btn-primary(ng-click='submitPoll()' translate) Submit poll
 .footer(translate)
   | Foo bar

@@ -1,10 +1,10 @@
 'use strict';
 
-describe('Directive: upload', function () {
+describe('Directive: editPoll', function () {
 
   // load the directive's module and view
   beforeEach(module('eduquizzApp'));
-  beforeEach(module('app/upload/upload.html'));
+  beforeEach(module('app/edit_poll/edit_poll.html'));
 
   var element, scope;
 
@@ -13,9 +13,9 @@ describe('Directive: upload', function () {
   }));
 
   it('should make hidden element visible', inject(function ($compile) {
-    element = angular.element('<upload></upload>');
+    element = angular.element('<edit-poll></edit-poll>');
     element = $compile(element)(scope);
     scope.$apply();
-    expect(element.text()).toBe('this is the upload directive');
+    expect(element.text()).toBe('this is the editPoll directive');
   }));
 });

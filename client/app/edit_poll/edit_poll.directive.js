@@ -1,11 +1,12 @@
 'use strict';
 
 angular.module('eduquizzApp')
-  .directive('uploadButton', function () {
+  .directive('quillEditor', function () {
     return {
-      template: '<div>Foo</div>',
+      templateUrl: 'app/edit_poll/inline_edit.html',
       restrict: 'EA',
       link: function (scope, element, attrs) {
+        new Quill()
       }
     };
   });
