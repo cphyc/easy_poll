@@ -8,21 +8,22 @@ form
         i.fa.fa-times
   md-dialog-content
     .md-dialog-content
-      div(layout='row' ng-if='picFile')
-        div(flex)  
-        .img(flex ng-if='picFile')
-          img(ngf-thumbnail="picFile" ngf-size="{width: 200, height: 200, quality: 0.9}")
-          .img-ovrlay(ng-if='uploading' translate) Uploading…
-          .img-ovrlay(ng-if='uploaded' translate) Uploaded!
+      //- div(layout='row' layout-wrap)
+      //-   div(flex)
+      md-grid-list(md-cols='4' md-row-height="2:2")
+        md-grid-tile(ng-if='picFile')
+          img(ngf-thumbnail="picFile" ngf-resize='{width: 200, height: 200}' style='width:100%' ng-click='uploadFile(picFile)')
           .img-btn(ng-if='!uploading && !uploaded' ng-click='picFile=null') 
             span.glyphicon.glyphicon-remove-sign
-        div(flex ng-if='!picFile')
-        div(flex)
-      md-grid-list(md-cols-sm="1" md-cols-md="2")
-        md-grid-tile(ng-repeat='imageUrl in imageUrls')
-          img(ng-src='{{imageUrl}}')
+          md-grid-tile-footer
+            span(ng-if='uploading' translate) Uploading
+            span(ng-if='uploaded' translate) Uploaded!
+        md-grid-tile(ng-repeat='imageUrl in imageUrls' ng-click='$close(imageUrl)')
+          img(src='{{imageUrl}}' style="width: 100%;")
+      // div(ng-repeat='imageUrl in imageUrls')
       md-input-container.md-block
-        md-button(ngf-select ng-model="picFile" accept="image/*" ng-hide='picFile')
+        md-button(ngf-select ng-model="picFile" accept="image/*" ng-hide='picFile'
+          ngf-resize="{width: 200, height: 100, quality: .8, type: 'image/jpeg', ratio: '1:2', centerCrop: true, pattern='.jpg'}")
           md-icon.glyphicon.glyphicon-picture
           span(translate) Pick file
         md-button(ng-click='uploadFile(picFile)' ng-show='picFile' ng-disabled='uploading')

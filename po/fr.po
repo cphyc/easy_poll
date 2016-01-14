@@ -12,6 +12,10 @@ msgstr ""
 "X-Generator: Poedit 1.8.6\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+#: .tmp/app/account/signup/signup.html:1
+msgid "A name is required"
+msgstr "Le champ nom est obligatoire"
+
 #: .tmp/app/new_poll/new_poll.html:1
 msgid "Add answer"
 msgstr "Ajouter réponse"
@@ -24,13 +28,13 @@ msgstr "Écrire une réponse ici"
 msgid "Add question"
 msgstr "Ajouter question"
 
-#: .tmp/components/navbar/navbar.html:1
+#: .tmp/app/main/main.html:1 .tmp/components/navbar/navbar.html:1
 msgid "Admin"
 msgstr "Administration"
 
-#: client/components/navbar/navbar.controller.js:7
-msgid "Answer poll"
-msgstr "Répondre au questionnaire"
+#: .tmp/app/main/main.html:1 client/components/navbar/navbar.controller.js:7
+msgid "Answer polls"
+msgstr "Répondre à un questionnaire"
 
 #: .tmp/app/answer_poll/answer_poll_list.html:1
 msgid "Answer the poll"
@@ -44,9 +48,17 @@ msgstr "Écrire votre question ici"
 msgid "Cancel!"
 msgstr "Annuler"
 
+#: .tmp/app/account/settings/settings.html:1
+msgid "Change Password"
+msgstr "Changer le mot de passe"
+
 #: client/app/polls/polls.controller.js:32
 msgid "Confirm"
 msgstr "Confirmer"
+
+#: .tmp/app/account/settings/settings.html:1
+msgid "Current Password"
+msgstr "Mot de passe actuel"
 
 #: .tmp/app/new_poll/new_poll.html:1
 msgid "Delete answer"
@@ -55,6 +67,22 @@ msgstr "Supprimer la réponse"
 #: .tmp/app/new_poll/new_poll.html:1
 msgid "Delete question"
 msgstr "Supprimer la question"
+
+#: .tmp/app/account/signup/signup.html:1
+msgid "Doesn't look like a valid email."
+msgstr "Merci de vérifier l'adresse email."
+
+#: .tmp/app/main/main.html:1
+msgid "Edit polls"
+msgstr "Éditer les questionnaires"
+
+#: .tmp/app/main/main.html:1
+msgid "Eduquizz"
+msgstr "Eduquizz"
+
+#: .tmp/app/account/login/login.html:1 .tmp/app/account/signup/signup.html:1
+msgid "Email"
+msgstr "Email"
 
 #: .tmp/app/new_poll/new_poll.html:1
 msgid "Foo bar"
@@ -72,6 +100,11 @@ msgstr "Cacher les {{ poll.questions.length }} questions"
 msgid "Home"
 msgstr "Accueil"
 
+#: client/app/account/settings/settings.controller.js:16
+msgid "Incorrect password"
+msgstr "Mot de passe incorrect"
+
+#: .tmp/app/account/login/login.html:1 .tmp/app/account/signup/signup.html:1
 #: .tmp/components/navbar/navbar.html:1
 msgid "Login"
 msgstr "Connexion"
@@ -96,9 +129,14 @@ msgstr "Descendre"
 msgid "Move up"
 msgstr "Monter"
 
+#: .tmp/app/account/signup/signup.html:1
 #: .tmp/app/view_answers/view_answers.html:1
 msgid "Name"
 msgstr "Nom"
+
+#: .tmp/app/account/settings/settings.html:1
+msgid "New Password"
+msgstr "Nouveau mot de passe"
 
 #: .tmp/app/answer_poll/answer_poll.html:1
 msgid "Next question"
@@ -108,9 +146,26 @@ msgstr "Question suivante"
 msgid "No answers yet."
 msgstr "Aucune réponse enregistrée."
 
+#: .tmp/app/account/login/login.html:1 .tmp/app/account/signup/signup.html:1
+msgid "Password"
+msgstr "Mot de passe"
+
+#: .tmp/app/account/settings/settings.html:1
+#: .tmp/app/account/signup/signup.html:1
+msgid "Password must be at least 3 characters."
+msgstr "Le mot de passe doit faire au moins 3 caractères."
+
+#: client/app/account/settings/settings.controller.js:12
+msgid "Password successfully changed."
+msgstr "Mot de passe changé avec succès."
+
 #: .tmp/app/upload/upload.html:1
 msgid "Pick file"
 msgstr "Choisir un fichier"
+
+#: .tmp/app/account/login/login.html:1
+msgid "Please enter your email and password."
+msgstr "Merci d'entrer votre mot de passe et votre email."
 
 #: client/components/navbar/navbar.controller.js:6
 msgid "Polls"
@@ -128,17 +183,29 @@ msgstr "Question n°{{$index}}"
 msgid "Question n°{{questionNumber}}"
 msgstr "Question n°{{questionNumber}}"
 
+#: .tmp/app/answer_poll/answer_poll.html:1
+msgid "Save"
+msgstr "Sauvegarder"
+
+#: .tmp/app/account/settings/settings.html:1
+msgid "Save changes"
+msgstr "Sauvegarder les modifications"
+
 #: .tmp/app/view_answers/view_answers.html:1
 msgid "Score"
 msgstr "Résultat"
 
-#: .tmp/components/navbar/navbar.html:1
+#: .tmp/app/account/signup/signup.html:1 .tmp/components/navbar/navbar.html:1
 msgid "Sign up"
 msgstr "Inscription"
 
 #: .tmp/app/new_poll/new_poll.html:1
 msgid "Submit poll"
 msgstr "Sauvegarder le questionnaire"
+
+#: .tmp/app/new_poll/new_poll.html:1
+msgid "Title of your poll"
+msgstr "Titre de votre questionnaire"
 
 #: .tmp/app/new_poll/new_poll.html:1
 msgid ""
@@ -177,6 +244,10 @@ msgstr "Téléchargement …"
 msgid "View {{ poll.questions.length }} questions"
 msgstr "Voir les {{ poll.questions.length }} questions"
 
+#: .tmp/app/account/signup/signup.html:1
+msgid "What's your email address?"
+msgstr "Quelle est votre adresse email ?"
+
 #: client/app/polls/polls.controller.js:30
 msgid "Would you like to delete this poll?"
 msgstr "Voulez-vous supprimer le sondage ?"
@@ -197,8 +268,8 @@ msgstr "eduquizz"
 msgid "{{ poll.name }} — given answers"
 msgstr "{{ poll.name }} — réponses enregistrées"
 
-#~ msgid "Save"
-#~ msgstr "Sauvegarder"
+#~ msgid "Answer poll"
+#~ msgstr "Répondre au questionnaire"
 
 #~ msgid "File uploaded"
 #~ msgstr "Fichier téléchargé !"

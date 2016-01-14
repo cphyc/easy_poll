@@ -4,6 +4,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
 
+#: .tmp/app/account/signup/signup.html:1
+msgid "A name is required"
+msgstr ""
+
 #: .tmp/app/new_poll/new_poll.html:1
 msgid "Add answer"
 msgstr ""
@@ -16,12 +20,14 @@ msgstr ""
 msgid "Add question"
 msgstr ""
 
+#: .tmp/app/main/main.html:1
 #: .tmp/components/navbar/navbar.html:1
 msgid "Admin"
 msgstr ""
 
+#: .tmp/app/main/main.html:1
 #: client/components/navbar/navbar.controller.js:7
-msgid "Answer poll"
+msgid "Answer polls"
 msgstr ""
 
 #: .tmp/app/answer_poll/answer_poll_list.html:1
@@ -36,8 +42,16 @@ msgstr ""
 msgid "Cancel!"
 msgstr ""
 
+#: .tmp/app/account/settings/settings.html:1
+msgid "Change Password"
+msgstr ""
+
 #: client/app/polls/polls.controller.js:32
 msgid "Confirm"
+msgstr ""
+
+#: .tmp/app/account/settings/settings.html:1
+msgid "Current Password"
 msgstr ""
 
 #: .tmp/app/new_poll/new_poll.html:1
@@ -46,6 +60,23 @@ msgstr ""
 
 #: .tmp/app/new_poll/new_poll.html:1
 msgid "Delete question"
+msgstr ""
+
+#: .tmp/app/account/signup/signup.html:1
+msgid "Doesn't look like a valid email."
+msgstr ""
+
+#: .tmp/app/main/main.html:1
+msgid "Edit polls"
+msgstr ""
+
+#: .tmp/app/main/main.html:1
+msgid "Eduquizz"
+msgstr ""
+
+#: .tmp/app/account/login/login.html:1
+#: .tmp/app/account/signup/signup.html:1
+msgid "Email"
 msgstr ""
 
 #: .tmp/app/new_poll/new_poll.html:1
@@ -64,6 +95,12 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
+#: client/app/account/settings/settings.controller.js:16
+msgid "Incorrect password"
+msgstr ""
+
+#: .tmp/app/account/login/login.html:1
+#: .tmp/app/account/signup/signup.html:1
 #: .tmp/components/navbar/navbar.html:1
 msgid "Login"
 msgstr ""
@@ -88,8 +125,13 @@ msgstr ""
 msgid "Move up"
 msgstr ""
 
+#: .tmp/app/account/signup/signup.html:1
 #: .tmp/app/view_answers/view_answers.html:1
 msgid "Name"
+msgstr ""
+
+#: .tmp/app/account/settings/settings.html:1
+msgid "New Password"
 msgstr ""
 
 #: .tmp/app/answer_poll/answer_poll.html:1
@@ -100,8 +142,26 @@ msgstr ""
 msgid "No answers yet."
 msgstr ""
 
+#: .tmp/app/account/login/login.html:1
+#: .tmp/app/account/signup/signup.html:1
+msgid "Password"
+msgstr ""
+
+#: .tmp/app/account/settings/settings.html:1
+#: .tmp/app/account/signup/signup.html:1
+msgid "Password must be at least 3 characters."
+msgstr ""
+
+#: client/app/account/settings/settings.controller.js:12
+msgid "Password successfully changed."
+msgstr ""
+
 #: .tmp/app/upload/upload.html:1
 msgid "Pick file"
+msgstr ""
+
+#: .tmp/app/account/login/login.html:1
+msgid "Please enter your email and password."
 msgstr ""
 
 #: client/components/navbar/navbar.controller.js:6
@@ -120,16 +180,29 @@ msgstr ""
 msgid "Question n°{{questionNumber}}"
 msgstr ""
 
+#: .tmp/app/answer_poll/answer_poll.html:1
+msgid "Save"
+msgstr ""
+
+#: .tmp/app/account/settings/settings.html:1
+msgid "Save changes"
+msgstr ""
+
 #: .tmp/app/view_answers/view_answers.html:1
 msgid "Score"
 msgstr ""
 
+#: .tmp/app/account/signup/signup.html:1
 #: .tmp/components/navbar/navbar.html:1
 msgid "Sign up"
 msgstr ""
 
 #: .tmp/app/new_poll/new_poll.html:1
 msgid "Submit poll"
+msgstr ""
+
+#: .tmp/app/new_poll/new_poll.html:1
+msgid "Title of your poll"
 msgstr ""
 
 #: .tmp/app/new_poll/new_poll.html:1
@@ -163,6 +236,10 @@ msgstr ""
 
 #: .tmp/app/polls/polls.html:1
 msgid "View {{ poll.questions.length }} questions"
+msgstr ""
+
+#: .tmp/app/account/signup/signup.html:1
+msgid "What's your email address?"
 msgstr ""
 
 #: client/app/polls/polls.controller.js:30

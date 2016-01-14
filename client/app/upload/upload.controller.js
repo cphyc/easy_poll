@@ -30,13 +30,13 @@ angular.module('eduquizzApp')
     $scope.f = file;
     if (file) {
       file.upload = Upload.upload({
-        url: 'upload/',
+        url: 'api/upload/',
         data: {picture: file}
       });
 
       file.upload.then(function (response) {
         $timeout(function () {
-          var fileUrl = '/uploads/' + response.data;
+          var fileUrl = response.data;
 
           $scope.$close(fileUrl);
         });
