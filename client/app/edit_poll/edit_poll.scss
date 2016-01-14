@@ -8,3 +8,7 @@
 .action-toolbar {
   background-color: lighten(#0000FF, 50);
 }
+
+[quill-editor] {
+  min-height: 300px;
+}

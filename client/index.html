@@ -24,6 +24,8 @@
       <!-- injector:css -->
       <!-- endinjector -->
     <!-- endbuild -->
+    <link rel="stylesheet" href="bower_components/quill/dist/quill.base.css" />
+    <link rel="stylesheet" href="bower_components/quill/dist/quill.snow.css" />
     <link rel="stylesheet" href="bower_components/angular-inline-text-editor/ite.css" />
   </head>
   <body ng-app="eduquizzApp">
@@ -78,6 +80,9 @@
       <!-- endbower -->
       <script src="bower_components/ng-file-upload/ng-file-upload-shim.min.js"></script>
       <script src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+      <script src="bower_components/ng-file-upload/ng-file-upload.min.js"></script>
+      <script src="bower_components/quill/dist/quill.min.js"></script>
+      <script src="bower_components/ngQuill/src/ng-quill.min.js"></script>
       <script src="socket.io-client/socket.io.js"></script>
     <!-- endbuild -->
 
@@ -98,7 +103,6 @@
           <script src="app/edit_poll/edit_poll.controller.js"></script>
           <script src="app/edit_poll/edit_poll.directive.js"></script>
           <script src="app/edit_poll/edit_poll.js"></script>
-          <script src="app/edit_poll/edit_poll.service.js"></script>
           <script src="app/main/main.controller.js"></script>
           <script src="app/main/main.directive.js"></script>
           <script src="app/main/main.filter.js"></script>
@@ -108,8 +112,6 @@
           <script src="app/polls/polls.js"></script>
           <script src="app/polls/polls.service.js"></script>
           <script src="app/upload/upload.controller.js"></script>
-          <script src="app/upload/upload.directive.js"></script>
-          <script src="app/upload/upload.service.js"></script>
           <script src="app/view_answers/view_answers.controller.js"></script>
           <script src="app/view_answers/view_answers.js"></script>
           <script src="components/auth/auth.service.js"></script>

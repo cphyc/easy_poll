@@ -9,7 +9,7 @@ div(ng-include='"components/navbar/navbar.html"')
           h3.md-headline(ng-if='!submitted' translate) Question n°{{questionNumber}}
       md-card-content
         div(ng-if='!submitted')
-          p(ng-bind-html='currentQuestion.question')
+          ng-quill-editor(ng-model='currentQuestion.question' read-only="true")
           md-radio-group(ng-model='answers[questionNumber]')
             md-radio-button(ng-repeat='answer in currentQuestion.answers track by $index'
               ng-value='$index')

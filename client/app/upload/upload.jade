@@ -8,7 +8,7 @@ form
         i.fa.fa-times
   md-dialog-content
     .md-dialog-content
-      div(layout='row')
+      div(layout='row' ng-if='picFile')
         div(flex)  
         .img(flex ng-if='picFile')
           img(ngf-thumbnail="picFile" ngf-size="{width: 200, height: 200, quality: 0.9}")
@@ -16,7 +16,11 @@ form
           .img-ovrlay(ng-if='uploaded' translate) Uploaded!
           .img-btn(ng-if='!uploading && !uploaded' ng-click='picFile=null') 
             span.glyphicon.glyphicon-remove-sign
+        div(flex ng-if='!picFile')
         div(flex)
+      md-grid-list(md-cols-sm="1" md-cols-md="2")
+        md-grid-tile(ng-repeat='imageUrl in imageUrls')
+          img(ng-src='{{imageUrl}}')
       md-input-container.md-block
         md-button(ngf-select ng-model="picFile" accept="image/*" ng-hide='picFile')
           md-icon.glyphicon.glyphicon-picture

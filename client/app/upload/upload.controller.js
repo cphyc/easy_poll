@@ -1,17 +1,30 @@
 'use strict';
 
 angular.module('eduquizzApp')
-  .controller('UploadCtrl', function ($scope, $modal) {
-    $scope.uploadDialog = function() {
-      $modal.open({
+  .factory('UploadFactory', function ($modal) {
+    return function() {
+      var modal = $modal.open({
         templateUrl: 'app/upload/upload.html',
         controller: 'UploadModalCtrl'
       });
+
+      return modal.result;
     };
   })
-.controller('UploadModalCtrl', function($scope, Upload, $timeout) {
+.controller('UploadModalCtrl', function($scope, Upload, $timeout, Restangular) {
   $scope.uploading = false;
   $scope.uploaded = false;
+
+  $scope.nToFetch = 10;
+  $scope.imageUrls = [];
+  $scope.updatePictureList = function() {
+    Restangular.all('upload')
+      .one('last', $scope.nToFetch)
+      .getList().then(function(list) {
+        $scope.imageUrls = list;
+      });;
+  };
+
   $scope.uploadFile = function(file, errFiles) {
     $scope.uploading = true;
     $scope.f = file;
@@ -23,9 +36,9 @@ angular.module('eduquizzApp')
 
       file.upload.then(function (response) {
         $timeout(function () {
-          file.result = response.data;
-          $scope.uploading = false;
-          $scope.uploaded = true;
+          var fileUrl = '/uploads/' + response.data;
+
+          $scope.$close(fileUrl);
         });
       }, function (response) {
         if (response.status > 0) {
@@ -39,4 +52,6 @@ angular.module('eduquizzApp')
       });
     }
   }
+
+  $scope.updatePictureList();
   });

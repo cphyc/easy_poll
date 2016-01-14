@@ -32,9 +32,8 @@ div(ng-include='"components/navbar/navbar.html"')
               md-icon.md-warn.glyphicon.glyphicon-trash
               span(translate) Delete question
         hr
-      quill-editor
       md-card-content
-        p(inline-text-editor contenteditable="true" ng-model='q.question' placeholder='{{"Ask your question here" | translate}}')
+        quill-editor(placeholder='{{"Ask your question here" | translate}}')
         md-radio-group(ng-model='q.answer')
           div(ng-repeat='answer in q.answers track by $index')
             a.button-icon.trash(ng-click='deleteAnswer(q, $index)' aria-label='{{"Delete answer"|translate}}')
