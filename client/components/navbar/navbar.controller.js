@@ -4,7 +4,7 @@ angular.module('eduquizzApp')
   .controller('NavbarCtrl', function ($scope, $location, Auth, $state, gettextCatalog) {
     var homeTitleNavbarTrad = gettextCatalog.getString('Home');
     var pollTitleNavbarTrad = gettextCatalog.getString('Polls');
-    var answerPollTitleNavbarTrad = gettextCatalog.getString('Answer poll');
+    var answerPollTitleNavbarTrad = gettextCatalog.getString('Answer polls');
     $scope.menu = [{
       'title': homeTitleNavbarTrad,
       'link': '/'
