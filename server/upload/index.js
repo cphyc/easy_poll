@@ -12,7 +12,7 @@ var router = express.Router();
 
 var storage = multer.diskStorage({
   destination: function(req, file, cb) {
-    cb(null, config.uploadDirectory);
+    cb(null, app.resolve(config.root, config.uploadDirectory));
   },
   filename: function(req, file, cb) {
     cb(null, Date.now() + '-' + file.originalname);
@@ -22,19 +22,19 @@ var storage = multer.diskStorage({
 var upload = multer({storage: storage});
 
 router.post('/', auth.hasRole('user'), upload.single('picture'), function(req, res) {
-  console.log(req.file, config.uploadDirectory);
   res.json(req.file.filename);
 });
 
-router.get('/:filename', auth.hasRole('user'), function(req, res) {
-  var path = path.resolve(app.get('appPath'), config.uploadDirectory, filename);
-  fs.exists(path, function(exists) {
-    if (exists) {
-      res.sendFile(path.resolve(app.get('appPath'), config.uploadDirectory, filename));
-    } else {
-      res.status(404);
-    }
-  })
+router.get('/last/:n', function(req, res){
+  fs.readdir(path.resolve(config.root, config.uploadDirectory), function(err, files) {
+    if (err || !files) res.status(500).send(err);
+
+    var list = files.sort().reverse().filter(function(val, index) {
+      return (index < req.params.n);
+    });
+
+    res.json(list);
+  });
 });
 
 module.exports = router;

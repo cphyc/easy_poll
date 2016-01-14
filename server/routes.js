@@ -6,6 +6,8 @@
 
 var errors = require('./components/errors');
 var path = require('path');
+var express = require('express');
+var config = require('./config/environment');
 
 module.exports = function(app) {
 
@@ -13,9 +15,9 @@ module.exports = function(app) {
   app.use('/api/answers', require('./api/answer'));
   app.use('/api/polls', require('./api/poll'));
   app.use('/api/users', require('./api/user'));
-
+  app.use('/api/upload', require('./upload'))
+  app.use('/upload', express.static(path.resolve(config.root, 'uploads')));
   app.use('/auth', require('./auth'));
-  app.use('/upload', require('./upload'))
 
   // All undefined asset or api routes should return a 404
   app.route('/:url(api|auth|components|app|bower_components|assets)/*')
