@@ -79,6 +79,14 @@ exports.create = function(req, res) {
 
 // Updates an existing poll in the DB.
 exports.update = function(req, res) {
+  var id;
+  if (req.body._id) {
+    id = req.body._id;
+  } else if (req.params.id) {
+    id = req.paras.id;
+  } else {
+    id = null;
+  }
   Poll.findById(req.body._id, function (err, poll) {
     if (err) { return handleError(res, err); }
     if(!poll) { return res.status(404).send('Not Found'); }
@@ -90,6 +98,25 @@ exports.update = function(req, res) {
       if (err) { return handleError(res, err); }
       return res.status(200).json(poll);
     });
+  });
+};
+
+exports.updateOrCreate = function(req, res) {
+  var id;
+  Poll.findById(req.body._id, function (err, poll) {
+    var fun;
+    if (err) { return handleError(res, err); }
+    if(poll) {
+      poll.name = req.body.name;
+      poll.questions = req.body.questions;
+
+      fun = poll.save(function (err) {
+        if (err) { return handleError(res, err); }
+        return res.status(200).json(poll);
+      });
+    } else {
+      return exports.create(req, res);
+    }
   });
 };
 
