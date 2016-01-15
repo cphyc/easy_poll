@@ -21,5 +21,9 @@ div(ng-include='"components/navbar/navbar.html"')
               |  {{ poll.questions[$index].answers[c.givenAnswer] }}
             td {{ ans.goodAnswers }} / {{ ans.poll.questions.length }}
     p(ng-if='!answers' translate) No answers yet.
+    md-button(ng-click='getResultsAsCsv()')
+      md-button-icon
+        i.fa.fa-save
+      span(translate) Export
     md-data-table-pagination
 div(ng-include='"components/footer/footer.html"')

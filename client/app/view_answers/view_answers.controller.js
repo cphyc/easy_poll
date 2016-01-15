@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('eduquizzApp')
-  .controller('ViewAnswersCtrl', function ($scope, $stateParams, Restangular) {
+  .controller('ViewAnswersCtrl', function ($scope, $stateParams, $http, Restangular) {
     $scope.poll = Restangular.one('polls', $stateParams.pollId).get().$object;
 
     Restangular.one('polls', $stateParams.pollId).getList('results').then(function(answers) {
@@ -14,6 +14,11 @@ angular.module('eduquizzApp')
         }, 0);
       });
     });
+
+    $scope.getResultsAsCsv = function() {
+      var blob = Restangular.one('polls', $stateParams.pollId).all('results').get('csv').$object();
+    };
+
   })
   .controller('ViewOneAnswerController', function($scope) {
     $scope.showDetails = false;
