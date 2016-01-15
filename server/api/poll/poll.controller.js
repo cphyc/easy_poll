@@ -5,6 +5,9 @@ var Poll = require('./poll.model');
 var Answer = require('../answer/answer.model');
 var Q = require('q');
 
+var path = require('path');
+var convert = require('./convert');
+
 var ObjectId = require('mongoose').Schema.ObjectId;
 
 // Get list of polls
@@ -68,6 +71,40 @@ exports.getResults = function(req, res) {
       }) || [];
 
       return res.json(correction);
+    }, function(errs) {
+      console.log(errs);
+      return handleError(res, errs);
+    });
+};
+
+exports.getResultsAsCsv = function(req, res) {
+  // get the poll and the answers
+  Answer.findByPoll(req.params.id)
+    .populate('poll')
+    .populate('user', 'name email')
+    .then(function(answers) {
+      if (!answers) { return res.status(404).send('Not Found'); }
+
+      answers.forEach(function(answer) {
+        while (answer.answers.length < answer.poll.questions.length) {
+          answer.answers.push(-1);
+        }
+      });
+
+      var correction = answers.map(function(answer) {
+        var correction = answer.correction(answer.poll);
+
+        var answers = correction.map(function(corr) { return corr.givenAnswer; });
+        var corrects = correction.map(function(corr) { return corr.goodAnswer ? 'oui' : 'non'; });
+        return [answer.user.name].concat(answers).concat(corrects);
+      }) || [];
+
+      console.log(correction);
+      convert.asCsv(correction).then(function(fileName) {
+        console.log(path, fileName);
+        var baseName = path.basename(fileName);
+        res.json(baseName);
+      });
     }, function(errs) {
       console.log(errs);
       return handleError(res, errs);
