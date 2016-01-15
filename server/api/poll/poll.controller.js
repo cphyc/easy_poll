@@ -51,6 +51,12 @@ exports.getResults = function(req, res) {
     .then(function(answers) {
       if (!answers) { return res.status(404).send('Not Found'); }
 
+      answers.forEach(function(answer) {
+        while (answer.answers.length < answer.poll.questions.length) {
+          answer.answers.push(-1);
+        }
+      });
+
       var correction = answers.map(function(answer) {
         var correction = answer.correction(answer.poll);
 
