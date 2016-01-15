@@ -27,15 +27,15 @@ router.post('/', auth.hasRole('user'), upload.single('picture'), function(req, r
 
 router.get('/last/:n', function(req, res){
   fs.readdir(path.resolve(config.root, config.uploadDirectory), function(err, files) {
-    if (err || !files) res.status(500).send(err);
+    if (err) return res.status(500).send(err);
 
-    var list = files.sort().reverse().filter(function(val, index) {
+    var list = (files || []).sort().reverse().filter(function(val, index) {
       return (index < req.params.n);
     }).map(function(imgPath) {
       return 'upload/' + imgPath;
     });
 
-    res.json(list);
+    return res.json(list);
   });
 });
 
