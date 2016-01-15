@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('eduquizzApp')
-  .factory('Auth', function Auth($location, $rootScope, $http, User, $cookieStore, $q) {
+  .factory('Auth', function Auth($location, $rootScope, $http, User, $cookieStore, $q, $timeout) {
     var currentUser = {};
     if($cookieStore.get('token')) {
       currentUser = User.get();
@@ -28,6 +28,9 @@ angular.module('eduquizzApp')
           $cookieStore.put('token', data.token);
           currentUser = User.get();
           deferred.resolve(data);
+          $timeout(function () {
+            $rootScope.$broadcast('user:connected');
+          }, 100);
           return cb();
         }).
         error(function(err) {

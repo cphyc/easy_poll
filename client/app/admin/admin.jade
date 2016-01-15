@@ -1,7 +1,6 @@
 div(ng-include='"components/navbar/navbar.html"')
 .container
-  p
-    | The delete user and user index api routes are restricted to users with the 'admin' role.
+  h2(translate) Users list
   ul.list-group
     li.list-group-item(ng-repeat='user in users')
       strong {{user.name}}

@@ -3,11 +3,13 @@ div(ng-include='"components/navbar/navbar.html"')
 .container
   h1(translate) Eduquizz
   md-list
-    md-list-item
+    md-list-item(ng-if='!isLoggedIn')
+      a(ng-href='/login' translate) Login
+    md-list-item(ng-if='isAdmin')
       a(ng-href='/polls' translate) Edit polls
-    md-list-item
+    md-list-item(ng-if='isLoggedIn')
       a(ng-href='/polls/answer' translate) Answer polls
-    md-list-item
+    md-list-item(ng-if='isAdmin')
       a(ng-href='/admin' translate) Admin
   
 div(ng-include='"components/footer/footer.html"')
