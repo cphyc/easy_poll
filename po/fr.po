@@ -16,15 +16,15 @@ msgstr ""
 msgid "A name is required"
 msgstr "Le champ nom est obligatoire"
 
-#: .tmp/app/new_poll/new_poll.html:1
+#: .tmp/app/edit_poll/edit_poll.html:1
 msgid "Add answer"
 msgstr "Ajouter réponse"
 
-#: .tmp/app/new_poll/new_poll.html:1
+#: .tmp/app/edit_poll/edit_poll.html:1
 msgid "Add new answer here"
 msgstr "Écrire une réponse ici"
 
-#: .tmp/app/new_poll/new_poll.html:1
+#: .tmp/app/edit_poll/edit_poll.html:1
 msgid "Add question"
 msgstr "Ajouter question"
 
@@ -40,10 +40,11 @@ msgstr "Répondre à un questionnaire"
 msgid "Answer the poll"
 msgstr "Répondre au questionnaire"
 
-#: .tmp/app/new_poll/new_poll.html:1
+#: .tmp/app/edit_poll/edit_poll.html:1
 msgid "Ask your question here"
 msgstr "Écrire votre question ici"
 
+#: client/app/admin/admin.controller.js:14
 #: client/app/polls/polls.controller.js:33
 msgid "Cancel!"
 msgstr "Annuler"
@@ -52,6 +53,7 @@ msgstr "Annuler"
 msgid "Change Password"
 msgstr "Changer le mot de passe"
 
+#: client/app/admin/admin.controller.js:13
 #: client/app/polls/polls.controller.js:32
 msgid "Confirm"
 msgstr "Confirmer"
@@ -60,11 +62,11 @@ msgstr "Confirmer"
 msgid "Current Password"
 msgstr "Mot de passe actuel"
 
-#: .tmp/app/new_poll/new_poll.html:1
+#: .tmp/app/edit_poll/edit_poll.html:1
 msgid "Delete answer"
 msgstr "Supprimer la réponse"
 
-#: .tmp/app/new_poll/new_poll.html:1
+#: .tmp/app/edit_poll/edit_poll.html:1
 msgid "Delete question"
 msgstr "Supprimer la question"
 
@@ -84,7 +86,7 @@ msgstr "Eduquizz"
 msgid "Email"
 msgstr "Email"
 
-#: .tmp/app/new_poll/new_poll.html:1
+#: .tmp/app/edit_poll/edit_poll.html:1
 msgid "Foo bar"
 msgstr "Foo bar"
 
@@ -113,19 +115,19 @@ msgstr "Connexion"
 msgid "Logout"
 msgstr "Déconnexion"
 
-#: .tmp/app/new_poll/new_poll.html:1
+#: .tmp/app/edit_poll/edit_poll.html:1
 msgid "Move answer down"
 msgstr "Descendre la réponse"
 
-#: .tmp/app/new_poll/new_poll.html:1
+#: .tmp/app/edit_poll/edit_poll.html:1
 msgid "Move answer up"
 msgstr "Monter la réponse"
 
-#: .tmp/app/new_poll/new_poll.html:1
+#: .tmp/app/edit_poll/edit_poll.html:1
 msgid "Move down"
 msgstr "Descendre"
 
-#: .tmp/app/new_poll/new_poll.html:1
+#: .tmp/app/edit_poll/edit_poll.html:1
 msgid "Move up"
 msgstr "Monter"
 
@@ -175,7 +177,7 @@ msgstr "Questionnaires"
 msgid "Polls list"
 msgstr "Liste des questionnaires"
 
-#: .tmp/app/new_poll/new_poll.html:1
+#: .tmp/app/edit_poll/edit_poll.html:1
 msgid "Question n°{{$index}}"
 msgstr "Question n°{{$index}}"
 
@@ -199,15 +201,19 @@ msgstr "Résultat"
 msgid "Sign up"
 msgstr "Inscription"
 
-#: .tmp/app/new_poll/new_poll.html:1
+#: .tmp/app/edit_poll/edit_poll.html:1
 msgid "Submit poll"
 msgstr "Sauvegarder le questionnaire"
 
-#: .tmp/app/new_poll/new_poll.html:1
+#: client/app/edit_poll/edit_poll.controller.js:66
+msgid "Submitting…"
+msgstr "Envoi en cours…"
+
+#: .tmp/app/edit_poll/edit_poll.html:1
 msgid "Title of your poll"
 msgstr "Titre de votre questionnaire"
 
-#: .tmp/app/new_poll/new_poll.html:1
+#: .tmp/app/edit_poll/edit_poll.html:1
 msgid ""
 "To edit the poll, click on the field to edit and type your text. To format "
 "the text, select it and pick the desired format in the floating box."
@@ -220,25 +226,25 @@ msgid "Toggle navigation"
 msgstr "Basculer la navigation"
 
 #: .tmp/app/upload/upload.html:1
-msgid "Upload file"
-msgstr "Télécharger un fichier"
-
-#: .tmp/app/upload/upload.html:1
 msgctxt "button"
 msgid "Upload file"
 msgstr "Télécharger"
 
-#: .tmp/app/new_poll/new_poll.html:1
-msgid "Upload picture"
-msgstr "Télécharger une image"
+#: .tmp/app/upload/upload.html:1
+msgid "Upload file"
+msgstr "Télécharger un fichier"
 
 #: .tmp/app/upload/upload.html:1
 msgid "Uploaded!"
 msgstr "Fichier téléchargé !"
 
 #: .tmp/app/upload/upload.html:1
-msgid "Uploading…"
-msgstr "Téléchargement …"
+msgid "Uploading"
+msgstr "Téléchargement en cours"
+
+#: .tmp/app/admin/admin.html:1
+msgid "Users list"
+msgstr "Liste des utilisateurs"
 
 #: .tmp/app/polls/polls.html:1
 msgid "View {{ poll.questions.length }} questions"
@@ -252,6 +258,10 @@ msgstr "Quelle est votre adresse email ?"
 msgid "Would you like to delete this poll?"
 msgstr "Voulez-vous supprimer le sondage ?"
 
+#: client/app/admin/admin.controller.js:11
+msgid "Would you like to delete this user?"
+msgstr "Voulez-vous supprimer cet utilisateur ?"
+
 #: .tmp/app/answer_poll/answer_poll.html:1
 msgid "You answered the poll."
 msgstr "Vous avez répondu au questionnaire."
@@ -260,6 +270,10 @@ msgstr "Vous avez répondu au questionnaire."
 msgid "delete poll"
 msgstr "supprimer le sondage"
 
+#: client/app/admin/admin.controller.js:12
+msgid "delete user"
+msgstr "supprimer l'utilisateur"
+
 #: .tmp/components/navbar/navbar.html:1
 msgid "eduquizz"
 msgstr "eduquizz"
@@ -267,6 +281,12 @@ msgstr "eduquizz"
 #: .tmp/app/view_answers/view_answers.html:1
 msgid "{{ poll.name }} — given answers"
 msgstr "{{ poll.name }} — réponses enregistrées"
+
+#~ msgid "Upload picture"
+#~ msgstr "Télécharger une image"
+
+#~ msgid "Uploading…"
+#~ msgstr "Téléchargement …"
 
 #~ msgid "Answer poll"
 #~ msgstr "Répondre au questionnaire"

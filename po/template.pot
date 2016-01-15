@@ -8,15 +8,15 @@ msgstr ""
 msgid "A name is required"
 msgstr ""
 
-#: .tmp/app/new_poll/new_poll.html:1
+#: .tmp/app/edit_poll/edit_poll.html:1
 msgid "Add answer"
 msgstr ""
 
-#: .tmp/app/new_poll/new_poll.html:1
+#: .tmp/app/edit_poll/edit_poll.html:1
 msgid "Add new answer here"
 msgstr ""
 
-#: .tmp/app/new_poll/new_poll.html:1
+#: .tmp/app/edit_poll/edit_poll.html:1
 msgid "Add question"
 msgstr ""
 
@@ -34,10 +34,11 @@ msgstr ""
 msgid "Answer the poll"
 msgstr ""
 
-#: .tmp/app/new_poll/new_poll.html:1
+#: .tmp/app/edit_poll/edit_poll.html:1
 msgid "Ask your question here"
 msgstr ""
 
+#: client/app/admin/admin.controller.js:14
 #: client/app/polls/polls.controller.js:33
 msgid "Cancel!"
 msgstr ""
@@ -46,6 +47,7 @@ msgstr ""
 msgid "Change Password"
 msgstr ""
 
+#: client/app/admin/admin.controller.js:13
 #: client/app/polls/polls.controller.js:32
 msgid "Confirm"
 msgstr ""
@@ -54,11 +56,11 @@ msgstr ""
 msgid "Current Password"
 msgstr ""
 
-#: .tmp/app/new_poll/new_poll.html:1
+#: .tmp/app/edit_poll/edit_poll.html:1
 msgid "Delete answer"
 msgstr ""
 
-#: .tmp/app/new_poll/new_poll.html:1
+#: .tmp/app/edit_poll/edit_poll.html:1
 msgid "Delete question"
 msgstr ""
 
@@ -79,7 +81,7 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#: .tmp/app/new_poll/new_poll.html:1
+#: .tmp/app/edit_poll/edit_poll.html:1
 msgid "Foo bar"
 msgstr ""
 
@@ -101,6 +103,7 @@ msgstr ""
 
 #: .tmp/app/account/login/login.html:1
 #: .tmp/app/account/signup/signup.html:1
+#: .tmp/app/main/main.html:1
 #: .tmp/components/navbar/navbar.html:1
 msgid "Login"
 msgstr ""
@@ -109,19 +112,19 @@ msgstr ""
 msgid "Logout"
 msgstr ""
 
-#: .tmp/app/new_poll/new_poll.html:1
+#: .tmp/app/edit_poll/edit_poll.html:1
 msgid "Move answer down"
 msgstr ""
 
-#: .tmp/app/new_poll/new_poll.html:1
+#: .tmp/app/edit_poll/edit_poll.html:1
 msgid "Move answer up"
 msgstr ""
 
-#: .tmp/app/new_poll/new_poll.html:1
+#: .tmp/app/edit_poll/edit_poll.html:1
 msgid "Move down"
 msgstr ""
 
-#: .tmp/app/new_poll/new_poll.html:1
+#: .tmp/app/edit_poll/edit_poll.html:1
 msgid "Move up"
 msgstr ""
 
@@ -172,7 +175,7 @@ msgstr ""
 msgid "Polls list"
 msgstr ""
 
-#: .tmp/app/new_poll/new_poll.html:1
+#: .tmp/app/edit_poll/edit_poll.html:1
 msgid "Question n°{{$index}}"
 msgstr ""
 
@@ -197,15 +200,19 @@ msgstr ""
 msgid "Sign up"
 msgstr ""
 
-#: .tmp/app/new_poll/new_poll.html:1
+#: .tmp/app/edit_poll/edit_poll.html:1
 msgid "Submit poll"
 msgstr ""
 
-#: .tmp/app/new_poll/new_poll.html:1
+#: client/app/edit_poll/edit_poll.controller.js:66
+msgid "Submitting…"
+msgstr ""
+
+#: .tmp/app/edit_poll/edit_poll.html:1
 msgid "Title of your poll"
 msgstr ""
 
-#: .tmp/app/new_poll/new_poll.html:1
+#: .tmp/app/edit_poll/edit_poll.html:1
 msgid "To edit the poll, click on the field to edit and type your text. To format the text, select it and pick the desired format in the floating box."
 msgstr ""
 
@@ -214,16 +221,12 @@ msgid "Toggle navigation"
 msgstr ""
 
 #: .tmp/app/upload/upload.html:1
-msgid "Upload file"
-msgstr ""
-
-#: .tmp/app/upload/upload.html:1
 msgctxt "button"
 msgid "Upload file"
 msgstr ""
 
-#: .tmp/app/new_poll/new_poll.html:1
-msgid "Upload picture"
+#: .tmp/app/upload/upload.html:1
+msgid "Upload file"
 msgstr ""
 
 #: .tmp/app/upload/upload.html:1
@@ -231,7 +234,11 @@ msgid "Uploaded!"
 msgstr ""
 
 #: .tmp/app/upload/upload.html:1
-msgid "Uploading…"
+msgid "Uploading"
+msgstr ""
+
+#: .tmp/app/admin/admin.html:1
+msgid "Users list"
 msgstr ""
 
 #: .tmp/app/polls/polls.html:1
@@ -246,12 +253,20 @@ msgstr ""
 msgid "Would you like to delete this poll?"
 msgstr ""
 
+#: client/app/admin/admin.controller.js:11
+msgid "Would you like to delete this user?"
+msgstr ""
+
 #: .tmp/app/answer_poll/answer_poll.html:1
 msgid "You answered the poll."
 msgstr ""
 
 #: client/app/polls/polls.controller.js:31
 msgid "delete poll"
+msgstr ""
+
+#: client/app/admin/admin.controller.js:12
+msgid "delete user"
 msgstr ""
 
 #: .tmp/components/navbar/navbar.html:1
