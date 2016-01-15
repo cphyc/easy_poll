@@ -9,13 +9,13 @@ div(ng-include='"components/navbar/navbar.html"')
         thead(md-table-head)
           tr
             th(translate) Name 
-            th(trim ng-repeat='q in poll.questions') {{ q.question | truncate: 25}}
+            th(trim ng-repeat='q in poll.questions') {{ q.question | removeHtml | truncate: 25 }}
         
             th(translate) Score
         tbody
-          tr(ng-repeat='ans in answers')
+          tr(ng-repeat='ans in answers track by $index')
             td {{ ans.user.name }}
-            td(ng-repeat='c in ans.correction') 
+            td(ng-repeat='c in ans.correction track by $index') 
               i.fa.fa-check.correct(ng-if='c.goodAnswer')
               i.fa.fa-times.wrong(ng-if='!c.goodAnswer')
               |  {{ poll.questions[$index].answers[c.givenAnswer] }}
