@@ -86,9 +86,9 @@ msgstr "Eduquizz"
 msgid "Email"
 msgstr "Email"
 
-#: .tmp/app/edit_poll/edit_poll.html:1
-msgid "Foo bar"
-msgstr "Foo bar"
+#: .tmp/app/view_answers/view_answers.html:1
+msgid "Export"
+msgstr "Exporter"
 
 #: .tmp/components/navbar/navbar.html:1
 msgid "Hello {{ getCurrentUser().name }}"
@@ -107,7 +107,7 @@ msgid "Incorrect password"
 msgstr "Mot de passe incorrect"
 
 #: .tmp/app/account/login/login.html:1 .tmp/app/account/signup/signup.html:1
-#: .tmp/components/navbar/navbar.html:1
+#: .tmp/app/main/main.html:1 .tmp/components/navbar/navbar.html:1
 msgid "Login"
 msgstr "Connexion"
 
@@ -226,13 +226,13 @@ msgid "Toggle navigation"
 msgstr "Basculer la navigation"
 
 #: .tmp/app/upload/upload.html:1
+msgid "Upload file"
+msgstr "Télécharger un fichier"
+
+#: .tmp/app/upload/upload.html:1
 msgctxt "button"
 msgid "Upload file"
 msgstr "Télécharger"
-
-#: .tmp/app/upload/upload.html:1
-msgid "Upload file"
-msgstr "Télécharger un fichier"
 
 #: .tmp/app/upload/upload.html:1
 msgid "Uploaded!"
@@ -281,6 +281,9 @@ msgstr "eduquizz"
 #: .tmp/app/view_answers/view_answers.html:1
 msgid "{{ poll.name }} — given answers"
 msgstr "{{ poll.name }} — réponses enregistrées"
+
+#~ msgid "Foo bar"
+#~ msgstr "Foo bar"
 
 #~ msgid "Upload picture"
 #~ msgstr "Télécharger une image"
