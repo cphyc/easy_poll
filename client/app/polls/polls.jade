@@ -29,5 +29,5 @@ div(ng-include='"components/navbar/navbar.html"')
             ol
               li(ng-repeat='answer in question.answers track by $index' ng-class='{correct: $index===question.answer}')
                 span(ng-bind-html='answer')
-.footer
-  | Foo bar
+
+div(ng-include='"components/footer/footer.html"')

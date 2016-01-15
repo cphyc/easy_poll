@@ -23,5 +23,4 @@ div(ng-include='"components/navbar/navbar.html"')
           md-button(ng-click='saveAnswers()'
           ng-disabled='questionNumber < lastQuestion || answers[questionNumber] === undefined || submitted')
             span(translate) Save
-.footer
-  | Foo bar
+div(ng-include='"components/footer/footer.html"')

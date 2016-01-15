@@ -43,5 +43,5 @@ div(ng-include='"components/navbar/navbar.html"')
             span.inline(style='min-width=100px' inline-text-editor contenteditable="true" 
               ng-model='q.answers[$index]' placeholder='{{"Add new answer here" | translate}}')
     button.btn.btn-primary(ng-click='submitPoll()' translate) Submit poll
-.footer(translate)
-  | Foo bar
+
+div(ng-include='"components/footer/footer.html"')
