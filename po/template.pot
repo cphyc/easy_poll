@@ -81,8 +81,8 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#: .tmp/app/edit_poll/edit_poll.html:1
-msgid "Foo bar"
+#: .tmp/app/view_answers/view_answers.html:1
+msgid "Export"
 msgstr ""
 
 #: .tmp/components/navbar/navbar.html:1
@@ -221,11 +221,11 @@ msgid "Toggle navigation"
 msgstr ""
 
 #: .tmp/app/upload/upload.html:1
-msgctxt "button"
 msgid "Upload file"
 msgstr ""
 
 #: .tmp/app/upload/upload.html:1
+msgctxt "button"
 msgid "Upload file"
 msgstr ""
 

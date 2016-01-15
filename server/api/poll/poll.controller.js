@@ -101,9 +101,7 @@ exports.getResultsAsCsv = function(req, res) {
 
       console.log(correction);
       convert.asCsv(correction).then(function(fileName) {
-        console.log(path, fileName);
-        var baseName = path.basename(fileName);
-        res.json(baseName);
+        res.sendFile(fileName);
       });
     }, function(errs) {
       console.log(errs);
