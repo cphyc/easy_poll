@@ -2,16 +2,16 @@ div(ng-include='"components/navbar/navbar.html"')
 
 .container
   .row
-    md-card
+    md-card(ng-repeat='q in poll.questions' ng-if='$index == questionNumber')
       md-card-title
         md-card-title-text
           h2(ng-bind-html='poll.name')
           h3.md-headline(ng-if='!submitted' translate) Question n°{{questionNumber}}
       md-card-content
         div(ng-if='!submitted')
-          ng-quill-editor(ng-model='currentQuestion.question' read-only="true")
-          md-radio-group(ng-model='answers[questionNumber]')
-            md-radio-button(ng-repeat='answer in currentQuestion.answers track by $index'
+          ng-quill-editor(ng-model='q.question' read-only="true")
+          md-radio-group(ng-model='answers[$index]')
+            md-radio-button(ng-repeat='answer in q.answers track by $index'
               ng-value='$index')
               span(ng-bind-html='answer')
         p.lead(ng-if='submitted' translate) You answered the poll.
