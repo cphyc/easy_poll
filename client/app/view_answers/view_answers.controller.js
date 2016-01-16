@@ -16,7 +16,13 @@ angular.module('eduquizzApp')
     });
 
     $scope.getResultsAsCsv = function() {
-      var blob = Restangular.one('polls', $stateParams.pollId).all('results').get('csv').$object();
+      Restangular.one('polls', $stateParams.pollId)
+      .all('results')
+      .get('csv')
+      .then(function(csvString) {
+        var blob = new Blob([csvString], {type: "text/plain;charset=utf-8"});
+        saveAs(blob, "sondage.csv");
+      });
     };
 
   })
