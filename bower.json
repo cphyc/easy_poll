@@ -24,7 +24,8 @@
     "angular-gettext": "angular-gettext#~2.2.0",
     "ng-file-upload": "~11.0.2",
     "ng-img-crop": "ngImgCrop#~0.3.2",
-    "ngQuill":"https://github.com/cphyc/ngQuill.git"
+    "ngQuill": "https://github.com/cphyc/ngQuill.git",
+    "FileSaver": "*"
   },
   "devDependencies": {
     "angular-mocks": ">=1.2.*",
