@@ -279,8 +279,11 @@ msgid "eduquizz"
 msgstr "eduquizz"
 
 #: .tmp/app/view_answers/view_answers.html:1
-msgid "{{ poll.name }} — given answers"
-msgstr "{{ poll.name }} — réponses enregistrées"
+msgid "— given answers"
+msgstr "­— réponses enregistrées"
+
+#~ msgid "{{ poll.name }} — given answers"
+#~ msgstr "{{ poll.name }} — réponses enregistrées"
 
 #~ msgid "Foo bar"
 #~ msgstr "Foo bar"

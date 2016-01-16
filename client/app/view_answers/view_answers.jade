@@ -3,7 +3,9 @@ div(ng-include='"components/navbar/navbar.html"')
 .container
   .row
     md-data-table-toolbar
-      h2.md-title(translate) {{ poll.name }} — given answers
+      h2.md-title {{ poll.name | removeHtml }}
+        |  
+        span(translate) — given answers
     md-data-table-container(ng-if='answers')
       table(md-data-table)
         thead(md-table-head)

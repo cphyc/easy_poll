@@ -274,5 +274,5 @@ msgid "eduquizz"
 msgstr ""
 
 #: .tmp/app/view_answers/view_answers.html:1
-msgid "{{ poll.name }} — given answers"
+msgid "— given answers"
 msgstr ""
