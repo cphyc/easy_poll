@@ -25,9 +25,15 @@ div(ng-include='"components/navbar/navbar.html"')
             td
               span.glyphicon.glyphicon-trash(ng-click='deleteAnswer(ans)' style='color:red')
     p(ng-if='!answers' translate) No answers yet.
-    md-button(ng-click='getResultsAsCsv()')
-      md-button-icon
-        i.fa.fa-save
-      span(translate) Export
+    div(layout='row')
+      md-button(ng-click='getResultsAsCsv()' flex)
+        md-button-icon
+          i.fa.fa-save
+        span(translate) Export
+      md-button.md-accent(ng-click='deleteAllAnswers()' flex)
+        md-button-icon
+          span.glyphicon.glyphicon-trash
+        span(translate) Delete all answers
+        
     md-data-table-pagination
 div(ng-include='"components/footer/footer.html"')

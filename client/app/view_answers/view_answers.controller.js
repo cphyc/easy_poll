@@ -47,6 +47,30 @@ angular.module('eduquizzApp')
       });
     };
 
+    $scope.deleteAllAnswers = function(ev) {
+      var cfg = {
+        title: gettextCatalog.getString('Would you like to delete all the answers?'),
+        ariaLabel: gettextCatalog.getString('delete answers'),
+        confirm: gettextCatalog.getString('Confirm'),
+        cancel: gettextCatalog.getString('Cancel!'),
+      }
+      var confirm = $mdDialog.confirm()
+          .title(cfg.title)
+          .ariaLabel(cfg.ariaLabel)
+          .targetEvent(ev)
+          .ok(cfg.confirm)
+          .cancel(cfg.cancel);
+      $mdDialog.show(confirm).then(function() {
+        $scope.answers.forEach(function(ans) {
+          var target = Restangular.all('answers').one('poll', ans.poll._id).one('answer', ans.answer);
+          target.remove()
+          .then(function() {
+            $scope.updateAnswers();
+          });
+        });
+      });
+    };
+
     $scope.updateAnswers = function() {
       Restangular.one('polls', $stateParams.pollId).getList('results').then(function(answers) {
         $scope.answers = answers;
