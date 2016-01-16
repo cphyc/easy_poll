@@ -14,7 +14,6 @@ div(ng-include='"components/navbar/navbar.html"')
             md-radio-button(ng-repeat='answer in q.answers track by $index'
               ng-value='$index')
               span(ng-bind-html='answer')
-        p.lead(ng-if='submitted' translate) You answered the poll.
       md-card-actions
         .btn-group(ng-hide='submitted')
           md-button(
@@ -23,4 +22,6 @@ div(ng-include='"components/navbar/navbar.html"')
           md-button(ng-click='saveAnswers()'
           ng-disabled='questionNumber < lastQuestion || answers[questionNumber] === undefined || submitted')
             span(translate) Save
+    p.lead(ng-if='submitted' translate) You answered the poll.
+    p(ng-if='isAdmin()' translate) As an admin, your answers aren't saved.
 div(ng-include='"components/footer/footer.html"')
