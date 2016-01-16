@@ -52,6 +52,7 @@ msgstr ""
 
 #: client/app/admin/admin.controller.js:14
 #: client/app/polls/polls.controller.js:33
+#: client/app/view_answers/view_answers.controller.js:33
 msgid "Cancel!"
 msgstr ""
 
@@ -61,6 +62,7 @@ msgstr ""
 
 #: client/app/admin/admin.controller.js:13
 #: client/app/polls/polls.controller.js:32
+#: client/app/view_answers/view_answers.controller.js:32
 msgid "Confirm"
 msgstr ""
 
@@ -243,11 +245,11 @@ msgid "Toggle navigation"
 msgstr ""
 
 #: .tmp/app/upload/upload.html:1
+msgctxt "button"
 msgid "Upload file"
 msgstr ""
 
 #: .tmp/app/upload/upload.html:1
-msgctxt "button"
 msgid "Upload file"
 msgstr ""
 
@@ -271,6 +273,10 @@ msgstr ""
 msgid "What's your email address?"
 msgstr ""
 
+#: client/app/view_answers/view_answers.controller.js:30
+msgid "Would you like to delete this answer?"
+msgstr ""
+
 #: client/app/polls/polls.controller.js:30
 msgid "Would you like to delete this poll?"
 msgstr ""
@@ -281,6 +287,10 @@ msgstr ""
 
 #: .tmp/app/answer_poll/answer_poll.html:1
 msgid "You answered the poll."
+msgstr ""
+
+#: client/app/view_answers/view_answers.controller.js:31
+msgid "delete answer"
 msgstr ""
 
 #: client/app/polls/polls.controller.js:31

@@ -58,6 +58,7 @@ msgstr "Écrire votre question ici"
 
 #: client/app/admin/admin.controller.js:14
 #: client/app/polls/polls.controller.js:33
+#: client/app/view_answers/view_answers.controller.js:33
 msgid "Cancel!"
 msgstr "Annuler"
 
@@ -67,6 +68,7 @@ msgstr "Changer le mot de passe"
 
 #: client/app/admin/admin.controller.js:13
 #: client/app/polls/polls.controller.js:32
+#: client/app/view_answers/view_answers.controller.js:32
 msgid "Confirm"
 msgstr "Confirmer"
 
@@ -248,13 +250,13 @@ msgid "Toggle navigation"
 msgstr "Basculer la navigation"
 
 #: .tmp/app/upload/upload.html:1
-msgid "Upload file"
-msgstr "Télécharger un fichier"
-
-#: .tmp/app/upload/upload.html:1
 msgctxt "button"
 msgid "Upload file"
 msgstr "Télécharger"
+
+#: .tmp/app/upload/upload.html:1
+msgid "Upload file"
+msgstr "Télécharger un fichier"
 
 #: .tmp/app/upload/upload.html:1
 msgid "Uploaded!"
@@ -276,6 +278,10 @@ msgstr "Voir les {{ poll.questions.length }} questions"
 msgid "What's your email address?"
 msgstr "Quelle est votre adresse email ?"
 
+#: client/app/view_answers/view_answers.controller.js:30
+msgid "Would you like to delete this answer?"
+msgstr "Voulez-vous supprimer cette réponse ?"
+
 #: client/app/polls/polls.controller.js:30
 msgid "Would you like to delete this poll?"
 msgstr "Voulez-vous supprimer le sondage ?"
@@ -287,6 +293,10 @@ msgstr "Voulez-vous supprimer cet utilisateur ?"
 #: .tmp/app/answer_poll/answer_poll.html:1
 msgid "You answered the poll."
 msgstr "Vous avez répondu au questionnaire."
+
+#: client/app/view_answers/view_answers.controller.js:31
+msgid "delete answer"
+msgstr "supprimer la réponse"
 
 #: client/app/polls/polls.controller.js:31
 msgid "delete poll"
