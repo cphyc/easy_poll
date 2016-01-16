@@ -1,6 +1,8 @@
 div(ng-include='"components/navbar/navbar.html"')
 .container
   h2(translate) Users list
+  md-button.md-fab.md-fab-bottom-right(md-font-icon='icon-home' aria-label='FAB' ng-click='addUser()')
+    i.fa.fa-plus
   ul.list-group
     li.list-group-item(ng-repeat='user in users')
       strong {{user.name}}
