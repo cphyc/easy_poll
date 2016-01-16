@@ -59,6 +59,7 @@ msgstr "Écrire votre question ici"
 #: client/app/admin/admin.controller.js:14
 #: client/app/polls/polls.controller.js:33
 #: client/app/view_answers/view_answers.controller.js:33
+#: client/app/view_answers/view_answers.controller.js:55
 msgid "Cancel!"
 msgstr "Annuler"
 
@@ -69,12 +70,17 @@ msgstr "Changer le mot de passe"
 #: client/app/admin/admin.controller.js:13
 #: client/app/polls/polls.controller.js:32
 #: client/app/view_answers/view_answers.controller.js:32
+#: client/app/view_answers/view_answers.controller.js:54
 msgid "Confirm"
 msgstr "Confirmer"
 
 #: .tmp/app/account/settings/settings.html:1
 msgid "Current Password"
 msgstr "Mot de passe actuel"
+
+#: .tmp/app/view_answers/view_answers.html:2
+msgid "Delete all answers"
+msgstr "Supprimer toutes les réponses"
 
 #: .tmp/app/edit_poll/edit_poll.html:1
 msgid "Delete answer"
@@ -278,6 +284,10 @@ msgstr "Voir les {{ poll.questions.length }} questions"
 msgid "What's your email address?"
 msgstr "Quelle est votre adresse email ?"
 
+#: client/app/view_answers/view_answers.controller.js:52
+msgid "Would you like to delete all the answers?"
+msgstr "Voulez-vous supprimer toutes les réponses ?"
+
 #: client/app/view_answers/view_answers.controller.js:30
 msgid "Would you like to delete this answer?"
 msgstr "Voulez-vous supprimer cette réponse ?"
@@ -297,6 +307,10 @@ msgstr "Vous avez répondu au questionnaire."
 #: client/app/view_answers/view_answers.controller.js:31
 msgid "delete answer"
 msgstr "supprimer la réponse"
+
+#: client/app/view_answers/view_answers.controller.js:53
+msgid "delete answers"
+msgstr "supprimer les questions"
 
 #: client/app/polls/polls.controller.js:31
 msgid "delete poll"

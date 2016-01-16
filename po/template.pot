@@ -53,6 +53,7 @@ msgstr ""
 #: client/app/admin/admin.controller.js:14
 #: client/app/polls/polls.controller.js:33
 #: client/app/view_answers/view_answers.controller.js:33
+#: client/app/view_answers/view_answers.controller.js:55
 msgid "Cancel!"
 msgstr ""
 
@@ -63,11 +64,16 @@ msgstr ""
 #: client/app/admin/admin.controller.js:13
 #: client/app/polls/polls.controller.js:32
 #: client/app/view_answers/view_answers.controller.js:32
+#: client/app/view_answers/view_answers.controller.js:54
 msgid "Confirm"
 msgstr ""
 
 #: .tmp/app/account/settings/settings.html:1
 msgid "Current Password"
+msgstr ""
+
+#: .tmp/app/view_answers/view_answers.html:2
+msgid "Delete all answers"
 msgstr ""
 
 #: .tmp/app/edit_poll/edit_poll.html:1
@@ -273,6 +279,10 @@ msgstr ""
 msgid "What's your email address?"
 msgstr ""
 
+#: client/app/view_answers/view_answers.controller.js:52
+msgid "Would you like to delete all the answers?"
+msgstr ""
+
 #: client/app/view_answers/view_answers.controller.js:30
 msgid "Would you like to delete this answer?"
 msgstr ""
@@ -291,6 +301,10 @@ msgstr ""
 
 #: client/app/view_answers/view_answers.controller.js:31
 msgid "delete answer"
+msgstr ""
+
+#: client/app/view_answers/view_answers.controller.js:53
+msgid "delete answers"
 msgstr ""
 
 #: client/app/polls/polls.controller.js:31
