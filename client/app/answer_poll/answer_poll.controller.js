@@ -10,53 +10,71 @@ angular.module('eduquizzApp')
     }
   })
   .controller('AnswerPollCtrl', function($scope, $stateParams, Answer, Poll, Auth) {
+    $scope.isAdmin = Auth.isAdmin;
+    
     Poll.get($stateParams.id).then(function(poll) {
       // Create an answer object
       $scope.poll = poll;
 
-      // Get the already given answers from server
-      Answer($stateParams.id).get().then(function(answer) {
-        $scope.questionNumber  = answer.lastAnswered + 1;
-        $scope.answers         = answer.answers;
-        $scope.currentQuestion = poll.questions[$scope.questionNumber];
-        $scope.lastQuestion    = poll.questions.length - 1;
+      if (Auth.isAdmin()) {
+        $scope.questionNumber = 0;
+        $scope.answers        = [];
+        $scope.lastQuestion   = poll.questions.length - 1;
+      } else {
+        // Get the already given answers from server
+        Answer($stateParams.id).get().then(function(answer) {
+          $scope.questionNumber  = answer.lastAnswered + 1;
+          $scope.answers         = answer.answers;
+          $scope.lastQuestion    = poll.questions.length - 1;
 
-        $scope.$broadcast('answer:update');
-      }).catch(function(err) {
-        // FIXME: tell an error occured
-      });
+          $scope.$broadcast('answer:update');
+        }).catch(function(err) {
+          // FIXME: tell an error occured
+        });
+      }
     }).catch(function(err) {
       // FIXME: tell an error occured
     });;
 
     $scope.nextQuestion = function() {
-      Answer($stateParams.id)
-      .postAnswer($scope.questionNumber, $scope.answers[$scope.questionNumber])
-      .then(function() {
+      if (Auth.isAdmin()) {
         $scope.questionNumber += 1;
-
         $scope.$broadcast('answer:update');
-      })
-      .catch(function(err) {
-        // FIXME: notice error
-        console.log(err)
-      });
-    }
-
-    $scope.saveButton = 'Save answers';
-    $scope.saveAnswers = function() {
-      if ($scope.answers) {
-        $scope.saveButton = 'Saving answers…';
+      } else {
         Answer($stateParams.id)
         .postAnswer($scope.questionNumber, $scope.answers[$scope.questionNumber])
         .then(function() {
           $scope.questionNumber += 1;
-          $scope.saveButton = 'Answers saved!';
-          $scope.submitted = true;
+
           $scope.$broadcast('answer:update');
-        }).catch(function(a) {
-          $scope.saveButton = 'Error while saving. Try again.';
+        })
+        .catch(function(err) {
+          // FIXME: notice error
+          console.log(err)
         });
+      }
+    }
+
+    $scope.saveButton = 'Save answers';
+    $scope.saveAnswers = function() {
+      if (Auth.isAdmin()) {
+        $scope.questionNumber += 1;
+        $scope.submitted = true;
+        $scope.$broadcast('answer:update');
+      } else {
+        if ($scope.answers) {
+          $scope.saveButton = 'Saving answers…';
+          Answer($stateParams.id)
+          .postAnswer($scope.questionNumber, $scope.answers[$scope.questionNumber])
+          .then(function() {
+            $scope.questionNumber += 1;
+            $scope.saveButton = 'Answers saved!';
+            $scope.submitted = true;
+            $scope.$broadcast('answer:update');
+          }).catch(function(a) {
+            $scope.saveButton = 'Error while saving. Try again.';
+          });
+        }
       }
     };
 
