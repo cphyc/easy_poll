@@ -28,6 +28,14 @@ msgstr "Écrire une réponse ici"
 msgid "Add question"
 msgstr "Ajouter question"
 
+#: .tmp/app/admin/add_user/add_user.html:1
+msgid "Add user"
+msgstr "Ajouter un utilisateur"
+
+#: .tmp/app/admin/add_user/add_user.html:1
+msgid "Add users"
+msgstr "Ajouter des utilisateurs"
+
 #: .tmp/app/main/main.html:1 .tmp/components/navbar/navbar.html:1
 msgid "Admin"
 msgstr "Administration"
@@ -87,6 +95,7 @@ msgid "Eduquizz"
 msgstr "Eduquizz"
 
 #: .tmp/app/account/login/login.html:1 .tmp/app/account/signup/signup.html:1
+#: .tmp/app/admin/add_user/add_user.html:1
 msgid "Email"
 msgstr "Email"
 
@@ -136,6 +145,7 @@ msgid "Move up"
 msgstr "Monter"
 
 #: .tmp/app/account/signup/signup.html:1
+#: .tmp/app/admin/add_user/add_user.html:1
 #: .tmp/app/view_answers/view_answers.html:2
 msgid "Name"
 msgstr "Nom"
@@ -196,6 +206,14 @@ msgstr "Sauvegarder"
 #: .tmp/app/account/settings/settings.html:1
 msgid "Save changes"
 msgstr "Sauvegarder les modifications"
+
+#: .tmp/app/admin/add_user/add_user.html:1
+msgid "Save users"
+msgstr "Sauvegarder les utilisateurs"
+
+#: .tmp/app/admin/add_user/add_user.html:1
+msgid "Saving…"
+msgstr "Sauvegarde en cours…"
 
 #: .tmp/app/view_answers/view_answers.html:2
 msgid "Score"
