@@ -10,10 +10,10 @@ div(ng-include='"components/navbar/navbar.html"')
       table(md-data-table)
         thead(md-table-head)
           tr
-            th(translate) Name 
+            th(translate) Name
             th(trim ng-repeat='q in poll.questions') {{ q.question | removeHtml | truncate: 25 }}
-        
             th(translate) Score
+            th
         tbody
           tr(ng-repeat='ans in answers track by $index')
             td {{ ans.user.name }}
@@ -22,6 +22,8 @@ div(ng-include='"components/navbar/navbar.html"')
               i.fa.fa-times.wrong(ng-if='!c.goodAnswer')
               |  {{ poll.questions[$index].answers[c.givenAnswer] }}
             td {{ ans.goodAnswers }} / {{ ans.poll.questions.length }}
+            td
+              span.glyphicon.glyphicon-trash(ng-click='deleteAnswer(ans)' style='color:red')
     p(ng-if='!answers' translate) No answers yet.
     md-button(ng-click='getResultsAsCsv()')
       md-button-icon
