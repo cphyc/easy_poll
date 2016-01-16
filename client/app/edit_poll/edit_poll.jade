@@ -11,7 +11,7 @@ div(ng-include='"components/navbar/navbar.html"')
     md-card(ng-repeat='q in poll.questions track by $index')
       md-card-title
         md-card-title-text
-          span.md-headline(translate) Question n°{{$index}}
+          span.md-headline(translate) Question n°{{$index+1}}
       md-card-actions
         div(layout='row' layout-wrap)
           div(flex)

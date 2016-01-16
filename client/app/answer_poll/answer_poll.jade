@@ -6,7 +6,7 @@ div(ng-include='"components/navbar/navbar.html"')
       md-card-title
         md-card-title-text
           h2(ng-bind-html='poll.name')
-          h3.md-headline(ng-if='!submitted' translate) Question n°{{questionNumber}}
+          h3.md-headline(ng-if='!submitted' translate) Question n°{{questionNumber+1}}
       md-card-content
         div(ng-if='!submitted')
           ng-quill-editor(ng-model='q.question' read-only="true")
