@@ -66,7 +66,8 @@ exports.getResults = function(req, res) {
         return {
           user: answer.user,
           correction: correction,
-          poll: answer.poll
+          poll: answer.poll,
+          answer: answer._id
         };
       }) || [];
 
