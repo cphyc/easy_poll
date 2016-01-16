@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('eduquizzApp')
-  .controller('AdminCtrl', function ($scope, $http, Auth, User, $mdDialog, gettextCatalog) {
+  .controller('AdminCtrl', function ($scope, $rootScope, $http, Auth, User, $mdDialog, gettextCatalog, $modal) {
 
     // Use the User $resource to fetch all users
     $scope.users = User.query();
@@ -28,4 +28,15 @@ angular.module('eduquizzApp')
         });
       });
     };
+
+    $scope.addUser = function(user, ev) {
+      var modal = $modal.open({
+        templateUrl: 'app/admin/add_user/add_user.html',
+        controller: 'AddUserCtrl'
+      });
+    };
+
+    $rootScope.$on('update:users', function() {
+      $scope.users = User.query();
+    });
   });

@@ -1,0 +1,31 @@
+form
+  md-toolbar
+    .md-toolbar-tools
+      h2(translate) Add users
+      span(flex)
+      md-button.md-icon-button(ng-click='$close()')
+        i.fa.fa-times
+  md-dialog-content
+    .md-dialog-content.md-inline-form
+      md-content(layout-padding layout='row' ng-repeat='user in users')
+        md-input-container(flex)
+          label(translate) Name
+          input(ng-model='user.name')
+        md-input-container(flex)
+          label(translate) Email
+          input(type='email' ng-model='user.email' ng-readonly='saving')
+        div(ng-if='saving')
+          md-progress-circular(md-mode="indeterminate" ng-if='!user.saved')
+          span
+            i.fa.fa-2x.fa-check(ng-if='user.status == "saved"')
+            i.fa.fa-2x.fa-exclamation-circle(ng-if='user.status == "error"')
+        
+  md-dialog-actions(layout='row')
+    md-button(ng-click='addUser()')
+      md-button-icon.glyphicon.glyphicon-plus
+      span(translate) Add user
+    span(flex)
+    md-button(ng-click='saveUsers()' ng-disabled='saving')
+      md-button-icon.glyphicon.glyphicon-save
+      span(translate ng-if='!saving') Save users
+      span(translate ng-if='saving') Saving…
