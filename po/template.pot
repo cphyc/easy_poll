@@ -34,6 +34,10 @@ msgstr ""
 msgid "Answer the poll"
 msgstr ""
 
+#: .tmp/app/answer_poll/answer_poll.html:1
+msgid "As an admin, your answers aren't saved."
+msgstr ""
+
 #: .tmp/app/edit_poll/edit_poll.html:1
 msgid "Ask your question here"
 msgstr ""
@@ -81,7 +85,7 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#: .tmp/app/view_answers/view_answers.html:1
+#: .tmp/app/view_answers/view_answers.html:2
 msgid "Export"
 msgstr ""
 
@@ -129,7 +133,7 @@ msgid "Move up"
 msgstr ""
 
 #: .tmp/app/account/signup/signup.html:1
-#: .tmp/app/view_answers/view_answers.html:1
+#: .tmp/app/view_answers/view_answers.html:2
 msgid "Name"
 msgstr ""
 
@@ -141,7 +145,7 @@ msgstr ""
 msgid "Next question"
 msgstr ""
 
-#: .tmp/app/view_answers/view_answers.html:1
+#: .tmp/app/view_answers/view_answers.html:2
 msgid "No answers yet."
 msgstr ""
 
@@ -176,11 +180,11 @@ msgid "Polls list"
 msgstr ""
 
 #: .tmp/app/edit_poll/edit_poll.html:1
-msgid "Question n°{{$index}}"
+msgid "Question n°{{$index+1}}"
 msgstr ""
 
 #: .tmp/app/answer_poll/answer_poll.html:1
-msgid "Question n°{{questionNumber}}"
+msgid "Question n°{{questionNumber+1}}"
 msgstr ""
 
 #: .tmp/app/answer_poll/answer_poll.html:1
@@ -191,7 +195,7 @@ msgstr ""
 msgid "Save changes"
 msgstr ""
 
-#: .tmp/app/view_answers/view_answers.html:1
+#: .tmp/app/view_answers/view_answers.html:2
 msgid "Score"
 msgstr ""
 
@@ -273,6 +277,6 @@ msgstr ""
 msgid "eduquizz"
 msgstr ""
 
-#: .tmp/app/view_answers/view_answers.html:1
+#: .tmp/app/view_answers/view_answers.html:2
 msgid "— given answers"
 msgstr ""

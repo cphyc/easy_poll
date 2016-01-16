@@ -40,6 +40,10 @@ msgstr "Répondre à un questionnaire"
 msgid "Answer the poll"
 msgstr "Répondre au questionnaire"
 
+#: .tmp/app/answer_poll/answer_poll.html:1
+msgid "As an admin, your answers aren't saved."
+msgstr "Vos réponses ne sont pas sauvegardées car vous êtes administrateur."
+
 #: .tmp/app/edit_poll/edit_poll.html:1
 msgid "Ask your question here"
 msgstr "Écrire votre question ici"
@@ -86,7 +90,7 @@ msgstr "Eduquizz"
 msgid "Email"
 msgstr "Email"
 
-#: .tmp/app/view_answers/view_answers.html:1
+#: .tmp/app/view_answers/view_answers.html:2
 msgid "Export"
 msgstr "Exporter"
 
@@ -132,7 +136,7 @@ msgid "Move up"
 msgstr "Monter"
 
 #: .tmp/app/account/signup/signup.html:1
-#: .tmp/app/view_answers/view_answers.html:1
+#: .tmp/app/view_answers/view_answers.html:2
 msgid "Name"
 msgstr "Nom"
 
@@ -144,7 +148,7 @@ msgstr "Nouveau mot de passe"
 msgid "Next question"
 msgstr "Question suivante"
 
-#: .tmp/app/view_answers/view_answers.html:1
+#: .tmp/app/view_answers/view_answers.html:2
 msgid "No answers yet."
 msgstr "Aucune réponse enregistrée."
 
@@ -178,12 +182,12 @@ msgid "Polls list"
 msgstr "Liste des questionnaires"
 
 #: .tmp/app/edit_poll/edit_poll.html:1
-msgid "Question n°{{$index}}"
-msgstr "Question n°{{$index}}"
+msgid "Question n°{{$index+1}}"
+msgstr "Question n°{{$index+1}}"
 
 #: .tmp/app/answer_poll/answer_poll.html:1
-msgid "Question n°{{questionNumber}}"
-msgstr "Question n°{{questionNumber}}"
+msgid "Question n°{{questionNumber+1}}"
+msgstr "Question n°{{questionNumber+1}}"
 
 #: .tmp/app/answer_poll/answer_poll.html:1
 msgid "Save"
@@ -193,7 +197,7 @@ msgstr "Sauvegarder"
 msgid "Save changes"
 msgstr "Sauvegarder les modifications"
 
-#: .tmp/app/view_answers/view_answers.html:1
+#: .tmp/app/view_answers/view_answers.html:2
 msgid "Score"
 msgstr "Résultat"
 
@@ -278,9 +282,22 @@ msgstr "supprimer l'utilisateur"
 msgid "eduquizz"
 msgstr "eduquizz"
 
-#: .tmp/app/view_answers/view_answers.html:1
+#: .tmp/app/view_answers/view_answers.html:2
 msgid "— given answers"
 msgstr "­— réponses enregistrées"
+
+#~ msgid "Question n°{{$index}}"
+#~ msgstr "Question n°{{$index}}"
+
+#~ msgid ""
+#~ "As an admin, your answers aren't saved. You can answer once again the "
+#~ "poll."
+#~ msgstr ""
+#~ "En tant qu'administrateur, vos réponses n'ont pas été sauvegardées. Vous "
+#~ "pouvez à nouveau répondre au questionnaire."
+
+#~ msgid "Question n°{{questionNumber}}"
+#~ msgstr "Question n°{{questionNumber}}"
 
 #~ msgid "{{ poll.name }} — given answers"
 #~ msgstr "{{ poll.name }} — réponses enregistrées"
