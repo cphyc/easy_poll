@@ -95,7 +95,9 @@ exports.saveAnswer = function(req, res) {
 
   return Q.all([pollProm, userProm, answerProm])
   .then(function(results) {
-    var poll = results[0], user = results[1], answersObj = results[2];
+    var poll = results[0],
+        user = results[1],
+        answersObj = results[2];
     // check both poll and user exists
     if (!poll || !user) {
       return res.status(404).send('Not Found');
@@ -103,6 +105,10 @@ exports.saveAnswer = function(req, res) {
 
     if (!isAdminOrOwns(req, answersObj)) {
       return res.status(401).send('Unauthorized');
+    }
+
+    if (question >= poll.questions.length) {
+      return res.status(500).send('Out of range');
     }
 
     if (answersObj.answers[question] === undefined) {

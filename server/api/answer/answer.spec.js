@@ -106,7 +106,7 @@ before(function(done) {
 before(function(done) {
   new Answer({
     'poll': globals.poll._id,
-    'answers': [3, 1],
+    'answers': [],
     'user': globals.user
   }).save(function(err, obj) {
     globals.answer = obj;
@@ -270,7 +270,6 @@ describe.only('GET /api/answers/poll/:pollId', function() {
       .set('Authorization', 'Bearer ' + userToken2)
       .expect(200)
       .end(function(err, res) {
-        console.log(res.body);
         res.body._id.should.not.equal(answer._id);
         done(err);
       });
@@ -289,6 +288,60 @@ describe.only('GET /api/answers/poll/:pollId', function() {
       .get(ansRoute)
       .set('Authorization', 'Bearer ' + userToken)
       .expect(200)
+      .end(function(err) {
+        done(err);
+      });
+    });
+  });
+
+  describe('POST question/:question/:answer', function() {
+    var postRoute;
+    before(function(done) {
+      postRoute = route + '/question/';
+      done();
+    });
+
+    it('should fail for visitor', function(done) {
+      request(app)
+      .post(postRoute+'0/2')
+      .expect(401)
+      .end(function(err) {
+        done(err);
+      });
+    });
+    it('should work for new answer to new question', function(done) {
+      request(app)
+      .post(postRoute+'0/2')
+      .set('Authorization', 'Bearer ' + userToken)
+      .expect(201)
+      .end(function(err) {
+        done(err);
+      });
+    });
+    it('should work for new answer to new question', function(done) {
+      request(app)
+      .post(postRoute+'1/3')
+      .set('Authorization', 'Bearer ' + userToken)
+      .expect(201)
+      .end(function(err) {
+        done(err);
+      });
+    });
+
+    it('should fail for new answer to same question', function(done) {
+      request(app)
+      .post(postRoute+'0/2')
+      .set('Authorization', 'Bearer ' + userToken)
+      .expect(500)
+      .end(function(err) {
+        done(err);
+      });
+    });
+    it('should fail for out of range answer', function(done) {
+      request(app)
+      .post(postRoute+'3/2')
+      .set('Authorization', 'Bearer ' + userToken)
+      .expect(500)
       .end(function(err) {
         done(err);
       });
