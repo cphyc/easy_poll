@@ -27,7 +27,9 @@ var pollArray = {
 before(function(done) {
   User.find().remove(function() {
     Poll.find().remove(function() {
-      done();
+      Answer.find().remove(function() {
+        done();
+      });
     });
   });
 });
@@ -141,8 +143,154 @@ describe('GET /api/answers', function() {
       .expect('Content-Type', /json/)
       .end(function(err, res) {
         res.body.should.be.instanceof(Array);
+        res.body.length.should.equal(1);
         done(err);
       });
+  });
+});
+
+describe.only('GET /api/answers/poll/:pollId', function() {
+  var answer, route;
+  before(function(done) {
+    Poll.findOne({}).then(function(poll) {
+      route = '/api/answers/poll/' + poll._id;
+      done();
+    });
+  });
+
+  it('should fail for visitors', function(done) {
+    request(app)
+    .get(route)
+    .expect(401)
+    .end(function(err) {
+      done(err);
+    });
+  });
+
+  it('should return a fresh answer on first visit', function(done) {
+    request(app)
+    .get(route)
+    .set('Authorization', 'Bearer ' + userToken)
+    .expect(200)
+    .end(function(err, res) {
+      if (err) done(err);
+      res.body.should.be.instanceof(Object);
+      answer = res.body;
+      done();
+    });
+  });
+
+  it('should return the same answer on second visit', function(done) {
+    request(app)
+    .get(route)
+    .set('Authorization', 'Bearer ' + userToken)
+    .expect(200)
+    .end(function(err, res) {
+      if (err) done(err);
+      res.body._id.should.equal(answer._id);
+      done()
+    });
+  });
+
+  it('should return another new one to another user', function(done) {
+    request(app)
+    .get(route)
+    .set('Authorization', 'Bearer ' + userToken2)
+    .expect(200)
+    .end(function(err, res) {
+      if (err) done(err);
+      res.body._id.should.not.equal(answer._id);
+      done()
+    });
+  });
+
+  describe('GET answer/:id', function() {
+    var ansRoute;
+    before(function(done) {
+      ansRoute = route + '/answer/' + answer._id;
+      done();
+    });
+
+    it('should fail for visitor', function(done) {
+      request(app)
+      .get(ansRoute)
+      .expect(401)
+      .end(function(err) {
+        done(err);
+      });
+    });
+
+    it('should fail for non owner', function(done) {
+      request(app)
+      .get(ansRoute)
+      .set('Authorization', 'Bearer ' + userToken2)
+      .expect(401)
+      .end(function(err) {
+        done(err);
+      });
+    });
+    it('should succeed for admin', function(done) {
+      request(app)
+      .get(ansRoute)
+      .set('Authorization', 'Bearer ' + adminToken)
+      .expect(200)
+      .end(function(err) {
+        done(err);
+      });
+    });
+    it('should succeed for owner', function(done) {
+      request(app)
+      .get(ansRoute)
+      .set('Authorization', 'Bearer ' + userToken)
+      .expect(200)
+      .end(function(err) {
+        done(err);
+      });
+    });
+  });
+  describe('GET user/:userId', function() {
+    var ansRoute;
+    before(function(done) {
+      ansRoute = route + '/user/' + globals.user._id;
+      done();
+    });
+
+    it('should fail for visitor', function(done) {
+      request(app)
+      .get(ansRoute)
+      .expect(401)
+      .end(function(err) {
+        done(err);
+      });
+    });
+
+    it('should fail for non owner', function(done) {
+      request(app)
+      .get(ansRoute)
+      .set('Authorization', 'Bearer ' + userToken2)
+      .expect(401)
+      .end(function(err) {
+        done(err);
+      });
+    });
+    it('should succeed for admin', function(done) {
+      request(app)
+      .get(ansRoute)
+      .set('Authorization', 'Bearer ' + adminToken)
+      .expect(200)
+      .end(function(err) {
+        done(err);
+      });
+    });
+    it('should succeed for owner', function(done) {
+      request(app)
+      .get(ansRoute)
+      .set('Authorization', 'Bearer ' + userToken)
+      .expect(200)
+      .end(function(err) {
+        done(err);
+      });
+    });
   });
 });
 
