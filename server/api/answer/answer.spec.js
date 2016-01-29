@@ -268,8 +268,10 @@ describe.only('GET /api/answers/poll/:pollId', function() {
       request(app)
       .get(ansRoute)
       .set('Authorization', 'Bearer ' + userToken2)
-      .expect(401)
-      .end(function(err) {
+      .expect(200)
+      .end(function(err, res) {
+        console.log(res.body);
+        res.body._id.should.not.equal(answer._id);
         done(err);
       });
     });

@@ -75,7 +75,7 @@ exports.showByUser = function(req, res) {
     if(!answer) { return res.json({answer: null}); }
 
     if (isAdminOrOwns(req, answer)) {
-      return res.json({answer: answer});
+      return res.json(answer);
     } else {
       return res.status(401).send('Unauthorized');
     }
