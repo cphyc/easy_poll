@@ -224,7 +224,7 @@ describe.only('GET /api/answers/poll/:pollId', function() {
       request(app)
       .get(ansRoute)
       .set('Authorization', 'Bearer ' + userToken2)
-      .expect(401)
+      .expect(403)
       .end(function(err) {
         done(err);
       });
@@ -347,135 +347,61 @@ describe.only('GET /api/answers/poll/:pollId', function() {
       });
     });
   });
-});
 
-describe('GET /api/answers/:id', function() {
-  var answer, route;
-  before(function(done) {
-    route = '/api/answers/' + globals.answer._id;
-    answer = globals.answer;
-    done();
-  });
+  describe('DELETE answer/id', function() {
+    var delRoute;
+    before(function(done) {
+      delRoute = route + '/answer/' + answer._id;
+      done();
+    });
 
-  it('should fail for visitors', function(done) {
-    request(app)
-      .get(route)
+    it('should fail for visitor', function(done) {
+      request(app)
+      .delete(delRoute)
       .expect(401)
       .end(function(err) {
         done(err);
       });
-  });
+    });
 
-  it('should fail for user who didn\'t create the answer', function(done) {
-    request(app)
-      .get(route)
+    it('should fail for owner', function(done) {
+      request(app)
+      .delete(delRoute)
+      .set('Authorization', 'Bearer ' + userToken)
+      .expect(403)
+      .end(function(err) {
+        done(err);
+      });
+    });
+
+    it('should fail for non owner', function(done) {
+      request(app)
+      .delete(delRoute)
       .set('Authorization', 'Bearer ' + userToken2)
-      .expect(401)
+      .expect(403)
       .end(function(err) {
         done(err);
       });
-  });
+    });
 
-  it('should succeed for user who created the answer', function(done) {
-    request(app)
-      .get(route)
-      .set('Authorization', 'Bearer ' + userToken)
-      .expect(200)
-      .expect('Content-Type', /json/)
-      .end(function(err) {
-        done(err);
-      });
-  });
-
-  it('should respond with JSON object for admins', function(done) {
-    request(app)
-      .get(route)
+    it('should work for admin', function(done) {
+      request(app)
+      .delete(delRoute)
       .set('Authorization', 'Bearer ' + adminToken)
-      .expect('Content-Type', /json/)
-      .expect(200)
-      .end(function(err, res) {
-        if (err) return done(err);
-        res.body.should.be.instanceof(Object);
+      .expect(204)
+      .end(function(err) {
         done(err);
       });
-  });
-});
+    });
 
-describe('POST /api/answers', function() {
-
-  it('should fail for visitors', function(done) {
-    request(app)
-      .post('/api/answers')
-      .set('Content-Type', 'application/json')
-      .send({})
-      .expect(401)
+    it('should not work for admin twice', function(done) {
+      request(app)
+      .delete(delRoute)
+      .set('Authorization', 'Bearer ' + adminToken)
+      .expect(404)
       .end(function(err) {
-        done(err)
+        done(err);
       });
-  });
-
-  it('should accept good requests', function(done) {
-    request(app)
-      .post('/api/answers')
-      .set('Content-Type', 'application/json')
-      .set('Authorization', 'Bearer ' + userToken)
-      .send({
-        'user': globals.user._id,
-        'poll': globals.poll._id,
-        'answers': [3, 1]
-      })
-      .expect(201)
-      .end(function(err, foo) {
-        done(err)
-      });
-  });
-
-  describe('(malformed answers)', function() {
-    function pleasePost(done, userId, pollId, answers, errCode) {
-       request(app)
-        .post('/api/answers')
-        .set('Authorization', 'Bearer ' + userToken)
-        .set('Content-Type', 'application/json')
-        .send({
-          user: userId,
-          poll: pollId,
-          answers: answers
-        })
-        .expect(errCode)
-        .end(function(err) {
-          done(err);
-        });
-    }
-
-    var good = {};
-
-    before(function() {
-      good = {
-        poll: globals.poll._id,
-        user: globals.user._id,
-        answers: [1, 2]
-      }
-    });
-
-    it('should fail when missing user is given', function(done) {
-      var badUserId = good.poll;
-      pleasePost(done, badUserId, good.poll, good.answers, 404)
-    });
-    it('should fail when missing poll is given', function(done) {
-      var badPollId = good.user;
-      pleasePost(done, good.user, badPollId, good.answers, 404)
-    });
-    it('should fail when malformed answers are given', function(done) {
-      pleasePost(done, good.user, good.poll, 'hello, I say I\'m an answer but I\'m not', 500);
-    })
-    it('should fail when out-of-range answers are given ', function(done) {
-      pleasePost(done, good.user, good.poll, [100, 0], 500);
-    });
-    it('should fail when too many answers are given ', function(done) {
-      pleasePost(done, good.user, good.poll, [100, 0, 1, 1], 500);
-    });
-    it('should fail when too few answers are given ', function(done) {
-      pleasePost(done, good.user, good.poll, [100], 500);
     });
   });
 });

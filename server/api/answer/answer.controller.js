@@ -63,7 +63,7 @@ exports.show = function(req, res) {
     if (isAdminOrOwns(req, answer)) {
       return res.json(answer);
     } else {
-      return res.status(401).send('Unauthorized');
+      return res.status(403).send('Forbidden');
     }
   });
 };
@@ -77,7 +77,7 @@ exports.showByUser = function(req, res) {
     if (isAdminOrOwns(req, answer)) {
       return res.json(answer);
     } else {
-      return res.status(401).send('Unauthorized');
+      return res.status(403).send('Forbidden');
     }
   });
 };
@@ -104,7 +104,7 @@ exports.saveAnswer = function(req, res) {
     }
 
     if (!isAdminOrOwns(req, answersObj)) {
-      return res.status(401).send('Unauthorized');
+      return res.status(403).send('Forbidden');
     }
 
     if (question >= poll.questions.length) {
@@ -138,7 +138,7 @@ exports.update = function(req, res) {
 
     // check user rights
     if (!isAdminOrOwns(req, answer)) {
-      return res.status(401).send('Unauthorized');
+      return res.status(403).send('Forbidden');
     }
 
     var updated = _.merge(answer, req.body);
@@ -149,7 +149,7 @@ exports.update = function(req, res) {
   });
 };
 
-// Deletes a answer from the DB.
+// Deletes an answer from the DB.
 exports.destroy = function(req, res) {
   Answer.findOne({_id: req.params.id, poll: req.params.pollId}, function (err, answer) {
     if(err) { return handleError(res, err); }
