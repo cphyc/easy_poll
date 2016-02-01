@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('eduquizzApp')
-  .controller('ViewAnswersCtrl', function ($scope, $stateParams, $http, Restangular, gettextCatalog, $mdDialog) {
+  .controller('ViewAnswersCtrl', function ($scope, $stateParams, $http, Restangular, gettextCatalog, $mdDialog, $window) {
     $scope.poll = Restangular.one('polls', $stateParams.pollId).get().$object;
 
     Restangular.one('polls', $stateParams.pollId).getList('results').then(function(answers) {
@@ -20,8 +20,8 @@ angular.module('eduquizzApp')
       .all('results')
       .get('csv')
       .then(function(csvString) {
-        var blob = new Blob([csvString], {type: "text/plain;charset=utf-8"});
-        saveAs(blob, "sondage.csv");
+        var blob = new Blob([csvString], {type: 'text/plain;charset=utf-8'});
+        $window.saveAs(blob, 'sondage.csv');
       });
     };
 
@@ -31,7 +31,7 @@ angular.module('eduquizzApp')
         ariaLabel: gettextCatalog.getString('delete answer'),
         confirm: gettextCatalog.getString('Confirm'),
         cancel: gettextCatalog.getString('Cancel!'),
-      }
+      };
       var confirm = $mdDialog.confirm()
           .title(cfg.title)
           .ariaLabel(cfg.ariaLabel)
@@ -56,7 +56,7 @@ angular.module('eduquizzApp')
         ariaLabel: gettextCatalog.getString('delete answers'),
         confirm: gettextCatalog.getString('Confirm'),
         cancel: gettextCatalog.getString('Cancel!'),
-      }
+      };
       var confirm = $mdDialog.confirm()
           .title(cfg.title)
           .ariaLabel(cfg.ariaLabel)
@@ -85,5 +85,5 @@ angular.module('eduquizzApp')
     $scope.showDetails = false;
     $scope.toggleShow = function() {
       $scope.showDetails = !$scope.showDetails;
-    }
+    };
   });

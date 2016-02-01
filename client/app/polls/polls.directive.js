@@ -6,4 +6,5 @@ angular.module('eduquizzApp')
     controller: function($scope) {
       $scope.reveal = false;
     }
-  }});
+  };
+});

@@ -31,7 +31,7 @@ angular.module('eduquizzApp')
         ariaLabel: gettextCatalog.getString('delete poll'),
         confirm: gettextCatalog.getString('Confirm'),
         cancel: gettextCatalog.getString('Cancel!'),
-      }
+      };
       var confirm = $mdDialog.confirm()
           .title(cfg.title)
           .ariaLabel(cfg.ariaLabel)

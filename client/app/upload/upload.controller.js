@@ -22,10 +22,10 @@ angular.module('eduquizzApp')
       .one('last', $scope.nToFetch)
       .getList().then(function(list) {
         $scope.imageUrls = list;
-      });;
+      });
   };
 
-  $scope.uploadFile = function(file, errFiles) {
+  $scope.uploadFile = function(file) {
     $scope.uploading = true;
     $scope.f = file;
     if (file) {
@@ -47,11 +47,11 @@ angular.module('eduquizzApp')
       }, function (evt) {
         var progress = Math.min(100, parseInt(100.0 *
            evt.loaded / evt.total));
-        file.progress = progress
+        file.progress = progress;
         $scope.uploadProgress = progress;
       });
     }
-  }
+  };
 
   $scope.updatePictureList();
   });

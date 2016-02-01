@@ -149,7 +149,7 @@ describe('GET /api/answers', function() {
   });
 });
 
-describe.only('GET /api/answers/poll/:pollId', function() {
+describe('GET /api/answers/poll/:pollId', function() {
   var answer, route;
   before(function(done) {
     Poll.findOne({}).then(function(poll) {

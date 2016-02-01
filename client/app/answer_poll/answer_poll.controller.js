@@ -7,11 +7,11 @@ angular.module('eduquizzApp')
 
     $scope.answerPoll = function(id) {
       $state.go('polls_answer_one', {id: id});
-    }
+    };
   })
   .controller('AnswerPollCtrl', function($scope, $stateParams, Answer, Poll, Auth) {
     $scope.isAdmin = Auth.isAdmin;
-    
+
     Poll.get($stateParams.id).then(function(poll) {
       // Create an answer object
       $scope.poll = poll;
@@ -34,7 +34,7 @@ angular.module('eduquizzApp')
       }
     }).catch(function(err) {
       // FIXME: tell an error occured
-    });;
+    });
 
     $scope.nextQuestion = function() {
       if (Auth.isAdmin()) {
@@ -50,10 +50,10 @@ angular.module('eduquizzApp')
         })
         .catch(function(err) {
           // FIXME: notice error
-          console.log(err)
+          console.log(err);
         });
       }
-    }
+    };
 
     $scope.saveButton = 'Save answers';
     $scope.saveAnswers = function() {

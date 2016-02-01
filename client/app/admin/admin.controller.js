@@ -12,7 +12,7 @@ angular.module('eduquizzApp')
         ariaLabel: gettextCatalog.getString('delete user'),
         confirm: gettextCatalog.getString('Confirm'),
         cancel: gettextCatalog.getString('Cancel!'),
-      }
+      };
       var confirm = $mdDialog.confirm()
           .title(cfg.title)
           .ariaLabel(cfg.ariaLabel)
@@ -29,8 +29,8 @@ angular.module('eduquizzApp')
       });
     };
 
-    $scope.addUser = function(user, ev) {
-      var modal = $modal.open({
+    $scope.addUser = function() {
+      $modal.open({
         templateUrl: 'app/admin/add_user/add_user.html',
         controller: 'AddUserCtrl'
       });

@@ -1,12 +1,13 @@
+'use strict';
 angular.module('eduquizzApp')
-.controller('AddUserCtrl', function($scope, $rootScope, Restangular) {
+.controller('AddUserCtrl', function($scope, $rootScope, Restangular, $window) {
   var dummyUser = function() {
     return {
       name: '',
       email: '',
       status: null
     };
-  }
+  };
   $scope.saving = false;
   $scope.users = [dummyUser()];
 
@@ -28,12 +29,12 @@ angular.module('eduquizzApp')
         console.log(ans);
         user.status = 'saved';
         return;
-      }, function(err) {
+      }, function() {
         user.status = 'error';
         return;
       });
     });
-    Q.all(promises).then(function(users) {
+    $window.Q.all(promises).then(function() {
       $scope.saving = false;
       $rootScope.$broadcast('update:users');
       $scope.$close();
