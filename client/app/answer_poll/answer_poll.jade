@@ -23,5 +23,5 @@ div(ng-include='"components/navbar/navbar.html"')
           ng-disabled='questionNumber < lastQuestion || answers[questionNumber] === undefined || submitted')
             span(translate) Save
     p.lead(ng-if='submitted' translate) You answered the poll.
-    p(ng-if='isAdmin()' translate) As an admin, your answers aren't saved.
+    p.note(ng-if='isAdmin()' translate) As an admin, your answers aren't saved.
 div(ng-include='"components/footer/footer.html"')

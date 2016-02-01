@@ -17,7 +17,7 @@ angular.module('eduquizzApp')
       ];
 
       editor.updateContents(operations);
-    };
+    }
 
     return {
       templateUrl: 'app/edit_poll/edit/inline.html',

@@ -47,13 +47,14 @@ msgid "As an admin, your answers aren't saved."
 msgstr ""
 
 #: .tmp/app/edit_poll/edit_poll.html:1
+#: client/app/edit_poll/edit_poll.controller.js:17
 msgid "Ask your question here"
 msgstr ""
 
 #: client/app/admin/admin.controller.js:14
 #: client/app/polls/polls.controller.js:33
 #: client/app/view_answers/view_answers.controller.js:33
-#: client/app/view_answers/view_answers.controller.js:55
+#: client/app/view_answers/view_answers.controller.js:58
 msgid "Cancel!"
 msgstr ""
 
@@ -64,7 +65,7 @@ msgstr ""
 #: client/app/admin/admin.controller.js:13
 #: client/app/polls/polls.controller.js:32
 #: client/app/view_answers/view_answers.controller.js:32
-#: client/app/view_answers/view_answers.controller.js:54
+#: client/app/view_answers/view_answers.controller.js:57
 msgid "Confirm"
 msgstr ""
 
@@ -234,7 +235,7 @@ msgstr ""
 msgid "Submit poll"
 msgstr ""
 
-#: client/app/edit_poll/edit_poll.controller.js:66
+#: client/app/edit_poll/edit_poll.controller.js:68
 msgid "Submitting…"
 msgstr ""
 
@@ -279,7 +280,7 @@ msgstr ""
 msgid "What's your email address?"
 msgstr ""
 
-#: client/app/view_answers/view_answers.controller.js:52
+#: client/app/view_answers/view_answers.controller.js:55
 msgid "Would you like to delete all the answers?"
 msgstr ""
 
@@ -303,7 +304,7 @@ msgstr ""
 msgid "delete answer"
 msgstr ""
 
-#: client/app/view_answers/view_answers.controller.js:53
+#: client/app/view_answers/view_answers.controller.js:56
 msgid "delete answers"
 msgstr ""
 

@@ -13,7 +13,9 @@ angular.module('eduquizzApp')
       if (!$scope.poll.questions) {
         $scope.poll.questions = [];
       }
-      $scope.poll.questions.push({});
+      $scope.poll.questions.push({
+        question: '<span class="note">' + gettextCatalog.getString('Ask your question here') + '</span>'
+      });
     }
 
     $scope.deleteQuestion = function(index) {

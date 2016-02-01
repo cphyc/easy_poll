@@ -2,7 +2,7 @@ div(ng-include='"components/navbar/navbar.html"')
 
 .container
   div(ng-model='poll')
-    p(translate) To edit the poll, click on the field to edit and type your text. To format the text, select it and pick the desired format in the floating box.
+    p.note(translate) To edit the poll, click on the field to edit and type your text. To format the text, select it and pick the desired format in the floating box.
     h1(inline-text-editor contenteditable="true" ng-model='poll.name' placeholder='{{"Title of your poll" | translate}}')
     md-button.md-button-icon(ng-click='addQuestion()')
       md-icon.glyphicon.glyphicon-plus
@@ -30,7 +30,7 @@ div(ng-include='"components/navbar/navbar.html"')
               span(translate) Delete question
         hr
       md-card-content
-        quill-editor(placeholder='{{"Ask your question here" | translate}}')
+        quill-editor
         md-radio-group(ng-model='q.answer')
           div(ng-repeat='answer in q.answers track by $index')
             a.button-icon.trash(ng-click='deleteAnswer(q, $index)' aria-label='{{"Delete answer"|translate}}')
