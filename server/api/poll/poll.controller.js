@@ -86,21 +86,40 @@ exports.getResultsAsCsv = function(req, res) {
     .then(function(answers) {
       if (!answers) { return res.status(404).send('Not Found'); }
 
+      // Fill empty answers with '-1'
       answers.forEach(function(answer) {
         while (answer.answers.length < answer.poll.questions.length) {
           answer.answers.push(-1);
         }
       });
 
-      var correction = answers.map(function(answer) {
+      // Create the header
+      if (answers[0]) {
+        var questions = answers[0].poll.questions;
+      } else { var questions = []; }
+      var header = ['Nom']
+        .concat(questions.map(function(answer, key) {
+          return 'Question n°'+(key+1);
+        }))
+        .concat(['Réponses justes']);
+
+      // Generate the answers
+      var answers = answers.map(function(answer) {
         var correction = answer.correction(answer.poll);
 
-        var answers = correction.map(function(corr) { return corr.givenAnswer; });
-        var corrects = correction.map(function(corr) { return corr.goodAnswer ? 'oui' : 'non'; });
-        return [answer.user.name].concat(answers).concat(corrects);
+        var answers = correction.map(function(corr) { return corr.givenAnswer + (corr.goodAnswer ? '(correct)' : '(faux)'); });
+        var totGoodAnswers = correction.reduce(function(agg, corr) {
+          if (corr.goodAnswer) {
+            return agg + 1;
+          } else {
+            return agg;
+          }
+        }, 0);
+        return [answer.user.name].concat(answers).concat([totGoodAnswers]);
       }) || [];
 
-      console.log(correction);
+      var correction = [header].concat(answers);
+
       convert.asCsv(correction).then(function(fileName) {
         res.sendFile(fileName);
       });
