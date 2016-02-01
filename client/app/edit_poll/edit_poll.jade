@@ -42,6 +42,11 @@ div(ng-include='"components/navbar/navbar.html"')
             md-radio-button.inline(ng-value='$index')
             span.inline(style='min-width=100px' inline-text-editor contenteditable="true" 
               ng-model='q.answers[$index]' placeholder='{{"Add new answer here" | translate}}')
-    button.btn.btn-primary(ng-click='submitPoll()' translate) Submit poll
+    md-button.md-button-icon(ng-click='addQuestion()')
+      md-icon.glyphicon.glyphicon-plus
+      span(translate) Add question
+    md-button.md-button-icon(ng-click='submitPoll()')
+      md-icon.md-accent.glyphicon.glyphicon-save
+      span(translate) Submit poll
 
 div(ng-include='"components/footer/footer.html"')
