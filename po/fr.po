@@ -12,7 +12,7 @@ msgstr ""
 "X-Generator: Poedit 1.8.7\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: client/app/upload/upload.directive.js:74
+#: client/app/upload/upload.directive.js:58
 msgid "% remaining."
 msgstr "% restant."
 
@@ -27,6 +27,10 @@ msgstr "Ajouter réponse"
 #: .tmp/app/edit_poll/edit_poll.html:1
 msgid "Add new answer here"
 msgstr "Écrire une réponse ici"
+
+#: .tmp/app/upload/upload.html:1
+msgid "Add new file"
+msgstr "Ajouter un nouveau fichier"
 
 #: .tmp/app/edit_poll/edit_poll.html:1
 msgid "Add question"
@@ -44,7 +48,7 @@ msgstr "Ajouter des utilisateurs"
 msgid "Admin"
 msgstr "Administration"
 
-#: client/app/upload/upload.directive.js:66
+#: client/app/upload/upload.directive.js:50
 msgid "An error occured"
 msgstr "Une erreur est survenue"
 
@@ -81,10 +85,6 @@ msgstr "Changer le mot de passe"
 #: client/app/view_answers/view_answers.controller.js:57
 msgid "Confirm"
 msgstr "Confirmer"
-
-#: .tmp/app/upload/input-file.html:1
-msgid "Crop"
-msgstr "Rogner"
 
 #: .tmp/app/account/settings/settings.html:1
 msgid "Current Password"
@@ -123,7 +123,7 @@ msgstr "Email"
 msgid "Export"
 msgstr "Exporter"
 
-#: client/app/upload/upload.directive.js:58
+#: client/app/upload/upload.directive.js:42
 msgid "File uploaded!"
 msgstr "Fichier envoyé!"
 
@@ -199,10 +199,6 @@ msgstr "Le mot de passe doit faire au moins 3 caractères."
 msgid "Password successfully changed."
 msgstr "Mot de passe changé avec succès."
 
-#: .tmp/app/upload/upload.html:1
-msgid "Pick file"
-msgstr "Choisir un fichier"
-
 #: .tmp/app/account/login/login.html:1
 msgid "Please enter your email and password."
 msgstr "Merci d'entrer votre mot de passe et votre email."
@@ -242,6 +238,10 @@ msgstr "Sauvegarde en cours…"
 #: .tmp/app/view_answers/view_answers.html:2
 msgid "Score"
 msgstr "Résultat"
+
+#: .tmp/app/upload/upload.html:1
+msgid "Show more…"
+msgstr "Montrer plus …"
 
 #: .tmp/app/account/signup/signup.html:1 .tmp/components/navbar/navbar.html:1
 msgid "Sign up"
@@ -334,6 +334,15 @@ msgstr "eduquizz"
 #: .tmp/app/view_answers/view_answers.html:2
 msgid "— given answers"
 msgstr "­— réponses enregistrées"
+
+#~ msgid "Pick file"
+#~ msgstr "Choisir un fichier"
+
+#~ msgid "Show more"
+#~ msgstr "Montrer plus…"
+
+#~ msgid "Crop"
+#~ msgstr "Rogner"
 
 #~ msgctxt "button"
 #~ msgid "Upload file"
