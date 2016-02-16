@@ -1,6 +1,40 @@
 'use strict';
 
 angular.module('eduquizzApp')
+  .config(function (ngQuillConfigProvider) {
+      ngQuillConfigProvider.set([{
+          alias: 'small',
+          size: '12px'
+      }, {
+          default: true,
+          alias: 'normal',
+          size: '14px'
+      }, {
+          alias: 'large',
+          size: '20px'
+      }, {
+          alias: 'huge',
+          size: '24px'
+      }], [{
+          label: 'Arial',
+          alias: 'Arial'
+      }, {
+          label: 'Sans Serif',
+          alias: 'sans-serif'
+      }, {
+          label: 'Serif',
+          alias: 'serif'
+      }, {
+          label: 'Monospace',
+          alias: 'monospace'
+      }, {
+          label: 'Trebuchet MS',
+          alias: '"Trebuchet MS"'
+      }, {
+          label: 'Verdana',
+          alias: 'Verdana'
+      }])
+  })
   .directive('quillEditor', function () {
     function addImageInEditor(editor, imageUrl) {
       var selection = editor.getSelection();
