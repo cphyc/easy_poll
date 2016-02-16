@@ -22,10 +22,9 @@ form
           img(src='{{imageUrl}}' style="width: 100%;")
       // div(ng-repeat='imageUrl in imageUrls')
       md-input-container.md-block
-        md-button(ngf-select ng-model="picFile" accept="image/*" ng-hide='picFile'
+        md-button(ngf-select='show()' accept="image/*" ng-hide='picFile' ng-model="picFile" 
           ngf-resize="{width: 200, height: 100, quality: .8, type: 'image/jpeg', ratio: '1:2', centerCrop: true, pattern='.jpg'}")
           md-icon.glyphicon.glyphicon-picture
           span(translate) Pick file
-        md-button(ng-click='uploadFile(picFile)' ng-show='picFile' ng-disabled='uploading')
-          md-icon.glyphicon.glyphicon-upload
-          span(translate-context='button' translate) Upload file
+        input-file
+          
