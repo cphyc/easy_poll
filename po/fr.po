@@ -9,8 +9,12 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.6\n"
+"X-Generator: Poedit 1.8.7\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: client/app/upload/upload.directive.js:74
+msgid "% remaining."
+msgstr "% restant."
 
 #: .tmp/app/account/signup/signup.html:1
 msgid "A name is required"
@@ -40,6 +44,10 @@ msgstr "Ajouter des utilisateurs"
 msgid "Admin"
 msgstr "Administration"
 
+#: client/app/upload/upload.directive.js:66
+msgid "An error occured"
+msgstr "Une erreur est survenue"
+
 #: .tmp/app/main/main.html:1 client/components/navbar/navbar.controller.js:7
 msgid "Answer polls"
 msgstr "Répondre à un questionnaire"
@@ -52,14 +60,14 @@ msgstr "Répondre au questionnaire"
 msgid "As an admin, your answers aren't saved."
 msgstr "Vos réponses ne sont pas sauvegardées car vous êtes administrateur."
 
-#: .tmp/app/edit_poll/edit_poll.html:1
+#: client/app/edit_poll/edit_poll.controller.js:17
 msgid "Ask your question here"
 msgstr "Écrire votre question ici"
 
 #: client/app/admin/admin.controller.js:14
 #: client/app/polls/polls.controller.js:33
 #: client/app/view_answers/view_answers.controller.js:33
-#: client/app/view_answers/view_answers.controller.js:55
+#: client/app/view_answers/view_answers.controller.js:58
 msgid "Cancel!"
 msgstr "Annuler"
 
@@ -70,9 +78,13 @@ msgstr "Changer le mot de passe"
 #: client/app/admin/admin.controller.js:13
 #: client/app/polls/polls.controller.js:32
 #: client/app/view_answers/view_answers.controller.js:32
-#: client/app/view_answers/view_answers.controller.js:54
+#: client/app/view_answers/view_answers.controller.js:57
 msgid "Confirm"
 msgstr "Confirmer"
+
+#: .tmp/app/upload/input-file.html:1
+msgid "Crop"
+msgstr "Rogner"
 
 #: .tmp/app/account/settings/settings.html:1
 msgid "Current Password"
@@ -110,6 +122,10 @@ msgstr "Email"
 #: .tmp/app/view_answers/view_answers.html:2
 msgid "Export"
 msgstr "Exporter"
+
+#: client/app/upload/upload.directive.js:58
+msgid "File uploaded!"
+msgstr "Fichier envoyé!"
 
 #: .tmp/components/navbar/navbar.html:1
 msgid "Hello {{ getCurrentUser().name }}"
@@ -235,7 +251,7 @@ msgstr "Inscription"
 msgid "Submit poll"
 msgstr "Sauvegarder le questionnaire"
 
-#: client/app/edit_poll/edit_poll.controller.js:66
+#: client/app/edit_poll/edit_poll.controller.js:68
 msgid "Submitting…"
 msgstr "Envoi en cours…"
 
@@ -256,21 +272,12 @@ msgid "Toggle navigation"
 msgstr "Basculer la navigation"
 
 #: .tmp/app/upload/upload.html:1
-msgctxt "button"
-msgid "Upload file"
-msgstr "Télécharger"
-
-#: .tmp/app/upload/upload.html:1
 msgid "Upload file"
 msgstr "Télécharger un fichier"
 
-#: .tmp/app/upload/upload.html:1
-msgid "Uploaded!"
-msgstr "Fichier téléchargé !"
-
-#: .tmp/app/upload/upload.html:1
-msgid "Uploading"
-msgstr "Téléchargement en cours"
+#: client/app/upload/upload.directive.js:11
+msgid "Upload new file"
+msgstr "Télécharger le fichier"
 
 #: .tmp/app/admin/admin.html:1
 msgid "Users list"
@@ -284,7 +291,7 @@ msgstr "Voir les {{ poll.questions.length }} questions"
 msgid "What's your email address?"
 msgstr "Quelle est votre adresse email ?"
 
-#: client/app/view_answers/view_answers.controller.js:52
+#: client/app/view_answers/view_answers.controller.js:55
 msgid "Would you like to delete all the answers?"
 msgstr "Voulez-vous supprimer toutes les réponses ?"
 
@@ -308,7 +315,7 @@ msgstr "Vous avez répondu au questionnaire."
 msgid "delete answer"
 msgstr "supprimer la réponse"
 
-#: client/app/view_answers/view_answers.controller.js:53
+#: client/app/view_answers/view_answers.controller.js:56
 msgid "delete answers"
 msgstr "supprimer les questions"
 
@@ -327,6 +334,16 @@ msgstr "eduquizz"
 #: .tmp/app/view_answers/view_answers.html:2
 msgid "— given answers"
 msgstr "­— réponses enregistrées"
+
+#~ msgctxt "button"
+#~ msgid "Upload file"
+#~ msgstr "Télécharger"
+
+#~ msgid "Uploaded!"
+#~ msgstr "Fichier téléchargé !"
+
+#~ msgid "Uploading"
+#~ msgstr "Téléchargement en cours"
 
 #~ msgid "Question n°{{$index}}"
 #~ msgstr "Question n°{{$index}}"

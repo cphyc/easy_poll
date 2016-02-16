@@ -4,6 +4,10 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
 
+#: client/app/upload/upload.directive.js:74
+msgid "% remaining."
+msgstr ""
+
 #: .tmp/app/account/signup/signup.html:1
 msgid "A name is required"
 msgstr ""
@@ -33,6 +37,10 @@ msgstr ""
 msgid "Admin"
 msgstr ""
 
+#: client/app/upload/upload.directive.js:66
+msgid "An error occured"
+msgstr ""
+
 #: .tmp/app/main/main.html:1
 #: client/components/navbar/navbar.controller.js:7
 msgid "Answer polls"
@@ -46,7 +54,6 @@ msgstr ""
 msgid "As an admin, your answers aren't saved."
 msgstr ""
 
-#: .tmp/app/edit_poll/edit_poll.html:1
 #: client/app/edit_poll/edit_poll.controller.js:17
 msgid "Ask your question here"
 msgstr ""
@@ -67,6 +74,10 @@ msgstr ""
 #: client/app/view_answers/view_answers.controller.js:32
 #: client/app/view_answers/view_answers.controller.js:57
 msgid "Confirm"
+msgstr ""
+
+#: .tmp/app/upload/input-file.html:1
+msgid "Crop"
 msgstr ""
 
 #: .tmp/app/account/settings/settings.html:1
@@ -105,6 +116,10 @@ msgstr ""
 
 #: .tmp/app/view_answers/view_answers.html:2
 msgid "Export"
+msgstr ""
+
+#: client/app/upload/upload.directive.js:58
+msgid "File uploaded!"
 msgstr ""
 
 #: .tmp/components/navbar/navbar.html:1
@@ -252,20 +267,11 @@ msgid "Toggle navigation"
 msgstr ""
 
 #: .tmp/app/upload/upload.html:1
-msgctxt "button"
 msgid "Upload file"
 msgstr ""
 
-#: .tmp/app/upload/upload.html:1
-msgid "Upload file"
-msgstr ""
-
-#: .tmp/app/upload/upload.html:1
-msgid "Uploaded!"
-msgstr ""
-
-#: .tmp/app/upload/upload.html:1
-msgid "Uploading"
+#: client/app/upload/upload.directive.js:11
+msgid "Upload new file"
 msgstr ""
 
 #: .tmp/app/admin/admin.html:1
