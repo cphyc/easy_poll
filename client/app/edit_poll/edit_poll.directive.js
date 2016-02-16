@@ -48,7 +48,9 @@ angular.module('eduquizzApp')
 
           elementToReplace.click(function() {
             $scope.uploadDialog().then(function(imageUrl) {
-              addImageInEditor(quillInstance, imageUrl);
+              if (imageUrl) {
+                addImageInEditor(quillInstance, imageUrl);
+              }
             });
           });
         };
