@@ -12,15 +12,6 @@ angular.module('eduquizzApp')
         $scope.showEvent = 'show';
         $scope.hideEvent = 'hide';
 
-        $scope.cropper = {};
-        $scope.cropper.sourceImage = null;
-        $scope.cropper.croppedImage = null;
-        $scope.bounds = {};
-        $scope.bounds.left = 0;
-        $scope.bounds.right = 0;
-        $scope.bounds.top = 0;
-        $scope.bounds.bottom = 0;
-
         $scope.options = {
           crop: dataNew => { $scope.data = dataNew; },
           build: () => { },
@@ -28,13 +19,6 @@ angular.module('eduquizzApp')
         };
 
         $scope.cropperProxy = 'cropper.first';
-
-        $scope.showCropper = function() {
-          $scope.$broadcast($scope.showEvent);
-        };
-        $scope.hideCropper = function() {
-          $scope.$broadcast($scope.hideEvent);
-        };
 
         $scope.uploadFile = function() {
           if (!$scope.picFile)
