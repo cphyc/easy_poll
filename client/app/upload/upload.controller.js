@@ -5,7 +5,8 @@ angular.module('eduquizzApp')
     return function() {
       var modal = $modal.open({
         templateUrl: 'app/upload/upload.html',
-        controller: 'UploadModalCtrl'
+        controller: 'UploadModalCtrl',
+        backdrop: 'static'
       });
 
       return modal.result;
