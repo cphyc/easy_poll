@@ -1,7 +1,7 @@
 div(ng-if="picFile")
   md-button(ng-click='uploadFile()' ng-show='picFile' ng-disabled='uploading')
     md-icon.glyphicon.glyphicon-upload
-    span(translate-context='button' translate) Upload file
+    span(translate-context='button') {{ uploadButtonMessage }}
   md-button(ng-click='showCropper()')
     span(translate) Crop
   img(ng-src="{{picFile | ngfDataUrl}}" width="100%"

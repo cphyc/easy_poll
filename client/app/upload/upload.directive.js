@@ -7,7 +7,8 @@ angular.module('eduquizzApp')
       restrict: 'EA',
       link: function (scope, element, attrs) {
       },
-      controller: function($scope, Upload, Cropper, $timeout) {
+      controller: function($scope, Upload, Cropper, $timeout, gettextCatalog) {
+        $scope.uploadButtonMessage = gettextCatalog.getString('Upload new file');
         $scope.showEvent = 'show';
         $scope.hideEvent = 'hide';
 
@@ -54,6 +55,7 @@ angular.module('eduquizzApp')
 
             file.upload.then(function (response) {
               $timeout(function () {
+                $scope.uploadButtonMessage = gettextCatalog.getString('File uploaded!');
                 var fileUrl = response.data;
 
                 $scope.$close(fileUrl);
@@ -61,12 +63,15 @@ angular.module('eduquizzApp')
             }, function (response) {
               if (response.status > 0) {
                 $scope.errorMsg = response.status + ': ' + response.data;
+                $scope.uploadButtonMessage = gettextCatalog.getString('An error occured');
+                $timeout($scope.$close(), 1000);
               }
             }, function (evt) {
               var progress = Math.min(100, parseInt(100.0 *
                 evt.loaded / evt.total));
                 file.progress = progress;
                 $scope.uploadProgress = progress;
+                $scope.uploadButtonMessage = progress + gettextCatalog.getString('% remaining.')
             });
           });
         };
