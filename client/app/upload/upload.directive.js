@@ -55,7 +55,7 @@ angular.module('eduquizzApp')
                 evt.loaded / evt.total));
                 file.progress = progress;
                 $scope.uploadProgress = progress;
-                $scope.uploadButtonMessage = progress + gettextCatalog.getString('% remaining.')
+                $scope.uploadButtonMessage = (100-progress) + gettextCatalog.getString('% remaining.')
             });
           });
         };
