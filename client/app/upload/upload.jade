@@ -8,13 +8,17 @@ form
         i.fa.fa-times
   md-dialog-content
     .md-dialog-content
-      md-grid-list(md-cols='4' md-row-height="2:2" ng-hide='picFile')
+      md-grid-list(md-cols='4' md-gutter='1em' md-row-height="2:2" ng-hide='picFile')
         md-grid-tile(ng-repeat='imageUrl in imageUrls' ng-click='$close(imageUrl)')
           img(src='{{imageUrl}}' style="width: 100%;")
+        md-grid-tile(md-colspan='2')
+          md-button(ng-click='showMore()')
+            md-icon.glyphicon.glyphicon-plus
+            span(translate) Show more…
       md-input-container.md-block
-        md-button(ngf-select='show()' accept="image/*" ng-hide='picFile' ng-model='picFile'
+        md-button(ngf-select='activateCropper()' accept="image/*" ng-hide='picFile' ng-model='picFile'
           ngf-resize="{width: 200, height: 100, quality: .8, type: 'image/jpeg', ratio: '1:2', centerCrop: true, pattern='.jpg'}")
           md-icon.glyphicon.glyphicon-picture
-          span(translate) Pick file
+          span(translate) Add new file
         input-file
           

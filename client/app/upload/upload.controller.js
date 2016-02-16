@@ -12,19 +12,28 @@ angular.module('eduquizzApp')
       return modal.result;
     };
   })
-.controller('UploadModalCtrl', function($scope, Restangular) {
+.controller('UploadModalCtrl', function($scope, Restangular, $timeout) {
   $scope.uploading = false;
   $scope.uploaded = false;
 
-  $scope.nToFetch = 10;
+  $scope.nToFetch = 12;
   $scope.imageUrls = [];
-  $scope.updatePictureList = function() {
+  function updatePictureList(n) {
     Restangular.all('upload')
-      .one('last', $scope.nToFetch)
+      .one('last', n)
       .getList().then(function(list) {
         $scope.imageUrls = list;
       });
   };
 
-  $scope.updatePictureList();
-  });
+  $scope.showMore = function() {
+    $scope.nToFetch += 4;
+    updatePictureList($scope.nToFetch);
+  };
+
+  $scope.activateCropper = function() {
+    $timeout(() => $timeout(() => $scope.$broadcast('show')));
+  }
+
+  updatePictureList($scope.nToFetch);
+});
