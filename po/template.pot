@@ -108,7 +108,6 @@ msgstr ""
 msgid "Eduquizz"
 msgstr ""
 
-#: .tmp/app/account/login/login.html:1
 #: .tmp/app/account/signup/signup.html:1
 #: .tmp/app/admin/add_user/add_user.html:1
 msgid "Email"
@@ -198,7 +197,7 @@ msgid "Password successfully changed."
 msgstr ""
 
 #: .tmp/app/account/login/login.html:1
-msgid "Please enter your email and password."
+msgid "Please enter your username and password."
 msgstr ""
 
 #: client/components/navbar/navbar.controller.js:6
@@ -254,6 +253,10 @@ msgstr ""
 msgid "Submitting…"
 msgstr ""
 
+#: .tmp/app/account/login/login.html:1
+msgid "Surname Name"
+msgstr ""
+
 #: .tmp/app/edit_poll/edit_poll.html:1
 msgid "Title of your poll"
 msgstr ""
@@ -272,6 +275,10 @@ msgstr ""
 
 #: client/app/upload/upload.directive.js:11
 msgid "Upload new file"
+msgstr ""
+
+#: .tmp/app/account/login/login.html:1
+msgid "User name"
 msgstr ""
 
 #: .tmp/app/admin/admin.html:1

@@ -114,7 +114,7 @@ msgstr "Éditer les questionnaires"
 msgid "Eduquizz"
 msgstr "Eduquizz"
 
-#: .tmp/app/account/login/login.html:1 .tmp/app/account/signup/signup.html:1
+#: .tmp/app/account/signup/signup.html:1
 #: .tmp/app/admin/add_user/add_user.html:1
 msgid "Email"
 msgstr "Email"
@@ -200,8 +200,8 @@ msgid "Password successfully changed."
 msgstr "Mot de passe changé avec succès."
 
 #: .tmp/app/account/login/login.html:1
-msgid "Please enter your email and password."
-msgstr "Merci d'entrer votre mot de passe et votre email."
+msgid "Please enter your username and password."
+msgstr "Entrer votre nom d'utilisateur et votre mot de passe."
 
 #: client/components/navbar/navbar.controller.js:6
 msgid "Polls"
@@ -255,6 +255,10 @@ msgstr "Sauvegarder le questionnaire"
 msgid "Submitting…"
 msgstr "Envoi en cours…"
 
+#: .tmp/app/account/login/login.html:1
+msgid "Surname Name"
+msgstr "Prénom Nom"
+
 #: .tmp/app/edit_poll/edit_poll.html:1
 msgid "Title of your poll"
 msgstr "Titre de votre questionnaire"
@@ -278,6 +282,10 @@ msgstr "Télécharger un fichier"
 #: client/app/upload/upload.directive.js:11
 msgid "Upload new file"
 msgstr "Télécharger le fichier"
+
+#: .tmp/app/account/login/login.html:1
+msgid "User name"
+msgstr "Nom d'utilisateur"
 
 #: .tmp/app/admin/admin.html:1
 msgid "Users list"
@@ -334,6 +342,9 @@ msgstr "eduquizz"
 #: .tmp/app/view_answers/view_answers.html:2
 msgid "— given answers"
 msgstr "­— réponses enregistrées"
+
+#~ msgid "Please enter your email and password."
+#~ msgstr "Merci d'entrer votre mot de passe et votre email."
 
 #~ msgid "Pick file"
 #~ msgstr "Choisir un fichier"
