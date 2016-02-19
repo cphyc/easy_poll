@@ -6,20 +6,19 @@ form
       md-button.md-icon-button(ng-click='$close()')
         i.fa.fa-times
   md-dialog-content
-    .md-dialog-content.md-inline-form
-      md-content(layout-padding layout='row' ng-repeat='user in users')
-        md-input-container(flex)
-          label(translate) Name
-          input(ng-model='user.name')
-        md-input-container(flex)
-          label(translate) Email
-          input(type='email' ng-model='user.email' ng-readonly='saving')
-        div(ng-if='saving')
-          md-progress-circular(md-mode="indeterminate" ng-if='!user.saved')
-          span
-            i.fa.fa-2x.fa-check(ng-if='user.status == "saved"')
-            i.fa.fa-2x.fa-exclamation-circle(ng-if='user.status == "error"')
-        
+    form(name='form')
+      .md-dialog-content.md-inline-form
+        md-content(layout-padding layout='row' ng-repeat='user in users')
+          md-input-container(flex)
+            label(translate) Name
+            input(ng-model='user.name')
+          div(ng-if='saving')
+            span
+              i.fa.fa-circle-o-notch.fa-spin.alert(ng-if='user.status == "saving"')
+              i.fa.fa-check(ng-if='user.status == "saved"')
+              i.fa.fa-exclamation-circle(ng-if='user.status == "error"')
+
+
   md-dialog-actions(layout='row')
     md-button(ng-click='addUser()')
       md-button-icon.glyphicon.glyphicon-plus

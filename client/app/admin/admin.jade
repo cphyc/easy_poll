@@ -5,8 +5,6 @@ div(ng-include='"components/navbar/navbar.html"')
     i.fa.fa-plus
   ul.list-group
     li.list-group-item(ng-repeat='user in users')
-      strong {{user.name}}
-      br
-      span.text-muted {{user.email}}
+      {{user.name}}
       a.trash(ng-click='delete(user)')
         span.glyphicon.glyphicon-trash.pull-right

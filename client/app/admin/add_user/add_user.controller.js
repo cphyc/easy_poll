@@ -4,7 +4,6 @@ angular.module('eduquizzApp')
   var dummyUser = function() {
     return {
       name: '',
-      email: '',
       status: null
     };
   };
@@ -12,7 +11,7 @@ angular.module('eduquizzApp')
   $scope.users = [dummyUser()];
 
   $scope.addUser = function() {
-    if (_.last($scope.users).name && _.last($scope.users).email) {
+    if (_.last($scope.users).name) {
       $scope.users.push(dummyUser());
     }
   };
@@ -25,20 +24,22 @@ angular.module('eduquizzApp')
       // Password is the name, in lower case with spaces replaced by ''
       user.password = user.name.toLowerCase().replace(' ', '');
       var prom = Restangular.all('users').post(user);
+
+      user.status = 'saving';
       return prom.then(function(ans) {
-        console.log(ans);
         user.status = 'saved';
         return;
-      }, function() {
+      }).catch(function(err) {
         user.status = 'error';
-        return;
+        throw new Error(err);
       });
     });
+
     $window.Q.all(promises).then(function() {
       $scope.saving = false;
       $rootScope.$broadcast('update:users');
       $scope.$close();
-    }, function() {
+    }).catch(function() {
       $scope.saving = false;
     });
   };
