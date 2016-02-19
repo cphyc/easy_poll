@@ -107,7 +107,7 @@ exports.getResultsAsCsv = function(req, res) {
       var answers = answers.map(function(answer) {
         var correction = answer.correction(answer.poll);
 
-        var answers = correction.map(function(corr) { return corr.givenAnswer + (corr.goodAnswer ? '(correct)' : '(faux)'); });
+        var answers = correction.map(function(corr) { return (corr.goodAnswer ? '1' : '0'); });
         var totGoodAnswers = correction.reduce(function(agg, corr) {
           if (corr.goodAnswer) {
             return agg + 1;
