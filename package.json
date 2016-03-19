@@ -41,6 +41,7 @@
     "grunt-autoprefixer": "~0.7.2",
     "grunt-babel": "~5.0.0",
     "grunt-build-control": "~0.4.0",
+    "grunt-cli": "^0.1.13",
     "grunt-concurrent": "~0.5.0",
     "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-concat": "~0.4.0",
@@ -98,7 +99,7 @@
   "scripts": {
     "postinstall": "node node_modules/bower/bin/bower update",
     "start": "node server/app.js",
-    "test": "grunt test",
+    "test": "node node_modules/grunt-cli/bin/grunt test",
     "update-webdriver": "node node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update"
   },
   "private": true
