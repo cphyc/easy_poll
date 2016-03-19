@@ -75,7 +75,7 @@ Is is not advised to serve directly for the Internet. Instead, you'd rather serv
 
 ```apache
 <VirtualHost *:80>
-  ServerAdmin <ADMIN MAIL>
+	ServerAdmin <ADMIN MAIL>
 	ServerName <URL OF THE SITE>
 
 	ProxyPass / http://localhost:9000/
