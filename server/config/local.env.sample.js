@@ -13,5 +13,10 @@ module.exports = {
   GOOGLE_SECRET:    'secret',
 
   // Control debug level for modules using visionmedia/debug
-  DEBUG: ''
+  DEBUG: '',
+  ROOTS: [{
+    name: 'Foo Bar',
+    password: 'dummypassword',
+    email: 'foo@bar.com'
+  }]
 };
