@@ -58,7 +58,11 @@ You can pass extra configurations to the server using environment variables. Her
 In the command line, go into the install directory and start the server:
 
     cd /path/to/install/directory/easy_poll
+
+	# Do this if you want to test
 	grunt serve
+	# Do this if you want to use it
+	grunt serve:dist
 
 The server should start. You can then access it at <http://localhost:9000/>.
 
@@ -77,3 +81,4 @@ Is is not advised to serve directly for the Internet. Instead, you'd rather serv
 
     </VirtualHost>
 
+You can then access your site at `<URL OF THE SITE>`.
