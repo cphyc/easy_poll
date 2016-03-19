@@ -33,6 +33,7 @@
     "unoconv2": "^1.0.0"
   },
   "devDependencies": {
+    "bower": "^1.7.7",
     "connect-livereload": "~0.4.0",
     "grunt": "~0.4.4",
     "grunt-angular-gettext": "^2.1.11",
@@ -95,7 +96,7 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "postinstall": "bower update",
+    "postinstall": "node node_modules/bower/bin/bower update",
     "start": "node server/app.js",
     "test": "grunt test",
     "update-webdriver": "node node_modules/grunt-protractor-runner/node_modules/protractor/bin/webdriver-manager update"
