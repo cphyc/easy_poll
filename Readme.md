@@ -19,22 +19,22 @@ You need to install Node.js v0.10 (see https://nodejs.org/) and mongodb (see htt
 First, get a copy of the software:
 
 ```bash
-	# Go to the directory where you want to install it
-	cd /path/to/install/directory
+# Go to the directory where you want to install it
+cd /path/to/install/directory
 
-	# Get a copy of the software
-	git clone https://github.com/cphyc/easy_poll.git
+# Get a copy of the software
+git clone https://github.com/cphyc/easy_poll.git
 
-    # if you don't have git, you can do the three following steps:
-	wget https://github.com/cphyc/easy_poll/archive/master.zip
-	unzip master.zip
-	mv easy_poll-master easy_poll
+# if you don't have git, you can do the three following steps:
+wget https://github.com/cphyc/easy_poll/archive/master.zip
+unzip master.zip
+mv easy_poll-master easy_poll
 
-	# Get into the newly installed directory
-	cd easy_poll
+# Get into the newly installed directory
+cd easy_poll
 
-	# Install dependencies automatically
-	npm install
+# Install dependencies automatically
+npm install
 ```
 
 ## Install (other platform)
