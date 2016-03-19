@@ -18,6 +18,7 @@ You need to install Node.js v0.10 (see https://nodejs.org/) and mongodb (see htt
 ## Install (Linux, command line users)
 First, get a copy of the software:
 
+```bash
 	# Go to the directory where you want to install it
 	cd /path/to/install/directory
 
@@ -34,6 +35,7 @@ First, get a copy of the software:
 
 	# Install dependencies automatically
 	npm install
+```
 
 ## Install (other platform)
 This has *not* been tested until now. Post a pull-request [here](https://github.com/cphyc/easy_poll/pulls).
@@ -57,28 +59,32 @@ You can pass extra configurations to the server using environment variables. Her
 ## Start the server
 In the command line, go into the install directory and start the server:
 
-    cd /path/to/install/directory/easy_poll
+```bash
+cd /path/to/install/directory/easy_poll
 
-	# Do this if you want to test
-	grunt serve
-	# Do this if you want to use it
-	grunt serve:dist
+# Do this if you want to test
+grunt serve
+# Do this if you want to use it
+grunt serve:dist
+```
 
 The server should start. You can then access it at <http://localhost:9000/>.
 
 # Remarks
 Is is not advised to serve directly for the Internet. Instead, you'd rather serve it through a webserver (Apache, nginx). Here is a sample configuration for Apache with the application served on port 9000
 
-    <VirtualHost *:80>
-		ServerAdmin <ADMIN MAIL>
-		ServerName <URL OF THE SITE>
+```apache
+<VirtualHost *:80>
+  ServerAdmin <ADMIN MAIL>
+	ServerName <URL OF THE SITE>
 
-		ProxyPass / http://localhost:9000/
-		ProxyPassReverse / http://localhost:9000/
+	ProxyPass / http://localhost:9000/
+	ProxyPassReverse / http://localhost:9000/
 
-		#Logfiles
-		ErrorLog <PATH/TO/ERROR/LOGS/errors.log>
+	#Logfiles
+	ErrorLog <PATH/TO/ERROR/LOGS/errors.log>
 
-    </VirtualHost>
+</VirtualHost>
+```
 
 You can then access your site at `<URL OF THE SITE>`.
