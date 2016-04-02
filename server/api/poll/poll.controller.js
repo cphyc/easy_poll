@@ -115,7 +115,12 @@ exports.getResultsAsCsv = function(req, res) {
             return agg;
           }
         }, 0);
-        return [answer.user.name].concat(answers).concat([totGoodAnswers]);
+        var name = '?';
+        if (answer.user && answer.user.name) {
+          name = answer.user.name;
+        }
+
+        return [name].concat(answers).concat([totGoodAnswers]);
       }) || [];
 
       var correction = [header].concat(answers);
