@@ -196,6 +196,7 @@ module.exports = function (grunt) {
           src: [
             '.tmp',
             '<%= yeoman.dist %>/*',
+	    '!<%= yeoman.dist %>/uploads',
             '!<%= yeoman.dist %>/.git*',
             '!<%= yeoman.dist %>/.openshift',
             '!<%= yeoman.dist %>/Procfile'
@@ -667,7 +668,6 @@ module.exports = function (grunt) {
         'env:prod',
         'express:prod',
         'wait',
-        'open',
         'express-keepalive'
       ]);
     }
