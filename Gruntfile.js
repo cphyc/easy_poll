@@ -17,7 +17,8 @@ module.exports = function (grunt) {
     cdnify: 'grunt-google-cdn',
     protractor: 'grunt-protractor-runner',
     buildcontrol: 'grunt-build-control',
-    nggettext_extract: 'grunt-angular-gettext'
+    nggettext_extract: 'grunt-angular-gettext',
+    mkdir: 'grunt-mkdir'
   });
 
   // Time how long tasks take. Can help when optimizing build times
@@ -58,7 +59,7 @@ module.exports = function (grunt) {
       },
       prod: {
         options: {
-          script: 'dist/server/app.js'
+          script: '<%= yeoman.dist %>/server/app.js'
         }
       }
     },
@@ -376,6 +377,20 @@ module.exports = function (grunt) {
       }
     },
 
+      // Make the directories
+    mkdir: {
+      dev: {
+        options: {
+          create: ['uploads/']
+        }
+      },
+      dist: {
+        options: {
+          create: ['dist/', 'dist/uploads']
+        }
+      }
+    },
+
     // Copies remaining files to places other tasks can use
     copy: {
       dist: {
@@ -645,12 +660,22 @@ module.exports = function (grunt) {
 
   grunt.registerTask('serve', function (target) {
     if (target === 'dist') {
-      return grunt.task.run(['build', 'env:all', 'env:prod', 'express:prod', 'wait', 'open', 'express-keepalive']);
+      return grunt.task.run([
+        'mkdir:dist',
+        'build',
+        'env:all',
+        'env:prod',
+        'express:prod',
+        'wait',
+        'open',
+        'express-keepalive'
+      ]);
     }
 
     if (target === 'debug') {
       return grunt.task.run([
         'clean:server',
+        'mkdir:dev',
         'env:all',
         'injector:sass',
         'concurrent:server',
@@ -663,6 +688,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'mkdir:dev',
       'env:all',
       'injector:sass',
       'concurrent:server',
