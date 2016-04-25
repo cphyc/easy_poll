@@ -382,12 +382,12 @@ module.exports = function (grunt) {
     mkdir: {
       dev: {
         options: {
-          create: ['uploads/']
+          create: ['uploads', '.tmp']
         }
       },
       dist: {
         options: {
-          create: ['dist/', 'dist/uploads']
+          create: ['dist', 'dist/uploads', 'dist/.tmp']
         }
       }
     },
