@@ -88,3 +88,6 @@ Is is not advised to serve directly for the Internet. Instead, you'd rather serv
 ```
 
 You can then access your site at `<URL OF THE SITE>`.
+
+# License
+The program is provided under the GNU Lesser Leneral Public License. See the LICENSE file for more information.
