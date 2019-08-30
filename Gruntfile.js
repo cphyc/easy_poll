@@ -478,7 +478,7 @@ module.exports = function (grunt) {
         'babel',
         'jade',
         'sass',
-        'imagemin',
+        //'imagemin',
         'svgmin'
       ]
     },

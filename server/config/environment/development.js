@@ -8,5 +8,5 @@ module.exports = {
     uri: 'mongodb://localhost/eduquizz-dev'
   },
 
-  seedDB: true
+  //seedDB: true
 };
