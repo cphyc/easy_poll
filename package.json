@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "main": "server/app.js",
   "dependencies": {
+    "angular-gettext": "^2.3.10",
     "body-parser": "~1.19.0",
     "composable-middleware": "^0.3.0",
     "compression": "~1.7.4",
