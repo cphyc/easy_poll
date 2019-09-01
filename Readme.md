@@ -11,7 +11,7 @@ This tool let professors create interactively nice polls, export and view the re
 *
 
 ## Requirements:
-You need to install Node.js v0.10 (see https://nodejs.org/) and mongodb (see https://www.mongodb.org/) as well as a python2 distribution (https://python.org)
+You need to install Node.js v8 or above (see https://nodejs.org/) and mongodb (see https://www.mongodb.org/) as well as a python2 distribution (https://python.org)
 
 **Optional**: install git (https://git-scm.com/).
 
