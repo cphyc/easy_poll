@@ -30,7 +30,7 @@ AnswerSchema.methods.correction = function(poll) {
 };
 
 AnswerSchema.statics.findByPoll = function(pollId) {
-  var id = new Schema.Types.ObjectId(pollId);
+  var id = new mongoose.Types.ObjectId(pollId);
   return this
     .find({ "poll": pollId });
 };

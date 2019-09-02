@@ -56,7 +56,7 @@ before(function(done) {
     request(app)
       .post('/auth/local')
       .set('Content-Type', 'application/json')
-      .send({ "email": testUser.email, "password": testUser.password})
+      .send({"name": testUser.name, "password": testUser.password})
       .end(function(err, res) {
         userToken = res.body.token;
         done();
@@ -119,7 +119,7 @@ describe('GET /api/answers', function() {
   it('should fail for visitors', function(done) {
     request(app)
       .get('/api/answers')
-      .expect(401)
+      .expect(403)
       .end(function(err, ans) {
         done(err);
       });
