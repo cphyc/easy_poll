@@ -8,7 +8,10 @@ var config = require('../../config/environment');
 var acls = config.userRoles;
 
 var UserSchema = new Schema({
-  name: String,
+  name: {
+    type: String,
+    unique: true
+  },
   role: {
     type: String,
     default: 'user',
@@ -54,29 +57,6 @@ UserSchema
       'role': this.role
     };
   });
-
-/**
- * Validations
- */
-
-// Validate name is not taken
-UserSchema
-  .path('name')
-  .validate(function(value) {
-    var self = this;
-    this.constructor.findOne({name: value}, function(err, user) {
-      if(err) throw err;
-      if(user) {
-        if(self.id === user.id) return true;
-        return false;
-      }
-      return true;
-    });
-}, 'The specified name is already in use.');
-
-var validatePresenceOf = function(value) {
-  return value && value.length;
-};
 
 /**
  * Pre-save hook
