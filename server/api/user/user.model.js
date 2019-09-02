@@ -62,15 +62,15 @@ UserSchema
 // Validate name is not taken
 UserSchema
   .path('name')
-  .validate(function(value, respond) {
+  .validate(function(value) {
     var self = this;
     this.constructor.findOne({name: value}, function(err, user) {
       if(err) throw err;
       if(user) {
-        if(self.id === user.id) return respond(true);
-        return respond(false);
+        if(self.id === user.id) return true;
+        return false;
       }
-      respond(true);
+      return true;
     });
 }, 'The specified name is already in use.');
 

@@ -137,7 +137,8 @@ exports.getResultsAsCsv = function(req, res) {
 
 // Creates a new poll in the DB.
 exports.create = function(req, res) {
-  Poll.create(req.body, function(err, poll) {
+  var poll = new Poll(req.body);
+  poll.save(function(err) {
     if(err) { return handleError(res, err); }
     return res.status(201).json(poll);
   });
@@ -199,5 +200,6 @@ exports.destroy = function(req, res) {
 };
 
 function handleError(res, err) {
+  console.error(err);
   return res.status(500).send(err);
 }

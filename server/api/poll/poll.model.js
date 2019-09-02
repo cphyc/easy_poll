@@ -14,16 +14,16 @@ var PollSchema = new Schema({
 
 PollSchema
   .path('questions')
-  .validate(function(questions, respond) {
-    if (!questions || questions.length === 0) respond(false);
-    else respond(true);
+  .validate(function(questions) {
+    if (!questions || questions.length === 0) return false;
+    else return true;
   }, 'You have to ask a question')
-  .validate(function(questions, respond) {
+  .validate(function(questions) {
     questions.forEach(function(q) {
-      if (q.question === '') respond(false)
-      else if (q.answers.length === 0) respond(false)
-      else if (0 > q.answer || q.answer > q.answers.length - 1) respond(false);
-      else respond(true);
+      if (q.question === '') return false;
+      else if (q.answers.length === 0) return false;
+      else if (0 > q.answer || q.answer > q.answers.length - 1) return false;
+      else return true;
     });
   }, 'Malformed questions');
 
