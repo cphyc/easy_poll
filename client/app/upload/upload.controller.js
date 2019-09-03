@@ -32,8 +32,12 @@ angular.module('eduquizzApp')
   };
 
   $scope.activateCropper = function() {
-    $timeout(() => $timeout(() => $scope.$broadcast('show')));
-  }
+    $timeout(function() {
+      $timeout(function() {
+        $scope.$broadcast('show')
+      })
+    });
+  };
 
   updatePictureList($scope.nToFetch);
 });

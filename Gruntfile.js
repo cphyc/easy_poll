@@ -59,7 +59,7 @@ module.exports = function (grunt) {
       },
       prod: {
         options: {
-          script: '<%= yeoman.dist %>/server/app.js'
+          script: 'server/app.js'
         }
       }
     },
@@ -663,10 +663,14 @@ module.exports = function (grunt) {
   grunt.registerTask('serve', function (target) {
     if (target === 'dist') {
       return grunt.task.run([
-        'mkdir:dist',
-        'build',
+        'clean:server',
+        'mkdir:dev',
         'env:all',
-        'env:prod',
+        'injector:sass',
+        'concurrent:server',
+        'injector',
+        'wiredep',
+        'autoprefixer',
         'express:prod',
         'wait',
         'express-keepalive'
@@ -690,7 +694,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'mkdir:dev',
-      'env:all',
+      'env:prod',
       'injector:sass',
       'concurrent:server',
       'injector',
@@ -759,13 +763,13 @@ module.exports = function (grunt) {
     'useminPrepare',
     'autoprefixer',
     'ngtemplates',
-    'concat',
+    'concat:generated',
     'ngAnnotate',
     'copy:dist',
-    //'cdnify',
-    'cssmin',
-    'uglify',
-    'rev',
+    'cdnify',
+    'cssmin:generated',
+    //'uglify:generated',
+    //'rev',
     'usemin'
   ]);
 

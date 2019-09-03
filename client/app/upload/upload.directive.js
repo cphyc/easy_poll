@@ -13,9 +13,9 @@ angular.module('eduquizzApp')
         $scope.hideEvent = 'hide';
 
         $scope.options = {
-          crop: dataNew => { $scope.data = dataNew; },
-          build: () => { },
-          built: () => { }
+          crop: function(dataNew) { $scope.data = dataNew; },
+          build: function() {},
+          built: function() {}
         };
 
         $scope.cropperProxy = 'cropper.first';
