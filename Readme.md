@@ -89,5 +89,18 @@ Is is not advised to serve directly for the Internet. Instead, you'd rather serv
 
 You can then access your site at `<URL OF THE SITE>`.
 
+## Managing `easy_poll` with a unit file
+
+On systems shipped with systemd, it is possible to manage `easy_poll` with the provided unit file (`easy_poll.service`).
+For this, copy it to `~/.config/systemd/user/` and enable it using
+```bash
+# To enable it
+systemctl --user enable easy_poll.service
+# To start it
+systemctl --user start easy_poll.service
+# To watch its log
+systemctl --user status easy_poll.service
+```
+
 # License
 The program is provided under the GNU Lesser Leneral Public License. See the LICENSE file for more information.
