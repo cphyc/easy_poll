@@ -58,6 +58,10 @@ UserSchema
     };
   });
 
+var validatePresenceOf = function(value) {
+  return value && value.length;
+};
+
 /**
  * Pre-save hook
  */
