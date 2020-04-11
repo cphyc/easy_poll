@@ -1,0 +1,9 @@
+[Unit]
+Description=Easy poll service.
+
+[Service]
+Type=simple
+ExecStart=/bin/bash REPLACE_ME
+
+[Install]
+WantedBy=multi-user.target
