@@ -31,13 +31,13 @@ angular.module('eduquizzApp')
     updatePictureList($scope.nToFetch);
   };
 
-  $scope.activateCropper = function() {
-    $timeout(function() {
-      $timeout(function() {
-        $scope.$broadcast('show')
-      })
-    });
-  };
+  // $scope.activateCropper = function() {
+  //   $timeout(function() {
+  //     $timeout(function() {
+  //       $scope.$broadcast('show')
+  //     })
+  //   });
+  // };
 
   updatePictureList($scope.nToFetch);
 });

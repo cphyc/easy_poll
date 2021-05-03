@@ -13,8 +13,8 @@ angular.module('eduquizzApp', [
   'InlineTextEditor',
   'gettext',
   'ngFileUpload',
-  'ngQuill',
-  'ngCropper'
+  'ngQuill'
+  //'ngCropper'
 ])
   .run(function (gettextCatalog) {
     gettextCatalog.setCurrentLanguage('fr');

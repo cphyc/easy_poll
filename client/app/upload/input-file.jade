@@ -3,8 +3,4 @@ div(ng-if="picFile")
     md-icon.glyphicon.glyphicon-upload
     span(translate-context='button') {{ uploadButtonMessage }}
   div(width="90%")
-    img(ng-src="{{picFile | ngfDataUrl}}" width="100%"
-      ng-cropper=""
-      ng-cropper-options="options"
-      ng-cropper-show="showEvent"
-      ng-cropper-hide="hideEvent")
+    img(ng-src="{{picFile | ngfDataUrl}}" width="100%")
