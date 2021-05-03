@@ -57,10 +57,8 @@ angular.module('eduquizzApp')
       templateUrl: 'app/edit_poll/edit/inline.html',
       restrict: 'EA',
       link: function ($scope, element, attrs) {
-        var quillId;
-        var quillInstance;
         var attach = function() {
-          var quillId = element.find('.ql-editor')[0].id;
+          var quillId = element[0].getElementsByClassName("ql-editor")[0].id;
           if (!quillId) {
             setTimeout(attach, 200);
             return;
@@ -73,14 +71,14 @@ angular.module('eduquizzApp')
             return;
           }
 
-          var elementToReplace = element.find('.ql-image');
+          var elementToReplace = $(element[0].getElementsByClassName("ql-image"));
 
           if (elementToReplace.length === 0) {
             setTimeout(attach, 200);
             return;
           }
 
-          elementToReplace.click(function() {
+          elementToReplace.on("click", function() {
             $scope.uploadDialog().then(function(imageUrl) {
               if (imageUrl) {
                 addImageInEditor(quillInstance, imageUrl);
